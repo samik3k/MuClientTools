@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Client">
+      <UniqueIdentifier>{20ca5291-7ad4-4ff2-98a8-69730ae0539f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Client\DataFiles">
+      <UniqueIdentifier>{662543aa-dcbc-4814-ab12-16d4f691cf48}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BaseIO.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MuCrypto.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SingletonInstance.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LangMpr.h">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Core.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utls.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemBmd.h">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientStructures.h">
+      <Filter>Source Files\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="ExcellentOptionBmd.h">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="TxtConvertor.h">
+      <Filter>Source Files\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="FormulaDataBmd.h">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="InfoTooltipBmd.h">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="InfoTooltipTextBmd.h">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BaseIO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MuCrypto.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LangMpr.cpp">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Utls.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemBmd.cpp">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="ExcellentOptionBmd.cpp">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="FormulaDataBmd.cpp">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Core.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InfoTooltipBmd.cpp">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="InfoTooltipTextBmd.cpp">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
