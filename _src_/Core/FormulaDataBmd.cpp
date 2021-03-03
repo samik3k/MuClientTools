@@ -122,7 +122,7 @@ void FormulaDataBmd::TxtIn(ifstream & is)
 		FORMULA_DATA Data;
 		int group;
 		sscanf(line.c_str(),
-			"%d\t%d\t%[^\t][64]%*c"
+			"%d\t%d\t%[^\t]%*c"
 			, &group, &Data.ID, &Data.Text);
 		temp[group].push_back(Data);
 		n++;

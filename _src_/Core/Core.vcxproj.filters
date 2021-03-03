@@ -52,6 +52,15 @@
     <ClInclude Include="InfoTooltipTextBmd.h">
       <Filter>Source Files\Client\DataFiles</Filter>
     </ClInclude>
+    <ClInclude Include="PentagramMixNeedSourceBmd.h">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="MuunInfoBmd.h">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="MuunOption.h">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseIO.cpp">
@@ -82,6 +91,15 @@
       <Filter>Source Files\Client\DataFiles</Filter>
     </ClCompile>
     <ClCompile Include="InfoTooltipTextBmd.cpp">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="PentagramMixNeedSourceBmd.cpp">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="MuunInfoBmd.cpp">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="MuunOption.cpp">
       <Filter>Source Files\Client\DataFiles</Filter>
     </ClCompile>
   </ItemGroup>

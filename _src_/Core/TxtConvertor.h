@@ -119,7 +119,7 @@ BOOL TxtConvertor<T>::ComposeTxt(const char * szDestTxt)
 	fs::path pFile = BackupPath(szDestTxt);
 	CreateParentDir(pFile);
 
-	ofstream os(pFile, ios::out | ios::binary);
+	ofstream os(pFile);
 	if (!os.is_open())
 	{
 		cout << "Error: Failed to write the txt file: " << pFile << '\n';

@@ -1,6 +1,49 @@
 #ifndef CLIENT_STRUCT_H
 #define CLIENT_STRUCT_H
 
+struct MUUN_INFO
+{
+	BYTE Unk[64];
+};
+
+struct MUUN_OPTION
+{
+	int ID;
+	short MuunID;
+	char OptionName[256];
+	BYTE GAP_1[2];
+	int ValueEvo;
+	int ValueLvl_1;
+	int ValueLvl_2;
+	int ValueLvl_3;
+	int ValueLvl_4;
+	int ValueLvl_5;
+	BYTE ConditionType_1;
+	char OptionDesc[256];
+	BYTE GAP_2[3];
+	int ConditionValue_1;
+	int ConditionValue_2;
+	BYTE ConditionType_2;
+	BYTE GAP_3[3];
+};
+
+struct PENTAGRAM_MIX_SOURCE
+{
+	int Category;
+	int Index;
+	int SuccessRate_Cat0;
+	int ItemID[5];
+	int ItemCat[5];
+	int ItemIndex[5];
+	int ItemCount[5];
+	int MoneyNeed;
+	int ItemLevelNeed;
+	int ErrtelRankNeed;
+	int ErrtelCount;
+	int SuccessRate_Cat1[5];
+	int Unk_Block[4];
+};
+
 struct INFO_TOOLTIP_TEXT
 {
 	short ID;

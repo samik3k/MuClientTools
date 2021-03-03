@@ -39,7 +39,7 @@ void InfoTooltipTextBmd::TxtIn(ifstream & is)
 
 		INFO_TOOLTIP_TEXT* ptr = (INFO_TOOLTIP_TEXT*)&_buf[4 + (n * size)];
 		sscanf(line.c_str(),
-			"%hd\t%[^\t][256]%*c"
+			"%hd\t%[^\t]%*c"
 			, &ptr->ID, &ptr->Text
 		);
 
