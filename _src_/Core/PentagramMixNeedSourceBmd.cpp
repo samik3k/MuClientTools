@@ -10,14 +10,18 @@ void PentagramMixNeedSourceBmd::MakeLabel(ofstream & os)
 {
 	assert(os);
 
+	static const string LABEL = PENTAGRAM_MIX_SOURCE::GetLabel();
+
 	os << "// Cat0: Material Combination" << endl;
 	os << "// Cat1: Errtel" << endl;
 	os << "// Cat2 : Errtel Level Upgrade" << endl;
 	os << "// Cat3 : Errtel Rank Upgrade" << endl;
-	os << "// Cat4: Errtal Socket Upgrade" << endl;
-	os << "// Cat5: Wing Add Option" << endl;
-	os << "// Cat6: Wing Option Level Upgrade" << endl;
+	os << "// Cat6: Wing Add Option" << endl;
+	os << "// Cat7: Wing Option Level Upgrade" << endl;
 
+	os << LABEL << endl;;
+
+	/*
 	os << "//Category\tIndex\tSuccessRate_Cat0";
 	char temp[64];
 	for (int i = 0; i < 5; i++)
@@ -41,9 +45,8 @@ void PentagramMixNeedSourceBmd::MakeLabel(ofstream & os)
 		os << temp;
 	}
 
-	os << "\tMoneyNeed\tItemLevelNeed\tErrtelRankNeed\tErrtelCount";
-
-	os << endl;
+	os << "\tMoneyNeed\tItemLevelNeed\tErrtelRankNeed\tErrtelCount" << endl;
+	*/
 }
 
 void PentagramMixNeedSourceBmd::TxtOut(ofstream & os)
@@ -83,6 +86,8 @@ void PentagramMixNeedSourceBmd::TxtIn(ifstream & is)
 {
 	assert(is);
 
+	static const string FORMAT = PENTAGRAM_MIX_SOURCE::GetFormat();
+
 	string line;
 	int size = sizeof(PENTAGRAM_MIX_SOURCE);
 	int n = 0;
@@ -95,9 +100,10 @@ void PentagramMixNeedSourceBmd::TxtIn(ifstream & is)
 
 		PENTAGRAM_MIX_SOURCE* ptr = (PENTAGRAM_MIX_SOURCE*)&_buf[4 + (n * size)];
 		sscanf(line.c_str(),
-			"%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t"
-			"%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t"
-			"%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d"
+			//"%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t"
+			//"%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t"
+			//"%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d"
+			FORMAT.c_str()
 			, &ptr->Category, &ptr->Index, &ptr->SuccessRate_Cat0, &ptr->ItemID[0]
 			, &ptr->ItemID[1], &ptr->ItemID[2], &ptr->ItemID[3], &ptr->ItemID[4]
 			, &ptr->ItemCat[0], &ptr->ItemCat[1], &ptr->ItemCat[2], &ptr->ItemCat[3]

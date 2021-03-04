@@ -6,7 +6,7 @@
 int main(int argc, char** argv)
 {
 	MuunOptionBmd opener;
-	const char* szInputPath = "MuunOption.txt";
+	const char* szInputPath = "muunoption.bmd";
 	const char* szOutputPath = nullptr;
 
 	if (argc >= 2)

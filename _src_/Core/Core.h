@@ -12,6 +12,7 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem> // C++17
+#include <algorithm>
 #include <string>
 #include <vector>
 #include <map>

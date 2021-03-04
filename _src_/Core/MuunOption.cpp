@@ -17,9 +17,9 @@ void MuunOptionBmd::TxtOut(ofstream & os)
 {
 	assert(os);
 
-	static const char* LABEL =
-		"//ID\tMuunID\tOptionName\tValueEvo\tValueLvl_1\tValueLvl_2\tValueLvl_3\tValueLvl_4\tValueLvl_5\t"
-		"ConditionType_1\tOptionDesc\tConditionValue_1\tConditionValue_2\tConditionType_2";
+	//	"//ID\tMuunID\tOptionName\tValueEvo\tValueLvl_1\tValueLvl_2\tValueLvl_3\tValueLvl_4\tValueLvl_5\t"
+	//	"ConditionType_1\tOptionDesc\tConditionValue_1\tConditionValue_2\tConditionType_2";
+	static const string LABEL = MUUN_OPTION::GetLabel();
 	os << LABEL << endl;
 
 	for (auto it = _map.begin(); it != _map.end(); it++)
@@ -27,7 +27,7 @@ void MuunOptionBmd::TxtOut(ofstream & os)
 		MUUN_OPTION* ptr = it->second;
 		os << ptr->ID << '\t';
 		os << ptr->MuunID << '\t';
-		os << ptr->OptionName << '\t';
+		os << (Utls::IsEmptyCStr(ptr->OptionName) ? "[NULL]" : ptr->OptionName) << '\t';
 		os << ptr->ValueEvo << '\t';
 		os << ptr->ValueLvl_1 << '\t';
 		os << ptr->ValueLvl_2 << '\t';
@@ -35,7 +35,7 @@ void MuunOptionBmd::TxtOut(ofstream & os)
 		os << ptr->ValueLvl_4 << '\t';
 		os << ptr->ValueLvl_5 << '\t';
 		os << (int)ptr->ConditionType_1 << '\t';
-		os << ptr->OptionDesc << '\t';
+		os << (Utls::IsEmptyCStr(ptr->OptionDesc) ? "[NULL]" : ptr->OptionDesc) << '\t';
 		os << ptr->ConditionValue_1 << '\t';
 		os << ptr->ConditionValue_2 << '\t';
 		os << (int)ptr->ConditionType_2 << '\t';
@@ -48,9 +48,12 @@ void MuunOptionBmd::TxtIn(ifstream & is)
 {
 	assert(is);
 
+	static const string FORMAT = MUUN_OPTION::GetFormat();
+
 	string line;
 	int size = sizeof(MUUN_OPTION);
 	int n = 0;
+
 	_map.clear();
 	while (getline(is, line))
 	{
@@ -60,7 +63,8 @@ void MuunOptionBmd::TxtIn(ifstream & is)
 
 		MUUN_OPTION* ptr = (MUUN_OPTION*)&_buf[4 + (n * size)];
 		sscanf(line.c_str(),
-			"%d\t%hd\t%[^\t]%*c\t%d\t%d\t%d\t%d\t%d\t%d\t%hhd\t%[^\t]%*c\t%d\t%d\t%hhd"
+			//"%d\t%hd\t%[^\t]%*c\t%d\t%d\t%d\t%d\t%d\t%d\t%hhd\t%[^\t]%*c\t%d\t%d\t%hhd"
+			FORMAT.c_str()
 			, &ptr->ID, &ptr->MuunID, &ptr->OptionName, &ptr->ValueEvo, &ptr->ValueLvl_1, &ptr->ValueLvl_2, &ptr->ValueLvl_3
 			, &ptr->ValueLvl_4, &ptr->ValueLvl_5, &ptr->ConditionType_1, &ptr->OptionDesc, &ptr->ConditionValue_1, &ptr->ConditionValue_2, &ptr->ConditionType_2
 		);

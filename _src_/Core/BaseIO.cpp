@@ -29,8 +29,8 @@ BOOL BaseIO::FileWrite(const char * szDestFile)
 {
 	assert(_buf.size() && szDestFile);
 
-	fs::path pFile = BackupPath(szDestFile);
-	CreateParentDir(pFile);
+	fs::path pFile = Utls::BackupPath(szDestFile);
+	Utls::CreateParentDir(pFile);
 
 	ofstream os(pFile, ios::out | ios::binary);
 	if (!os.is_open())

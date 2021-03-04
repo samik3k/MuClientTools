@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _MU_CRYPTO_H
+#define _MU_CRYPTO_H
+
 #define _MU_XOR3KEY_  0xFC, 0xCF, 0xAB
 
 class MuCrypto
@@ -12,3 +14,5 @@ protected:
 	virtual DWORD Xor3Byte(BYTE *buf, int len);
 	BYTE _xor3key[3];
 };
+
+#endif

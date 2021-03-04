@@ -19,13 +19,13 @@ void ItemBmd::TxtOut(ofstream & os)
 {
 	assert(os);
 
-	static const char* LABEL =
-		"//ItemIndex\tItemSubGroup\tItemSubIndex\tszModelFolder\tszModelName\tszItemName\t"
-		"KindA\tKindB\tType\tTwoHands\tDropLevel\tSlot\tSkillIndex\tWidth\tHeight\tDamageMin\tDamageMax\tDefenseRate\t"
-		"Defense\tMagicResistance\tAttackSpeed\tWalkSpeed\tDurability\tMagicDur\tMagicPower\tReqStr\tReqDex\tReqEne\tReqVit\t"
-		"ReqCmd\tReqLvl\tItemValue\tMoney\tSetAttr\tClass_0\tClass_1\tClass_2\tClass_3\tClass_4\tClass_5\tClass_6\tClass_7\t"
-		"Res_0\tRes_1\tRes_2\tRes_3\tRes_4\tRes_5\tRes_6\tDump\tTransaction\tPersonalStore\tWarehouse\tSellNpc\tExpensive\t"
-		"Repair\tOverlap\tUnk_End";
+	//	"//ItemIndex\tItemSubGroup\tItemSubIndex\tszModelFolder\tszModelName\tszItemName\t"
+	//	"KindA\tKindB\tType\tTwoHands\tDropLevel\tSlot\tSkillIndex\tWidth\tHeight\tDamageMin\tDamageMax\tDefenseRate\t"
+	//	"Defense\tMagicResistance\tAttackSpeed\tWalkSpeed\tDurability\tMagicDur\tMagicPower\tReqStr\tReqDex\tReqEne\tReqVit\t"
+	//	"ReqCmd\tReqLvl\tItemValue\tMoney\tSetAttr\tClass_0\tClass_1\tClass_2\tClass_3\tClass_4\tClass_5\tClass_6\tClass_7\t"
+	//	"Res_0\tRes_1\tRes_2\tRes_3\tRes_4\tRes_5\tRes_6\tDump\tTransaction\tPersonalStore\tWarehouse\tSellNpc\tExpensive\t"
+	//	"Repair\tOverlap\tUnk_End";
+	static const string LABEL = ITEM_ATTRIBUTE::GetLabel();
 	os << LABEL << endl;
 
 	for (auto it = _map.begin(); it != _map.end(); it++)
@@ -34,9 +34,9 @@ void ItemBmd::TxtOut(ofstream & os)
 		os << (DWORD)ptr->ItemIndex << '\t';
 		os << (DWORD)ptr->ItemSubGroup << '\t';
 		os << (DWORD)ptr->ItemSubIndex << '\t';
-		os << ptr->szModelFolder << '\t';
-		os << ptr->szModelName << '\t';
-		os << ptr->szItemName << '\t';
+		os << (Utls::IsEmptyCStr(ptr->szModelFolder) ? "[NULL]" : ptr->szModelFolder) << '\t';
+		os << (Utls::IsEmptyCStr(ptr->szModelName) ? "[NULL]" : ptr->szModelName) << '\t';
+		os << (Utls::IsEmptyCStr(ptr->szItemName) ? "[NULL]" : ptr->szItemName) << '\t';
 		os << (DWORD)ptr->KindA << '\t';
 		os << (DWORD)ptr->KindB << '\t';
 		os << (DWORD)ptr->Type << '\t';
@@ -87,6 +87,7 @@ void ItemBmd::TxtIn(ifstream & is)
 {
 	assert(is);
 
+	static const string FORMAT = ITEM_ATTRIBUTE::GetFormat();
 	string line;
 	int size = sizeof(ITEM_ATTRIBUTE);
 	int n = 0;
@@ -100,12 +101,13 @@ void ItemBmd::TxtIn(ifstream & is)
 
 		ITEM_ATTRIBUTE* ptr = (ITEM_ATTRIBUTE*)&_buf[4 + (n * size)];
 		sscanf(line.c_str(),
-			"%d\t%hd\t%hd\t%[^\t]%*c\t%[^\t]%*c\t%[^\t]%*c\t%hhd\t%hhd\t%hhd\t%hhd\t"
-			"%hd\t%hhd\t%hd\t%hhd\t%hhd\t%hd\t%hd\t%hhd\t%hd\t%hd\t"
-			"%hhd\t%hhd\t%hhd\t%hhd\t%d\t%hd\t%hd\t%hd\t%hd\t%hd\t"
-			"%hd\t%hhd\t%d\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t"
-			"%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t"
-			"%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%d"
+			//"%d\t%hd\t%hd\t%[^\t]%*c\t%[^\t]%*c\t%[^\t]%*c\t%hhd\t%hhd\t%hhd\t%hhd\t"
+			//"%hd\t%hhd\t%hd\t%hhd\t%hhd\t%hd\t%hd\t%hhd\t%hd\t%hd\t"
+			//"%hhd\t%hhd\t%hhd\t%hhd\t%d\t%hd\t%hd\t%hd\t%hd\t%hd\t"
+			//"%hd\t%hhd\t%d\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t"
+			//"%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t"
+			//"%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%d"
+			FORMAT.c_str()
 			, &ptr->ItemIndex, &ptr->ItemSubGroup, &ptr->ItemSubIndex, &ptr->szModelFolder, &ptr->szModelName, &ptr->szItemName
 			, &ptr->KindA, &ptr->KindB, &ptr->Type, &ptr->TwoHands, &ptr->DropLevel, &ptr->Slot, &ptr->SkillIndex, &ptr->Width, &ptr->Height
 			, &ptr->DamageMin, &ptr->DamageMax, &ptr->DefenseRate, &ptr->Defense, &ptr->MagicResistance, &ptr->AttackSpeed, &ptr->WalkSpeed

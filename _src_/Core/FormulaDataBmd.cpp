@@ -88,17 +88,17 @@ void FormulaDataBmd::TxtOut(ofstream & os)
 {
 	assert(os);
 
-	static const char* LABEL =
-		"//Group\tID\tFormula_Text";
+	//	"//Group\tID\tFormula_Text";
+	static const string LABEL = "//Group\t" + FORMULA_DATA::GetLabel();
 	os << LABEL << endl;
 
 	for (auto it = _map.begin(); it != _map.end(); it++)
 	{
-		FORMULA_DATA* pData = it->second; 
+		FORMULA_DATA* ptr = it->second;
 		int group = (it->first >> 8);
 		os << group << '\t';
-		os << pData->ID << '\t';
-		os << pData->Text << '\t';
+		os << ptr->ID << '\t';
+		os << (Utls::IsEmptyCStr(ptr->Text) ? "[NULL]" : ptr->Text) << '\t';
 
 		os << endl;
 	}
@@ -107,6 +107,8 @@ void FormulaDataBmd::TxtOut(ofstream & os)
 void FormulaDataBmd::TxtIn(ifstream & is)
 {
 	assert(is);
+
+	static const string FORMAT = "%d\t" + FORMULA_DATA::GetFormat();
 
 	string line;
 	int size = sizeof(FORMULA_DATA);
@@ -122,7 +124,8 @@ void FormulaDataBmd::TxtIn(ifstream & is)
 		FORMULA_DATA Data;
 		int group;
 		sscanf(line.c_str(),
-			"%d\t%d\t%[^\t]%*c"
+			//"%d\t%d\t%[^\t]%*c"
+			FORMAT.c_str()
 			, &group, &Data.ID, &Data.Text);
 		temp[group].push_back(Data);
 		n++;

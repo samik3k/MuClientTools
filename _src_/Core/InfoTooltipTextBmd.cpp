@@ -2,22 +2,22 @@
 
 int InfoTooltipTextBmd::GetKey(INFO_TOOLTIP_TEXT * ptr)
 {
-	return 0;
+	return ptr->ID;
 }
 
 void InfoTooltipTextBmd::TxtOut(ofstream & os)
 {
 	assert(os);
-
-	static const char* LABEL =
-		"//ID\tText";
+	
+	//	"//ID\tText";
+	static const string LABEL = INFO_TOOLTIP_TEXT::GetLabel();
 	os << LABEL << endl;
 
 	for (auto it = _map.begin(); it != _map.end(); it++)
 	{
 		INFO_TOOLTIP_TEXT* ptr = it->second;
 		os << ptr->ID << '\t';
-		os << ptr->Text << '\t';
+		os << (Utls::IsEmptyCStr(ptr->Text) ? "[NULL]" : ptr->Text) << '\t';
 
 		os << endl;
 	}
@@ -26,6 +26,8 @@ void InfoTooltipTextBmd::TxtOut(ofstream & os)
 void InfoTooltipTextBmd::TxtIn(ifstream & is)
 {
 	assert(is);
+
+	static const string FORMAT = INFO_TOOLTIP_TEXT::GetFormat();
 
 	string line;
 	int size = sizeof(INFO_TOOLTIP_TEXT);
@@ -39,7 +41,8 @@ void InfoTooltipTextBmd::TxtIn(ifstream & is)
 
 		INFO_TOOLTIP_TEXT* ptr = (INFO_TOOLTIP_TEXT*)&_buf[4 + (n * size)];
 		sscanf(line.c_str(),
-			"%hd\t%[^\t]%*c"
+			//"%hd\t%[^\t]%*c"
+			FORMAT.c_str()
 			, &ptr->ID, &ptr->Text
 		);
 

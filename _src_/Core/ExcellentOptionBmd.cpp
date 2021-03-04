@@ -13,9 +13,9 @@ void ExcellentOptionBmd::TxtOut(ofstream& os)
 {
 	assert(os);
 
-	static const char* LABEL =
-		"//Category\tNumber\tName\tOperator\tValue\tDmg\t"
-		"Zen\tDmgChance\tOffense\tDefense\tLife\tMana\tOther";
+	//"//Category\tNumber\tName\tOperator\tValue\tDmg\t"
+	//"Zen\tDmgChance\tOffense\tDefense\tLife\tMana\tOther";
+	static const string LABEL = EXCELLENT_OPTION::GetLabel();
 	os << LABEL << endl;
 
 	for (auto it = _map.begin(); it != _map.end(); it++)
@@ -23,7 +23,7 @@ void ExcellentOptionBmd::TxtOut(ofstream& os)
 		EXCELLENT_OPTION* ptr = it->second;
 		os << (DWORD)ptr->Category << '\t';
 		os << (DWORD)ptr->Number << '\t';
-		os << ptr->Name << '\t';
+		os << (Utls::IsEmptyCStr(ptr->Name) ? "[NULL]" : ptr->Name) << '\t';
 		os << (DWORD)ptr->Operator << '\t';
 		os << ptr->Value << '\t';
 		os << ptr->Dmg << '\t';
@@ -43,6 +43,8 @@ void ExcellentOptionBmd::TxtIn(ifstream& is)
 {
 	assert(is);
 
+	static const string FORMAT = EXCELLENT_OPTION::GetFormat();
+
 	string line;
 	int size = sizeof(EXCELLENT_OPTION);
 	int n = 0;
@@ -52,10 +54,12 @@ void ExcellentOptionBmd::TxtIn(ifstream& is)
 		if (line[0] == '/' && line[1] == '/')
 			continue;
 		_buf.resize(4 + ((n + 1) * size));
+
 		EXCELLENT_OPTION* ptr = (EXCELLENT_OPTION*)&_buf[4 + (n * size)];
 		sscanf(line.c_str(),
-			"%hhd\t%hhd\t%[^\t]%*c\t%hhd\t%d\t%d\t"
-			"%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd"
+			//"%hhd\t%hhd\t%[^\t]%*c\t%hhd\t%d\t%d\t"
+			//"%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd"
+			FORMAT.c_str()
 			, &ptr->Category, &ptr->Number, &ptr->Name, &ptr->Operator, &ptr->Value, &ptr->Dmg
 			, &ptr->Zen, &ptr->DmgChance, &ptr->Offense, &ptr->Defense, &ptr->Life, &ptr->Mana, &ptr->Other
 		);

@@ -61,8 +61,8 @@ BOOL LangMpr::FileWrite(const char * szDestFile)
 {
 	assert(_buf.size() && szDestFile);
 
-	fs::path pFile = BackupPath(szDestFile);
-	CreateParentDir(pFile);
+	fs::path pFile = Utls::BackupPath(szDestFile);
+	Utls::CreateParentDir(pFile);
 
 	DWORD CRC = CalculateCRC(_buf.data(), _buf.size(), _wkey);
 	ofstream os(pFile, ios::out | ios::binary);
@@ -100,8 +100,8 @@ BOOL LangMpr::UnZip(const char *szDestDir)
 {
 	assert(_buf.size() && szDestDir);
 	const wstring wsPassword = _LANG_ZIP_PASSWORD_;
-	const fs::path pDir = BackupPath(RemoveSlashEnd(szDestDir));
-	CreateParentDir(pDir);
+	const fs::path pDir = Utls::BackupPath(Utls::RemoveSlashEnd(szDestDir));
+	Utls::CreateParentDir(pDir);
 	if (!fs::exists(pDir))
 		fs::create_directory(pDir);
 
@@ -137,7 +137,7 @@ BOOL LangMpr::UnZip(const char *szDestDir)
 BOOL LangMpr::Zip(const char *szSrcDir)
 {
 	assert(szSrcDir);
-	fs::path pDir = RemoveSlashEnd(szSrcDir);
+	fs::path pDir = Utls::RemoveSlashEnd(szSrcDir);
 	const wstring wsPassword = _LANG_ZIP_PASSWORD_;
 
 	try {

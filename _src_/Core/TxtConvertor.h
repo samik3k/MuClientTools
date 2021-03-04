@@ -116,8 +116,8 @@ BOOL TxtConvertor<T>::ComposeTxt(const char * szDestTxt)
 {
 	assert(_map.size() && szDestTxt);
 
-	fs::path pFile = BackupPath(szDestTxt);
-	CreateParentDir(pFile);
+	fs::path pFile = Utls::BackupPath(szDestTxt);
+	Utls::CreateParentDir(pFile);
 
 	ofstream os(pFile);
 	if (!os.is_open())

@@ -1,7 +1,37 @@
 #ifndef UTLS_H
 #define UTLS_H
 
-void CreateParentDir(fs::path path);
-fs::path RemoveSlashEnd(fs::path path);
-fs::path BackupPath(fs::path path);
+#define max(a,b)            (((a) > (b)) ? (a) : (b))
+#define min(a,b)            (((a) < (b)) ? (a) : (b))
+
+namespace Utls
+{
+	void CreateParentDir(fs::path path);
+	fs::path RemoveSlashEnd(fs::path path);
+	fs::path BackupPath(fs::path path);
+	bool IsEmptyCStr(const char* str);
+	void RemoveAllStringSpaces(string& s);
+	int ParseMember(string& member, string& member_type, string& member_name);
+	string ParseMemberType(string& member_type);
+	string ParseMembersToLabel(string&& members);
+	string ParseMembersToFormat(string&& members);
+}
+
+#define STRUCT(_) struct _
+#define LAZY(Members)															\
+{																				\
+	Members																		\
+	static string GetLabel()													\
+	{																			\
+		static const string LABEL = Utls::ParseMembersToLabel(#Members);		\
+		return LABEL;															\
+	};																			\
+	static string GetFormat()													\
+	{																			\
+		static const string FORMAT = Utls::ParseMembersToFormat(#Members);		\
+		return FORMAT;															\
+	};																			\
+}
+
+
 #endif // !UTLS_H
