@@ -12,9 +12,9 @@ public:
 	virtual ~MuunOptionBmd() {};
 
 private:
-	int GetKey(MUUN_OPTION* ptr);
-	void TxtOut(ofstream& os);
-	void TxtIn(ifstream& is);
+	int GetKey(MUUN_OPTION* ptr) { return ptr->ID; };
+	//void TxtOut(ofstream& os);
+	//void TxtIn(ifstream& is);
 };
 
 #endif
@@ -34,9 +34,9 @@ public:
 	virtual ~MuunInfoBmd() {};
 
 private:
-	int GetKey(MUUN_INFO* ptr);
-	void TxtOut(ofstream& os);
-	void TxtIn(ifstream& is);
+	int GetKey(MUUN_INFO* ptr) { return ptr->ID; };
+	//void TxtOut(ofstream& os);
+	//void TxtIn(ifstream& is);
 };
 
 #endif
@@ -55,12 +55,10 @@ public:
 	MuunTooltipInfoBmd() : MuunTooltipInfoBmdConvert(_MUUN_TOOLTIP_INFO_BMD_WKEY_) {};
 	virtual ~MuunTooltipInfoBmd() {};
 
-	//BOOL Unpack(const char * szSrcBmd, const char * szDestTxt);
-
 private:
-	int GetKey(MUUN_TOOLTIP_INFO* ptr);
-	void TxtOut(ofstream& os);
-	void TxtIn(ifstream& is);
+	int GetKey(MUUN_TOOLTIP_INFO* ptr) { return ptr->MuunID; };
+	//void TxtOut(ofstream& os);
+	//void TxtIn(ifstream& is);
 };
 
 #endif

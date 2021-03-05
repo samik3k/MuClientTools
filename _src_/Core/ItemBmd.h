@@ -11,9 +11,19 @@ public:
 	virtual ~ItemBmd() {};
 
 private:
-	int GetKey(ITEM_ATTRIBUTE* ptr);
-	void TxtOut(ofstream& os);
-	void TxtIn(ifstream& is);
+	int GetKey(ITEM_ATTRIBUTE* ptr)
+	{
+		int check_index = (ptr->ItemSubGroup * 512) + ptr->ItemSubIndex;
+		if (ptr->ItemIndex != check_index)
+		{
+			return -1;	//it will push the problematic row to the top of the out.txt file
+		}
+
+		return ptr->ItemIndex;
+	};
+
+	//void TxtOut(ofstream& os);
+	//void TxtIn(ifstream& is);
 };
 
 #endif

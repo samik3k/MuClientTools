@@ -11,9 +11,9 @@ public:
 	virtual ~InfoTooltipBmd() {};
 
 private:
-	int GetKey(INFO_TOOLTIP* ptr);
-	void TxtOut(ofstream& os);
-	void TxtIn(ifstream& is);
+	int GetKey(INFO_TOOLTIP* ptr) { return ptr->ID; };
+	//void TxtOut(ofstream& os);
+	//void TxtIn(ifstream& is);
 };
 
 #endif

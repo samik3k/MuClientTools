@@ -58,6 +58,9 @@
     <ClInclude Include="MuunBmd.h">
       <Filter>Source Files\Client\DataFiles</Filter>
     </ClInclude>
+    <ClInclude Include="LazyStruct.h">
+      <Filter>Source Files\Client</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseIO.cpp">
@@ -72,29 +75,14 @@
     <ClCompile Include="Utls.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ItemBmd.cpp">
-      <Filter>Source Files\Client\DataFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="ExcellentOptionBmd.cpp">
-      <Filter>Source Files\Client\DataFiles</Filter>
-    </ClCompile>
     <ClCompile Include="FormulaDataBmd.cpp">
       <Filter>Source Files\Client\DataFiles</Filter>
     </ClCompile>
     <ClCompile Include="Core.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InfoTooltipBmd.cpp">
-      <Filter>Source Files\Client\DataFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="InfoTooltipTextBmd.cpp">
-      <Filter>Source Files\Client\DataFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="PentagramMixNeedSourceBmd.cpp">
-      <Filter>Source Files\Client\DataFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="MuunBmd.cpp">
-      <Filter>Source Files\Client\DataFiles</Filter>
+    <ClCompile Include="LazyStruct.cpp">
+      <Filter>Source Files\Client</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

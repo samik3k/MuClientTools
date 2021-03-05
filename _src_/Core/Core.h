@@ -27,6 +27,7 @@ namespace fs = std::filesystem;
 using namespace  std;
 
 #include "Utls.h"
+#include "LazyStruct.h"
 #include "SingletonInstance.h"
 #include "ClientStructures.h"
 

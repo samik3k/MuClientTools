@@ -128,15 +128,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='PCH|Win32'">false</ExcludedFromBuild>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ExcellentOptionBmd.cpp" />
     <ClCompile Include="FormulaDataBmd.cpp" />
-    <ClCompile Include="InfoTooltipBmd.cpp" />
-    <ClCompile Include="InfoTooltipTextBmd.cpp" />
-    <ClCompile Include="ItemBmd.cpp" />
     <ClCompile Include="LangMpr.cpp" />
+    <ClCompile Include="LazyStruct.cpp" />
     <ClCompile Include="MuCrypto.cpp" />
-    <ClCompile Include="MuunBmd.cpp" />
-    <ClCompile Include="PentagramMixNeedSourceBmd.cpp" />
     <ClCompile Include="Utls.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +147,7 @@
     <ClInclude Include="InfoTooltipTextBmd.h" />
     <ClInclude Include="ItemBmd.h" />
     <ClInclude Include="LangMpr.h" />
+    <ClInclude Include="LazyStruct.h" />
     <ClInclude Include="MuCrypto.h" />
     <ClInclude Include="MuunBmd.h" />
     <ClInclude Include="PentagramMixNeedSourceBmd.h" />

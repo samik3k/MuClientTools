@@ -11,7 +11,7 @@ public:
 	virtual ~FormulaDataBmd() {};
 
 private:
-	BOOL Decrypt(); 
+	BOOL Decrypt();
 	BOOL Encrypt();
 
 	int GetKey(FORMULA_DATA* ptr);

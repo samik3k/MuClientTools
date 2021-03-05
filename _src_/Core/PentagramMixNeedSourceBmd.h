@@ -11,10 +11,19 @@ public:
 	virtual ~PentagramMixNeedSourceBmd() {};
 
 private:
-	void MakeLabel(ofstream& os);
-	int GetKey(PENTAGRAM_MIX_SOURCE* ptr);
-	void TxtOut(ofstream& os);
-	void TxtIn(ifstream& is);
+	void MakeLabelEx(ofstream& os) 
+	{
+		assert(os);
+		os << "// Cat0: Material Combination" << endl;
+		os << "// Cat1: Errtel" << endl;
+		os << "// Cat2 : Errtel Level Upgrade" << endl;
+		os << "// Cat3 : Errtel Rank Upgrade" << endl;
+		os << "// Cat6: Wing Add Option" << endl;
+		os << "// Cat7: Wing Option Level Upgrade" << endl;
+	};
+	int GetKey(PENTAGRAM_MIX_SOURCE* ptr) { return (ptr->Category << 8) | ptr->Index; };
+	//void TxtOut(ofstream& os);
+	//void TxtIn(ifstream& is);
 };
 
 #endif

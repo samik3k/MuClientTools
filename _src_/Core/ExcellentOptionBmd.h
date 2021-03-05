@@ -11,9 +11,9 @@ public:
 	virtual ~ExcellentOptionBmd() {};
 
 private:
-	int GetKey(EXCELLENT_OPTION* ptr);
-	void TxtOut(ofstream& os);
-	void TxtIn(ifstream& is);
+	int GetKey(EXCELLENT_OPTION* ptr) { return (ptr->Category << 8) | ptr->Number; };
+	//void TxtOut(ofstream& os);
+	//void TxtIn(ifstream& is);
 };
 
 #endif

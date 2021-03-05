@@ -16,11 +16,14 @@ public:
 	map<int, T*> _map;	//make public for further ref. (temporary)
 protected:
 	virtual int GetKey(T* pT) = 0;
-	virtual void TxtOut(ofstream& os) = 0;
-	virtual void TxtIn(ifstream& is) = 0;
+	virtual void MakeLabelEx(ofstream& os) {};
+
+	//----------------------
 
 	virtual BOOL Decrypt();
 	virtual BOOL Encrypt();
+	virtual void TxtOut(ofstream& os);
+	virtual void TxtIn(ifstream& is);
 	virtual BOOL ComposeTxt(const char *szDestTxt);
 	virtual BOOL ParseTxt(const char *szSrcTxt);
 
@@ -109,6 +112,121 @@ BOOL TxtConvertor<T>::Encrypt()
 
 	_map.clear(); // T* now -> encrypted data
 	return TRUE;
+}
+
+
+template<typename T>
+void TxtConvertor<T>::TxtOut(ofstream & os)
+{
+	assert(os);
+
+	static const vector<OffsetInfo> OFFSET = T::GetOffset();
+	static const string LABEL = T::GetLabel();
+
+	MakeLabelEx(os);
+	os << LABEL << endl;
+
+	for (auto it = _map.begin(); it != _map.end(); it++)
+	{
+		T* ptr = it->second;
+
+		for (int i = 0; i < OFFSET.size(); i++)
+		{
+			int type = OFFSET[i].Type;
+			size_t pos = OFFSET[i].Offset;
+			if (pos < 0 || pos >= sizeof(T)) continue;
+
+			pos += (size_t)ptr;
+			switch (type)
+			{
+			case LAZY_TYPE_FLAG::_CSTR_:
+				//if (Utls::IsEmptyCStr((const char*)pos))
+				//	os << "[NULL]" << '\t';
+				//else
+				//	os << (const char*)pos << '\t';
+				os << (const char*)pos << '\t';
+				break;
+			case LAZY_TYPE_FLAG::_1BYTE_:
+				os << (DWORD)(*(BYTE*)pos) << '\t';
+				break;
+			case LAZY_TYPE_FLAG::_1BYTE_ | LAZY_TYPE_FLAG::_SIGNED_:
+				os << (int)(*(char*)pos) << '\t';
+				break;
+			case LAZY_TYPE_FLAG::_2BYTE_:
+				os << *(WORD*)pos << '\t';
+				break;
+			case LAZY_TYPE_FLAG::_2BYTE_ | LAZY_TYPE_FLAG::_SIGNED_:
+				os << *(short*)pos << '\t';
+				break;
+			case LAZY_TYPE_FLAG::_4BYTE_:
+				os << *(DWORD*)pos << '\t';
+				break;
+			case LAZY_TYPE_FLAG::_4BYTE_ | LAZY_TYPE_FLAG::_SIGNED_:
+				os << *(int*)pos << '\t';
+				break;
+			case LAZY_TYPE_FLAG::_FLOAT_:
+				os << *(float*)pos << '\t';
+				break;
+			case LAZY_TYPE_FLAG::_DOUBLE_:
+				os << *(double*)pos << '\t';
+				break;
+			default:
+				break;
+			}
+		}
+
+		os << endl;
+	}
+}
+
+template<typename T>
+void TxtConvertor<T>::TxtIn(ifstream & is)
+{
+	assert(is);
+
+	static const vector<OffsetInfo> OFFSET = T::GetOffset();
+	//static const string FORMAT = T::GetFormat();
+
+	string line;
+	size_t size = sizeof(T);
+	size_t n = 0;
+
+	_map.clear();
+	while (getline(is, line))
+	{
+		if (line[0] == '/' && line[1] == '/')
+			continue;
+		_buf.resize(4 + ((n + 1) * size));
+
+		T* ptr = (T*)&_buf[4 + (n * size)];
+		memset(ptr, 0x00, size);
+
+		line += '\t';
+		size_t a = 0;
+		size_t b = line.find('\t', a);
+		size_t i = 0;
+		do
+		{
+			if (b > a)
+			{
+				string s = line.substr(a, b - a);
+				size_t pos = OFFSET[i].Offset + (size_t)ptr;
+				sscanf(s.c_str(), OFFSET[i].Format.c_str(), (void*)pos);
+			}
+
+			i++;
+			a = b + 1;
+			b = line.find('\t', a);
+		} while (b != string::npos && i < OFFSET.size());
+		
+
+		//Won't check duplicated key. Assuming ppl know what they do
+		int key = GetKey(ptr);
+		_map.insert(make_pair(key, ptr));
+		n++;
+	}
+	*(DWORD*)&_buf[0] = n;
+	_buf.resize(4 + (n * size) + 4);	//last 4 BYTES for CRC
 }
 
 template<typename T>

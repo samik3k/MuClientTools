@@ -14,28 +14,4 @@ namespace Utls
 
 }
 
-namespace LazyStruct
-{
-	int ParseMember(string& member, string& member_type, string& member_name);
-	string ParseMemberType(string& member_type);
-	string ParseMembersToLabel(string&& members);
-	string ParseMembersToFormat(string&& members);
-}
-
-#define STRUCT(_) struct _
-#define LAZY(Members)															\
-{																				\
-	Members																		\
-	static string GetLabel()													\
-	{																			\
-		static const string LABEL = LazyStruct::ParseMembersToLabel(#Members);	\
-		return LABEL;															\
-	};																			\
-	static string GetFormat()													\
-	{																			\
-		static const string FORMAT = LazyStruct::ParseMembersToFormat(#Members);\
-		return FORMAT;															\
-	};																			\
-}
-
 #endif // !UTLS_H
