@@ -55,10 +55,7 @@
     <ClInclude Include="PentagramMixNeedSourceBmd.h">
       <Filter>Source Files\Client\DataFiles</Filter>
     </ClInclude>
-    <ClInclude Include="MuunInfoBmd.h">
-      <Filter>Source Files\Client\DataFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="MuunOption.h">
+    <ClInclude Include="MuunBmd.h">
       <Filter>Source Files\Client\DataFiles</Filter>
     </ClInclude>
   </ItemGroup>
@@ -96,10 +93,7 @@
     <ClCompile Include="PentagramMixNeedSourceBmd.cpp">
       <Filter>Source Files\Client\DataFiles</Filter>
     </ClCompile>
-    <ClCompile Include="MuunInfoBmd.cpp">
-      <Filter>Source Files\Client\DataFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="MuunOption.cpp">
+    <ClCompile Include="MuunBmd.cpp">
       <Filter>Source Files\Client\DataFiles</Filter>
     </ClCompile>
   </ItemGroup>

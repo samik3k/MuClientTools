@@ -9,7 +9,7 @@ BOOL LangMpr::Unpack(const char * szSrcFile, const char *szDestDir)
 {
 	return FileOpen(szSrcFile) 
 		&& Decrypt() 
-		&& UnZip(szDestDir ? szDestDir : fs::path(szSrcFile).replace_extension("").string().append("_out").c_str());
+		&& UnZip(szDestDir ? szDestDir : fs::path(szSrcFile).replace_extension("").string().c_str());
 }
 
 BOOL LangMpr::Pack(const char * szSrcDir, const char *szDestFile)
@@ -101,6 +101,7 @@ BOOL LangMpr::UnZip(const char *szDestDir)
 	assert(_buf.size() && szDestDir);
 	const wstring wsPassword = _LANG_ZIP_PASSWORD_;
 	const fs::path pDir = Utls::BackupPath(Utls::RemoveSlashEnd(szDestDir));
+
 	Utls::CreateParentDir(pDir);
 	if (!fs::exists(pDir))
 		fs::create_directory(pDir);

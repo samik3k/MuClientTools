@@ -1,10 +1,40 @@
 #ifndef CLIENT_STRUCT_H
 #define CLIENT_STRUCT_H
 
-struct MUUN_INFO
-{
-	BYTE Unk[64];
-};
+//struct MUUN_TOOLTIP_INFO
+STRUCT(MUUN_TOOLTIP_INFO) LAZY
+(
+	int MuunID;
+	float Translate_X;
+	float Translate_Y;
+	float Translate_Z;
+	float Rotate_X;
+	float Rotate_Y;
+	float Rotate_Z;
+	float Scale;
+);
+
+//struct MUUN_INFO
+STRUCT(MUUN_INFO) LAZY
+(
+	int ID;
+	int MuunID;
+	BYTE Type;
+	BYTE Rank;
+	//BYTE GAP_10[2];
+	int OptionIndex;
+	int AddOptionType;
+	int AddOptionValue;
+	int AddOptCheckType;
+	int OptionStartDate_Year;
+	int OptionStartDate_Month;
+	int OptionStartDate_Day;
+	int OptionEndDate_Year;
+	int OptionEndDate_Month;
+	int OptionEndDate_Day;
+	int EvoID;
+	int SkillDelayTime;
+);
 
 //struct MUUN_OPTION
 STRUCT(MUUN_OPTION) LAZY

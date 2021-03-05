@@ -7,10 +7,15 @@
 namespace Utls
 {
 	void CreateParentDir(fs::path path);
-	fs::path RemoveSlashEnd(fs::path path);
-	fs::path BackupPath(fs::path path);
+	fs::path RemoveSlashEnd(fs::path&& path);
+	fs::path BackupPath(fs::path&& path);
 	bool IsEmptyCStr(const char* str);
 	void RemoveAllStringSpaces(string& s);
+
+}
+
+namespace LazyStruct
+{
 	int ParseMember(string& member, string& member_type, string& member_name);
 	string ParseMemberType(string& member_type);
 	string ParseMembersToLabel(string&& members);
@@ -23,15 +28,14 @@ namespace Utls
 	Members																		\
 	static string GetLabel()													\
 	{																			\
-		static const string LABEL = Utls::ParseMembersToLabel(#Members);		\
+		static const string LABEL = LazyStruct::ParseMembersToLabel(#Members);	\
 		return LABEL;															\
 	};																			\
 	static string GetFormat()													\
 	{																			\
-		static const string FORMAT = Utls::ParseMembersToFormat(#Members);		\
+		static const string FORMAT = LazyStruct::ParseMembersToFormat(#Members);\
 		return FORMAT;															\
 	};																			\
 }
-
 
 #endif // !UTLS_H

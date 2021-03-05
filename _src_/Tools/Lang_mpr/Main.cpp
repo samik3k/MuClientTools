@@ -6,7 +6,7 @@
 int main(int argc, char** argv)
 {
 	LangMpr opener;
-	const char* szInputPath = "lang.mpr";
+	const char* szInputPath = "C:\\S12\\Tools\\MuClientTools\\_bin_\\Lang_mpr\\lang.mpr";
 	const char* szOutputPath = nullptr;
 
 	if (argc >= 2)
@@ -29,6 +29,7 @@ int main(int argc, char** argv)
 	if (fs::is_regular_file(szInputPath)
 		&& (!szOutputPath || fs::is_directory(szOutputPath)))
 	{
+		//szInputPath = fs::path(szInputPath).relative_path().string().c_str();
 		if (!opener.Unpack(szInputPath, szOutputPath))
 		{
 			return EXIT_FAILURE;

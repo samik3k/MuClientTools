@@ -13,19 +13,20 @@ namespace Utls {
 		}
 	}
 	
-	fs::path RemoveSlashEnd(fs::path path)
+	fs::path RemoveSlashEnd(fs::path&& path)
 	{
 		if (path.empty())
 			return path;
 
-		auto l = path.wstring().length();
-		wchar_t* szPath = (wchar_t*)path.wstring().c_str();
-		if (szPath[l - 1] == L'/' || szPath[l - 1] == L'\\')
-			szPath[l - 1] = 0;
-		return szPath;
+		auto& s = path.string();
+		auto& c = s[s.length() - 1];
+		if (c == '/' || c == '\\')
+			c = '\0';
+
+		return fs::path(s);
 	}
 
-	fs::path BackupPath(fs::path pFile)
+	fs::path BackupPath(fs::path&& pFile)
 	{
 		fs::path pBak;
 		if (fs::exists(pFile))
@@ -72,10 +73,13 @@ namespace Utls {
 				s[count++] = s[i];
 		s.resize(count);
 	}
+}
 
+namespace LazyStruct
+{
 	int ParseMember(string & member, string & member_type, string & member_name)
 	{
-		assert(member.find('*') & member.find('&') == string::npos );	//no using of ptr/ref
+		assert(member.find('*') & member.find('&') == string::npos);	//no using of ptr/ref
 
 		int count = 0;
 		size_t _ = 0;
@@ -96,14 +100,14 @@ namespace Utls {
 		bool is_arr = a != string::npos;
 		bool is_str = is_arr ? s != string::npos : false;
 		if (is_str)
-			member_type.replace(s, 4, "char*");	
+			member_type.replace(s, 4, "char*");
 
 		if (is_str || !is_arr)
 		{
 			member_name = is_str ? member.substr(pos, a - pos) : member.substr(pos);
 			count = 1;
 		}
-		else if(is_arr)
+		else if (is_arr)
 		{
 			member_name = member.substr(pos, a - pos);
 			a++;
@@ -114,7 +118,7 @@ namespace Utls {
 			return 0;
 
 		if (*(member_name.end() - 1) == ' ')
-			member_name.pop_back();	
+			member_name.pop_back();
 
 		return count;
 	}
@@ -122,9 +126,10 @@ namespace Utls {
 	string ParseMemberType(string & member_type)
 	{
 		static const unordered_map<string, string> TYPE =
-		{	{"int" ,"%d"},{"DWORD" ,"%d"},			//Find DWORD before WORD
+		{	{"double" ,"%lf"},{"float" ,"%f"},
+			{"int" ,"%d"},{"DWORD" ,"%d"},			//Find DWORD before WORD
 			{"short" ,"%hd"},{"WORD" ,"%hd"},
-			{ "char" ,"%hhd"},{"BYTE" ,"%hhd"}	};
+			{ "char" ,"%hhd"},{"BYTE" ,"%hhd"} };
 
 		if (member_type.find("char*") != string::npos)
 			return "%[^\t]%*c";
@@ -161,7 +166,7 @@ namespace Utls {
 			a = b + 1;
 			b = members.find(';', a);
 		}
-		if(label.length() > 2)
+		if (label.length() > 2)
 			label[1] = '/';	//put comment slashs at front
 
 		return label;
@@ -198,6 +203,4 @@ namespace Utls {
 		return format;
 	}
 }
-
-
 

@@ -135,8 +135,7 @@
     <ClCompile Include="ItemBmd.cpp" />
     <ClCompile Include="LangMpr.cpp" />
     <ClCompile Include="MuCrypto.cpp" />
-    <ClCompile Include="MuunInfoBmd.cpp" />
-    <ClCompile Include="MuunOption.cpp" />
+    <ClCompile Include="MuunBmd.cpp" />
     <ClCompile Include="PentagramMixNeedSourceBmd.cpp" />
     <ClCompile Include="Utls.cpp" />
   </ItemGroup>
@@ -154,8 +153,7 @@
     <ClInclude Include="ItemBmd.h" />
     <ClInclude Include="LangMpr.h" />
     <ClInclude Include="MuCrypto.h" />
-    <ClInclude Include="MuunInfoBmd.h" />
-    <ClInclude Include="MuunOption.h" />
+    <ClInclude Include="MuunBmd.h" />
     <ClInclude Include="PentagramMixNeedSourceBmd.h" />
     <ClInclude Include="SingletonInstance.h" />
     <ClInclude Include="TxtConvertor.h" />

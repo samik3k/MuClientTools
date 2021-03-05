@@ -6,7 +6,7 @@
 int main(int argc, char** argv)
 {
 	ItemBmd opener; 
-	const char* szInputPath = "item.txt";
+	const char* szInputPath = "item.bmd";
 	const char* szOutputPath = nullptr;
 
 	if (argc >= 2)

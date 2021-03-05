@@ -3,11 +3,11 @@
 
 #define _EXC_OPT_BMD_WKEY_ _COMMON_TXTCONVERTOR_WKEY_
 
-typedef TxtConvertor<EXCELLENT_OPTION> ExcOptConvert;
-class ExcellentOptionBmd : public ExcOptConvert
+typedef TxtConvertor<EXCELLENT_OPTION> ExcellentOptionConvert;
+class ExcellentOptionBmd : public ExcellentOptionConvert
 {
 public:
-	ExcellentOptionBmd() : ExcOptConvert(_EXC_OPT_BMD_WKEY_) {};
+	ExcellentOptionBmd() : ExcellentOptionConvert(_EXC_OPT_BMD_WKEY_) {};
 	virtual ~ExcellentOptionBmd() {};
 
 private:
