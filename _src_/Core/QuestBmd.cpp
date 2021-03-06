@@ -48,11 +48,6 @@ BOOL QuestBmd::Encrypt()
 	return TRUE;
 }
 
-int QuestBmd::GetKey(QUEST_INFO * ptr)
-{
-	return 0;
-}
-
 void QuestBmd::TxtOut(ofstream & os)
 {
 	assert(os);
@@ -158,7 +153,7 @@ void QuestBmd::TxtIn(ifstream & is)
 			sscanf(line.c_str(),
 				"%hhd\t%hhd\t%hd\t%hhd\t%hhd\t%hhd\t"
 				"%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t%hhd\t"
-				"%hhd\t%hhd\t%hhd\t%hhd"
+				"%hd\t%hd\t%hd\t%hd"
 				, &pItem->Flag, &pItem->QuestType, &pItem->ItemCat, &pItem->ItemIndex, &pItem->Level, &pItem->Amount
 				, &pItem->GL, &pItem->DW, &pItem->DK, &pItem->FE, &pItem->MG, &pItem->DL, &pItem->SU, &pItem->RF
 				, &pItem->Msg_1, &pItem->Msg_2, &pItem->Msg_3, &pItem->Msg_4

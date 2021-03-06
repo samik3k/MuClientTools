@@ -6,7 +6,7 @@
 int main(int argc, char** argv)
 {
 	QuestBmd opener;
-	const char* szInputPath = "quest.txt";
+	const char* szInputPath = "quest.bmd";
 	const char* szOutputPath = nullptr;
 
 	if (argc >= 2)

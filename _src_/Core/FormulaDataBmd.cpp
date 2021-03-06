@@ -78,12 +78,6 @@ BOOL FormulaDataBmd::Encrypt()
 	return TRUE;
 }
 
-// Not using here (override Enc/Dec)
-int FormulaDataBmd::GetKey(FORMULA_DATA * ptr)
-{
-	return 0;
-}
-
 void FormulaDataBmd::TxtOut(ofstream & os)
 {
 	assert(os);

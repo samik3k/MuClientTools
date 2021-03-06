@@ -71,11 +71,6 @@ BOOL MuunExchangeBmd::Encrypt()
 	return TRUE;
 }
 
-int MuunExchangeBmd::GetKey(MUUN_EXCHANGE * ptr)
-{
-	return 0;
-}
-
 void MuunExchangeBmd::TxtOut(ofstream & os)
 {
 	assert(os);

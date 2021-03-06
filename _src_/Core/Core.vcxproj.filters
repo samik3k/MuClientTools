@@ -70,6 +70,18 @@
     <ClInclude Include="QuestBmd.h">
       <Filter>Source Files\Client\DataFiles</Filter>
     </ClInclude>
+    <ClInclude Include="SocketItemBmd.h">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayGuideBmd.h">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="MuRummyBmd.h">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerListBmd.h">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseIO.cpp">
@@ -97,6 +109,12 @@
       <Filter>Source Files\Client\DataFiles</Filter>
     </ClCompile>
     <ClCompile Include="QuestBmd.cpp">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="SocketItemBmd.cpp">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerListBmd.cpp">
       <Filter>Source Files\Client\DataFiles</Filter>
     </ClCompile>
   </ItemGroup>

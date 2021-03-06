@@ -1,6 +1,96 @@
 #ifndef CLIENT_STRUCT_H
 #define CLIENT_STRUCT_H
 
+
+struct SERVER_LIST_EX
+{
+	char DontCare[39];
+	char Msg[1];
+};
+
+#pragma pack(1)
+struct SERVER_LIST
+{
+	short ID;
+	char Name[32];
+	BYTE PosType;
+	BYTE Index;
+	BYTE Type;
+	WORD MsgLen;
+
+	static string GetLabel() { return string(); };
+	static string GetFormat() { return string(); };
+	static vector<OffsetInfo> GetOffset() { return vector<OffsetInfo>(); };
+};
+#pragma pack()
+
+//struct MURUMMY_SLOT
+STRUCT(MURUMMY_SLOT) LAZY
+(
+	BYTE ID;
+	BYTE SlotType;
+	BYTE CardType;
+	BYTE Unk[8];
+);
+
+//struct MURUMMY_CARD
+STRUCT(MURUMMY_CARD) LAZY
+(
+	WORD Unk[30];
+);
+
+//struct MURUMMY_OPTION
+STRUCT(MURUMMY_OPTION) LAZY
+(
+	short Type;
+	short Index;
+	int Option;
+);
+
+//struct PLAY_GUIDE_INFO
+STRUCT(PLAY_GUIDE_INFO) LAZY
+(
+	int ID;
+	char Text[256];
+);
+
+//struct SOCKET_ITEM_INFO
+STRUCT(SOCKET_ITEM_INFO) LAZY
+(
+	//BYTE Unk[168];
+	int ID;
+	int ElementType;
+	int Level;
+	char Name[64];
+	int BonusType;
+	int BonusValue1;
+	int BonusValue2;
+	int BonusValue3;
+	int BonusValue4;
+	int BonusValue5;
+	int BonusValue6;
+	int BonusValue7;
+	int BonusValue8;
+	int BonusValue9;
+	int BonusValue10;
+	int BonusValue11;
+	int BonusValue12;
+	int BonusValue13;
+	int BonusValue14;
+	int BonusValue15;
+	int BonusValue16;
+	int BonusValue17;
+	int BonusValue18;
+	int BonusValue19;
+	int BonusValue20;
+	BYTE FireNeed;
+	BYTE WaterNeed;
+	BYTE IceNeed;
+	BYTE WindNeed;
+	BYTE LighteningNeed;
+	BYTE EarthNeed;
+);
+
 struct QUEST_INFO_ITEM
 {
 	BYTE Flag;

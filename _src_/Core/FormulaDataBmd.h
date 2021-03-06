@@ -13,8 +13,6 @@ public:
 private:
 	BOOL Decrypt();
 	BOOL Encrypt();
-
-	int GetKey(FORMULA_DATA* ptr);
 	void TxtOut(ofstream& os);
 	void TxtIn(ifstream& is);
 };

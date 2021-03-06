@@ -7,7 +7,7 @@ template<typename T>
 class TxtConvertor : public BaseIO
 {
 public:
-	TxtConvertor(WORD w) : _wkey(w) {};
+	TxtConvertor(WORD w = _COMMON_TXTCONVERTOR_WKEY_) : _wkey(w) {};
 	virtual ~TxtConvertor() {};
 
 	virtual BOOL Unpack(const char *szSrcBmd, const char *szDestTxt);
@@ -15,7 +15,7 @@ public:
 
 	map<int, T*> _map;	//make public for further ref. (temporary)
 protected:
-	virtual int GetKey(T* pT) = 0;
+	virtual int GetKey(T* pT) { static int i = 0;  return i++; };
 	virtual void MakeLabel(ofstream& os);
 	virtual void MakeLabelEx(ofstream& os) {};
 
