@@ -16,6 +16,7 @@ public:
 	map<int, T*> _map;	//make public for further ref. (temporary)
 protected:
 	virtual int GetKey(T* pT) = 0;
+	virtual void MakeLabel(ofstream& os);
 	virtual void MakeLabelEx(ofstream& os) {};
 
 	//----------------------
@@ -114,6 +115,14 @@ BOOL TxtConvertor<T>::Encrypt()
 	return TRUE;
 }
 
+template<typename T>
+inline void TxtConvertor<T>::MakeLabel(ofstream & os)
+{
+	assert(os);
+
+	static const string LABEL = T::GetLabel();
+	os << LABEL << endl;
+}
 
 template<typename T>
 void TxtConvertor<T>::TxtOut(ofstream & os)
@@ -121,10 +130,9 @@ void TxtConvertor<T>::TxtOut(ofstream & os)
 	assert(os);
 
 	static const vector<OffsetInfo> OFFSET = T::GetOffset();
-	static const string LABEL = T::GetLabel();
 
 	MakeLabelEx(os);
-	os << LABEL << endl;
+	MakeLabel(os);
 
 	for (auto it = _map.begin(); it != _map.end(); it++)
 	{
@@ -140,10 +148,6 @@ void TxtConvertor<T>::TxtOut(ofstream & os)
 			switch (type)
 			{
 			case LAZY_TYPE_FLAG::_CSTR_:
-				//if (Utls::IsEmptyCStr((const char*)pos))
-				//	os << "[NULL]" << '\t';
-				//else
-				//	os << (const char*)pos << '\t';
 				os << (const char*)pos << '\t';
 				break;
 			case LAZY_TYPE_FLAG::_1BYTE_:
@@ -185,7 +189,6 @@ void TxtConvertor<T>::TxtIn(ifstream & is)
 	assert(is);
 
 	static const vector<OffsetInfo> OFFSET = T::GetOffset();
-	//static const string FORMAT = T::GetFormat();
 
 	string line;
 	size_t size = sizeof(T);
@@ -219,10 +222,9 @@ void TxtConvertor<T>::TxtIn(ifstream & is)
 			b = line.find('\t', a);
 		} while (b != string::npos && i < OFFSET.size());
 		
-
-		//Won't check duplicated key. Assuming ppl know what they do
-		int key = GetKey(ptr);
-		_map.insert(make_pair(key, ptr));
+		// No need
+		//int key = GetKey(ptr);
+		//_map.insert(make_pair(key, ptr));
 		n++;
 	}
 	*(DWORD*)&_buf[0] = n;

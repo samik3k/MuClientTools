@@ -1,6 +1,80 @@
 #ifndef CLIENT_STRUCT_H
 #define CLIENT_STRUCT_H
 
+struct QUEST_INFO_ITEM
+{
+	BYTE Flag;
+	BYTE QuestType;
+	WORD ItemCat;
+	BYTE ItemIndex;
+	BYTE Level;
+	BYTE Amount;
+	BYTE GL;
+	BYTE DW;
+	BYTE DK;
+	BYTE FE;
+	BYTE MG;
+	BYTE DL;
+	BYTE SU;
+	BYTE RF;
+	WORD Msg_1;
+	WORD Msg_2;
+	WORD Msg_3;
+	WORD Msg_4;
+};
+
+struct QUEST_INFO_TYPE
+{
+	BYTE Flag;
+	char Type;
+	short QuestIndex;
+	WORD MinLvl;
+	WORD MaxLvl;
+	DWORD NeedStr;
+	DWORD NeedZen;
+	WORD Msg;
+	WORD GAP;
+};
+
+struct QUEST_INFO
+{
+	//BYTE Unk[744];
+	WORD ItemCount;
+	WORD TypeCount;
+	WORD NPC;
+	char QuestName[32];
+	QUEST_INFO_ITEM Items[16];
+	QUEST_INFO_TYPE Types[16];
+
+	static string GetLabel() { return string(); };
+	static string GetFormat() { return string(); };
+	static vector<OffsetInfo> GetOffset() { return vector<OffsetInfo>(); };
+};
+
+//struct STAT_OPTION_TEXT
+STRUCT(STAT_OPTION_TEXT) LAZY
+(
+	int ID;
+	char Text[256];
+);
+
+//struct STAT_OPTION
+STRUCT(STAT_OPTION) LAZY
+(
+	int Class;
+	int StatType;
+	int TextID;
+);
+
+//struct MUUN_EXCHANGE
+STRUCT(MUUN_EXCHANGE) LAZY
+(
+	int Column_1;
+	int Column_2;
+	int Column_3;
+	int Column_4;
+);
+
 //struct MUUN_TOOLTIP_INFO
 STRUCT(MUUN_TOOLTIP_INFO) LAZY
 (

@@ -61,6 +61,15 @@
     <ClInclude Include="LazyStruct.h">
       <Filter>Source Files\Client</Filter>
     </ClInclude>
+    <ClInclude Include="MuunExchangeBmd.h">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="StatOptionBmd.h">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="QuestBmd.h">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseIO.cpp">
@@ -83,6 +92,12 @@
     </ClCompile>
     <ClCompile Include="LazyStruct.cpp">
       <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="MuunExchangeBmd.cpp">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="QuestBmd.cpp">
+      <Filter>Source Files\Client\DataFiles</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

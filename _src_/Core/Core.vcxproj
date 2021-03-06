@@ -132,6 +132,8 @@
     <ClCompile Include="LangMpr.cpp" />
     <ClCompile Include="LazyStruct.cpp" />
     <ClCompile Include="MuCrypto.cpp" />
+    <ClCompile Include="MuunExchangeBmd.cpp" />
+    <ClCompile Include="QuestBmd.cpp" />
     <ClCompile Include="Utls.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,8 +152,11 @@
     <ClInclude Include="LazyStruct.h" />
     <ClInclude Include="MuCrypto.h" />
     <ClInclude Include="MuunBmd.h" />
+    <ClInclude Include="MuunExchangeBmd.h" />
     <ClInclude Include="PentagramMixNeedSourceBmd.h" />
+    <ClInclude Include="QuestBmd.h" />
     <ClInclude Include="SingletonInstance.h" />
+    <ClInclude Include="StatOptionBmd.h" />
     <ClInclude Include="TxtConvertor.h" />
     <ClInclude Include="Utls.h" />
   </ItemGroup>
