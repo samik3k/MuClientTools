@@ -1,12 +1,25 @@
 #ifndef CLIENT_STRUCT_H
 #define CLIENT_STRUCT_H
 
+//struct MAP_CHARACTERS
+STRUCT(MAP_CHARACTERS) LAZY
+(
+	int Map;
+	int Count;
+);
 
-struct SERVER_LIST_EX
+struct MAP_CHARACTERS_EX
 {
-	char DontCare[39];
-	char Msg[1];
+	BYTE DontCare[sizeof(MAP_CHARACTERS)];
+	int MonsterID[1];
 };
+
+
+//struct EVO_MONSTER_BOX
+STRUCT(EVO_MONSTER_BOX) LAZY
+(
+	BYTE RewardEvoBoxChanceTable;
+);
 
 #pragma pack(1)
 struct SERVER_LIST
@@ -23,6 +36,12 @@ struct SERVER_LIST
 	static vector<OffsetInfo> GetOffset() { return vector<OffsetInfo>(); };
 };
 #pragma pack()
+
+struct SERVER_LIST_EX
+{
+	char DontCare[sizeof(SERVER_LIST)];
+	char Msg[1];
+};
 
 //struct MURUMMY_SLOT
 STRUCT(MURUMMY_SLOT) LAZY

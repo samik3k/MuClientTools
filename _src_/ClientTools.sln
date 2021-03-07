@@ -49,6 +49,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MuRummySlot_bmd", "Tools\Mu
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerList_bmd", "Tools\ServerList_bmd\ServerList_bmd.vcxproj", "{9EFA77C2-2401-4187-9C35-A8B803BEA943}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EvoMonsterBox_bmd", "Tools\EvoMonsterBox_bmd\EvoMonsterBox_bmd.vcxproj", "{60467256-4D65-4A05-96F9-0192F4548BA2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MapCharacters_bmd", "Tools\MapCharacters_bmd\MapCharacters_bmd.vcxproj", "{E6D5C8B6-F390-4AD9-966F-25BAD7039320}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Release|x64 = Release|x64
@@ -118,6 +122,12 @@ Global
 		{9EFA77C2-2401-4187-9C35-A8B803BEA943}.Release|x64.ActiveCfg = Release|Win32
 		{9EFA77C2-2401-4187-9C35-A8B803BEA943}.Release|x86.ActiveCfg = Release|Win32
 		{9EFA77C2-2401-4187-9C35-A8B803BEA943}.Release|x86.Build.0 = Release|Win32
+		{60467256-4D65-4A05-96F9-0192F4548BA2}.Release|x64.ActiveCfg = Release|Win32
+		{60467256-4D65-4A05-96F9-0192F4548BA2}.Release|x86.ActiveCfg = Release|Win32
+		{60467256-4D65-4A05-96F9-0192F4548BA2}.Release|x86.Build.0 = Release|Win32
+		{E6D5C8B6-F390-4AD9-966F-25BAD7039320}.Release|x64.ActiveCfg = Release|Win32
+		{E6D5C8B6-F390-4AD9-966F-25BAD7039320}.Release|x86.ActiveCfg = Release|Win32
+		{E6D5C8B6-F390-4AD9-966F-25BAD7039320}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -144,6 +154,8 @@ Global
 		{5FDEB317-6F2F-45CD-A075-F33D5C6E1254} = {3DC33840-E750-4DF4-9CAA-E7FB5B936875}
 		{53CEB8EA-D8D0-479D-B7E7-F9BB2B9C6875} = {3DC33840-E750-4DF4-9CAA-E7FB5B936875}
 		{9EFA77C2-2401-4187-9C35-A8B803BEA943} = {3DC33840-E750-4DF4-9CAA-E7FB5B936875}
+		{60467256-4D65-4A05-96F9-0192F4548BA2} = {3DC33840-E750-4DF4-9CAA-E7FB5B936875}
+		{E6D5C8B6-F390-4AD9-966F-25BAD7039320} = {3DC33840-E750-4DF4-9CAA-E7FB5B936875}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {78828549-D639-412A-A60F-6AC294C049AF}

@@ -82,6 +82,12 @@
     <ClInclude Include="ServerListBmd.h">
       <Filter>Source Files\Client\DataFiles</Filter>
     </ClInclude>
+    <ClInclude Include="EvoMonsterBoxBmd.h">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="MapCharactersBmd.h">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseIO.cpp">
@@ -115,6 +121,12 @@
       <Filter>Source Files\Client\DataFiles</Filter>
     </ClCompile>
     <ClCompile Include="ServerListBmd.cpp">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="EvoMonsterBoxBmd.cpp">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="MapCharactersBmd.cpp">
       <Filter>Source Files\Client\DataFiles</Filter>
     </ClCompile>
   </ItemGroup>
