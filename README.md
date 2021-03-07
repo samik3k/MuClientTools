@@ -64,30 +64,30 @@ C/C++ reversing skills is a plus to see the changes in thier game client.
 :heavy_check_mark:	20.	ServerList.bmd  
 :heavy_check_mark:	21.	MapCharacters.bmd  
   
-	22.	ItemSetType.bmd  
-	23.	ItemSetOption.bmd  
-	24.	ItemSetOptionText.bmd  
-	25.	MonsterSkill.bmd  
-	26.	MasterSkillTreeData.bmd  
-	27.	MasterSkillTooltip.bmd  
-	28.	NPCDialogue.bmd  
-	29.	QuestProgress.bmd  
-	30.	QuestWords.bmd  
-	31.	SkillTooltipText.bmd  
-	32.	ItemAddOption.bmd  
-	33.	JewelOfHarmonyOption.bmd  
+22.	ItemSetType.bmd  
+23.	ItemSetOption.bmd  
+24.	ItemSetOptionText.bmd  
+25.	MonsterSkill.bmd  
+26.	MasterSkillTreeData.bmd  
+27.	MasterSkillTooltip.bmd  
+28.	NPCDialogue.bmd  
+29.	QuestProgress.bmd  
+30.	QuestWords.bmd  
+31.	SkillTooltipText.bmd  
+32.	ItemAddOption.bmd  
+33.	JewelOfHarmonyOption.bmd  
 ~~34.	JewelOfHarmonySmelt.bmd~~  
-	34.	Mix.bmd  
-	35.	itemtooltip.bmd  
-	36.	itemtooltiptext.bmd  
-	37.	petdata.bmd  
-	38.	pet.bmd  
-	39.	InfoTooltip.bmd  
-	40.	InfoTooltipText.bmd  
-	41.	RuudShopViewInfo.bmd  
-	42.	helpdata.bmd  
-	43.	MuunRenderInfo.bmd  
-	44.	MuunMeshInfo.bmd  
+34.	Mix.bmd  
+35.	itemtooltip.bmd  
+36.	itemtooltiptext.bmd  
+37.	petdata.bmd  
+38.	pet.bmd  
+39.	InfoTooltip.bmd  
+40.	InfoTooltipText.bmd  
+41.	RuudShopViewInfo.bmd  
+42.	helpdata.bmd  
+43.	MuunRenderInfo.bmd  
+44.	MuunMeshInfo.bmd  
 
 ### Image, 3D Model, and Interface Files: 0% (0 / 5)  
 	1.	OZJ	(-> .jpg)  
