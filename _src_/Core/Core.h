@@ -1,5 +1,5 @@
-#ifndef COMMON_PCH_H
-#define COMMON_PCH_H
+#ifndef CORE_PCH_H
+#define CORE_PCH_H
 
 #define MU_SEASON	13
 #define MU_EP		1
@@ -26,9 +26,11 @@ typedef unsigned short      WORD;
 namespace fs = std::filesystem;
 using namespace  std;
 
+
 #include "Utls.h"
 #include "LazyStruct.h"
 #include "SingletonInstance.h"
+#include "MuCommon.h"
 #include "ClientStructures.h"
 
 class MuCrypto;
@@ -37,4 +39,4 @@ class BaseIO;
 #include "MuCrypto.h"
 #include "BaseIO.h"
 #include "TxtConvertor.h"
-#endif // !COMMON_PCH_H
+#endif // !CORE_PCH_H

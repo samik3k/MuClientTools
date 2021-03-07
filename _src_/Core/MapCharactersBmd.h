@@ -9,13 +9,6 @@ public:
 	MapCharactersBmd() : MapCharactersBmdConvert() {};
 	virtual ~MapCharactersBmd() {};
 
-	//BOOL Unpack(const char *szSrcBmd, const char *szDestTxt)
-	//{
-	//	return FileOpen(szSrcBmd)
-	//		&& Decrypt()
-	//		&& FileWrite(fs::path(szSrcBmd).replace_extension(".debug").string().c_str());
-	//};
-
 private:
 	int GetKey(MAP_CHARACTERS* ptr) { return ptr->Map; };
 	BOOL Decrypt();

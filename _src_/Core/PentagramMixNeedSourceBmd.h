@@ -22,8 +22,6 @@ private:
 		os << "// Cat7: Wing Option Level Upgrade" << endl;
 	};
 	int GetKey(PENTAGRAM_MIX_SOURCE* ptr) { return (ptr->Category << 8) | ptr->Index; };
-	//void TxtOut(ofstream& os);
-	//void TxtIn(ifstream& is);
 };
 
 #endif

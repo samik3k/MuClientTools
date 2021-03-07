@@ -10,13 +10,6 @@ public:
 	StatOptionBmd() : StatOptionBmdConvert(_STAT_OPTION_BMD_WKEY_) {};
 	virtual ~StatOptionBmd() {};
 
-	//BOOL Unpack(const char *szSrcBmd, const char *szDestTxt)
-	//{
-	//	return FileOpen(szSrcBmd)
-	//		&& Decrypt()
-	//		&& FileWrite(fs::path(szSrcBmd).replace_extension(".debug").string().c_str());
-	//};
-
 private:
 	int GetKey(STAT_OPTION* ptr) { return (ptr->Class << 16) | (ptr->StatType << 8) | (ptr->TextID); };
 };

@@ -1,6 +1,84 @@
 #ifndef CLIENT_STRUCT_H
 #define CLIENT_STRUCT_H
 
+//struct ITEM_SET_OPTION_TEXT
+STRUCT(ITEM_SET_OPTION_TEXT) LAZY
+(
+	BYTE ID;
+	char Text[100];
+	BYTE Unk;
+);
+
+//struct ITEM_SET_OPTION
+STRUCT(ITEM_SET_OPTION) LAZY
+(
+	char Name1[64];
+	char Name2[64];
+	int Opt_1stIndex_1;
+	int Opt_2ndIndex_1;
+	int Opt_1stIndex_2;
+	int Opt_2ndIndex_2;
+	int Opt_1stIndex_3;
+	int Opt_2ndIndex_3;
+	int Opt_1stIndex_4;
+	int Opt_2ndIndex_4;
+	int Opt_1stIndex_5;
+	int Opt_2ndIndex_5;
+	int Opt_1stIndex_6;
+	int Opt_2ndIndex_6;
+	int Opt_1stValue_1;
+	int Opt_2ndValue_1;
+	int Opt_1stValue_2;
+	int Opt_2ndValue_2;
+	int Opt_1stValue_3;
+	int Opt_2ndValue_3;
+	int Opt_1stValue_4;
+	int Opt_2ndValue_4;
+	int Opt_1stValue_5;
+	int Opt_2ndValue_5;
+	int Opt_1stValue_6;
+	int Opt_2ndValue_6;
+	int Opt_1stExIndex;
+	int Opt_2ndExIndex;
+	int Opt_1stExValue;
+	int Opt_2ndExValue;
+
+	int Full_ExIndex;
+	int Full_Index_1;
+	int Full_Index_2;
+	int Full_Index_3;
+	int Full_Index_4;
+	int Full_Index_5;
+	int Full_ExValue;
+	int Full_Value_1;
+	int Full_Value_2;
+	int Full_Value_3;
+	int Full_Value_4;
+	int Full_Value_5;
+
+	int Unk;
+
+	int DW;
+	int DK;
+	int FE;
+	int MG;
+	int DL;
+	int SU;
+	int RF;
+	int GL;
+);
+
+//struct ITEM_SET_TYPE
+STRUCT(ITEM_SET_TYPE) LAZY
+(
+	BYTE Tier1;
+	BYTE Tier2;
+	BYTE Tier3;
+	BYTE Tier4;
+	BYTE Unk1;
+	BYTE Unk2;
+);
+
 //struct MAP_CHARACTERS
 STRUCT(MAP_CHARACTERS) LAZY
 (
@@ -21,8 +99,9 @@ STRUCT(EVO_MONSTER_BOX) LAZY
 	BYTE RewardEvoBoxChanceTable;
 );
 
+//should not use Lazy_Struct for any struct has pack != default
 #pragma pack(1)
-struct SERVER_LIST
+struct SERVER_LIST	//size = 29
 {
 	short ID;
 	char Name[32];

@@ -13,8 +13,6 @@ public:
 
 private:
 	int GetKey(MUUN_OPTION* ptr) { return ptr->ID; };
-	//void TxtOut(ofstream& os);
-	//void TxtIn(ifstream& is);
 };
 
 #endif
@@ -35,8 +33,6 @@ public:
 
 private:
 	int GetKey(MUUN_INFO* ptr) { return ptr->ID; };
-	//void TxtOut(ofstream& os);
-	//void TxtIn(ifstream& is);
 };
 
 #endif
@@ -57,8 +53,6 @@ public:
 
 private:
 	int GetKey(MUUN_TOOLTIP_INFO* ptr) { return ptr->MuunID; };
-	//void TxtOut(ofstream& os);
-	//void TxtIn(ifstream& is);
 };
 
 #endif

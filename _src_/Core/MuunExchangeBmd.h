@@ -10,8 +10,6 @@ public:
 	MuunExchangeBmd() : MuunExchangeConvert(_MUUN_EXCHANGE_BMD_WKEY_) {};
 	virtual ~MuunExchangeBmd() {};
 
-	//BOOL Unpack(const char *szSrcBmd, const char *szDestTxt);
-
 private:
 	BOOL Decrypt();
 	BOOL Encrypt();

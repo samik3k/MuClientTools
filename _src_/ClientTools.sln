@@ -53,6 +53,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EvoMonsterBox_bmd", "Tools\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MapCharacters_bmd", "Tools\MapCharacters_bmd\MapCharacters_bmd.vcxproj", "{E6D5C8B6-F390-4AD9-966F-25BAD7039320}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ItemSetType_bmd", "Tools\ItemSetType_bmd\ItemSetType_bmd.vcxproj", "{F251BBEB-AFC1-40A8-8467-3A25D60A2A7B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ItemSetOption_bmd", "Tools\ItemSetOption_bmd\ItemSetOption_bmd.vcxproj", "{5CC8B1CA-C1A0-4A7B-AEFF-C463B93F52F4}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ItemSetOptionText_bmd", "Tools\ItemSetOptionText_bmd\ItemSetOptionText_bmd.vcxproj", "{FA93196E-5402-4398-8712-849C7FE5896D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Release|x64 = Release|x64
@@ -128,6 +134,15 @@ Global
 		{E6D5C8B6-F390-4AD9-966F-25BAD7039320}.Release|x64.ActiveCfg = Release|Win32
 		{E6D5C8B6-F390-4AD9-966F-25BAD7039320}.Release|x86.ActiveCfg = Release|Win32
 		{E6D5C8B6-F390-4AD9-966F-25BAD7039320}.Release|x86.Build.0 = Release|Win32
+		{F251BBEB-AFC1-40A8-8467-3A25D60A2A7B}.Release|x64.ActiveCfg = Release|Win32
+		{F251BBEB-AFC1-40A8-8467-3A25D60A2A7B}.Release|x86.ActiveCfg = Release|Win32
+		{F251BBEB-AFC1-40A8-8467-3A25D60A2A7B}.Release|x86.Build.0 = Release|Win32
+		{5CC8B1CA-C1A0-4A7B-AEFF-C463B93F52F4}.Release|x64.ActiveCfg = Release|Win32
+		{5CC8B1CA-C1A0-4A7B-AEFF-C463B93F52F4}.Release|x86.ActiveCfg = Release|Win32
+		{5CC8B1CA-C1A0-4A7B-AEFF-C463B93F52F4}.Release|x86.Build.0 = Release|Win32
+		{FA93196E-5402-4398-8712-849C7FE5896D}.Release|x64.ActiveCfg = Release|Win32
+		{FA93196E-5402-4398-8712-849C7FE5896D}.Release|x86.ActiveCfg = Release|Win32
+		{FA93196E-5402-4398-8712-849C7FE5896D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -156,6 +171,9 @@ Global
 		{9EFA77C2-2401-4187-9C35-A8B803BEA943} = {3DC33840-E750-4DF4-9CAA-E7FB5B936875}
 		{60467256-4D65-4A05-96F9-0192F4548BA2} = {3DC33840-E750-4DF4-9CAA-E7FB5B936875}
 		{E6D5C8B6-F390-4AD9-966F-25BAD7039320} = {3DC33840-E750-4DF4-9CAA-E7FB5B936875}
+		{F251BBEB-AFC1-40A8-8467-3A25D60A2A7B} = {3DC33840-E750-4DF4-9CAA-E7FB5B936875}
+		{5CC8B1CA-C1A0-4A7B-AEFF-C463B93F52F4} = {3DC33840-E750-4DF4-9CAA-E7FB5B936875}
+		{FA93196E-5402-4398-8712-849C7FE5896D} = {3DC33840-E750-4DF4-9CAA-E7FB5B936875}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {78828549-D639-412A-A60F-6AC294C049AF}

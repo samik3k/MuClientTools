@@ -8,13 +8,6 @@ public:
 	ServerListBmd() : ServerListBmdConvert() {};
 	virtual ~ServerListBmd() {};
 
-	//BOOL Unpack(const char *szSrcBmd, const char *szDestTxt)
-	//{
-	//	return FileOpen(szSrcBmd)
-	//		&& Decrypt()
-	//		&& FileWrite(fs::path(szSrcBmd).replace_extension(".debug").string().c_str());
-	//};
-
 private:
 	vector<string> _msg;
 	BOOL Decrypt();

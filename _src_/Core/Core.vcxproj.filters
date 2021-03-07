@@ -88,6 +88,12 @@
     <ClInclude Include="MapCharactersBmd.h">
       <Filter>Source Files\Client\DataFiles</Filter>
     </ClInclude>
+    <ClInclude Include="MuCommon.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemSetBmd.h">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseIO.cpp">
@@ -127,6 +133,9 @@
       <Filter>Source Files\Client\DataFiles</Filter>
     </ClCompile>
     <ClCompile Include="MapCharactersBmd.cpp">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemSetBmd.cpp">
       <Filter>Source Files\Client\DataFiles</Filter>
     </ClCompile>
   </ItemGroup>

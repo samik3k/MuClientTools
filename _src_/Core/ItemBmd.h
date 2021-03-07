@@ -21,9 +21,6 @@ private:
 
 		return ptr->ItemIndex;
 	};
-
-	//void TxtOut(ofstream& os);
-	//void TxtIn(ifstream& is);
 };
 
 #endif

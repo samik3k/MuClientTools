@@ -1,10 +1,8 @@
 #ifndef LANG_MPR_H
 #define LANG_MPR_H
 
-#if MU_SEASON == 13 && MU_EP == 1
-	#define _LANG_WKEY_ 0x12DC
-	#define _LANG_ZIP_PASSWORD_ L"w(eb!zen&Mu1@#^Ge&sch%enk!"
-#endif
+#define _LANG_WKEY_ 0x12DC
+#define _LANG_ZIP_PASSWORD_ L"w(eb!zen&Mu1@#^Ge&sch%enk!"
 
 class LangMpr : public BaseIO
 {

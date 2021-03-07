@@ -130,6 +130,7 @@
     </ClCompile>
     <ClCompile Include="EvoMonsterBoxBmd.cpp" />
     <ClCompile Include="FormulaDataBmd.cpp" />
+    <ClCompile Include="ItemSetBmd.cpp" />
     <ClCompile Include="LangMpr.cpp" />
     <ClCompile Include="LazyStruct.cpp" />
     <ClCompile Include="MapCharactersBmd.cpp" />
@@ -153,9 +154,11 @@
     <ClInclude Include="InfoTooltipBmd.h" />
     <ClInclude Include="InfoTooltipTextBmd.h" />
     <ClInclude Include="ItemBmd.h" />
+    <ClInclude Include="ItemSetBmd.h" />
     <ClInclude Include="LangMpr.h" />
     <ClInclude Include="LazyStruct.h" />
     <ClInclude Include="MapCharactersBmd.h" />
+    <ClInclude Include="MuCommon.h" />
     <ClInclude Include="MuCrypto.h" />
     <ClInclude Include="MuRummyBmd.h" />
     <ClInclude Include="MuunBmd.h" />

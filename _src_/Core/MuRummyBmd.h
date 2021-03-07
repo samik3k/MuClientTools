@@ -44,14 +44,6 @@ class MuRummySlotBmd : public MuRummySlotBmdConvert
 public:
 	MuRummySlotBmd() : MuRummySlotBmdConvert(_MURUMMY_SLOT_BMD_WKEY_) {};
 	virtual ~MuRummySlotBmd() {};
-
-	//BOOL Unpack(const char *szSrcBmd, const char *szDestTxt)
-	//{
-	//	return FileOpen(szSrcBmd)
-	//		&& Decrypt()
-	//		&& FileWrite(fs::path(szSrcBmd).replace_extension(".debug").string().c_str());
-	//};
-
 };
 
 #endif

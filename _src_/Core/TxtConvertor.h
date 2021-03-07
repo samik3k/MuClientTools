@@ -18,7 +18,7 @@ protected:
 	virtual int GetKey(T* pT) { static int i = 0;  return i++; };
 	virtual void MakeLabel(ofstream& os);
 	virtual void MakeLabelEx(ofstream& os) {};
-
+	virtual void OffsetOut(ofstream& os, T* ptr);
 	//----------------------
 
 	virtual BOOL Decrypt();
@@ -125,11 +125,58 @@ inline void TxtConvertor<T>::MakeLabel(ofstream & os)
 }
 
 template<typename T>
+inline void TxtConvertor<T>::OffsetOut(ofstream & os, T* ptr)
+{
+	assert(os && ptr);
+
+	static const vector<OffsetInfo> OFFSET = T::GetOffset();
+
+	for (int i = 0; i < OFFSET.size(); i++)
+	{
+		int type = OFFSET[i].Type;
+		size_t pos = OFFSET[i].Offset;
+		if (pos < 0 || pos >= sizeof(T)) continue;
+
+		pos += (size_t)ptr;
+		switch (type)
+		{
+		case LAZY_TYPE_FLAG::_CSTR_:
+			os << (const char*)pos << '\t';
+			break;
+		case LAZY_TYPE_FLAG::_1BYTE_:
+			os << (DWORD)(*(BYTE*)pos) << '\t';
+			break;
+		case LAZY_TYPE_FLAG::_1BYTE_ | LAZY_TYPE_FLAG::_SIGNED_:
+			os << (int)(*(char*)pos) << '\t';
+			break;
+		case LAZY_TYPE_FLAG::_2BYTE_:
+			os << *(WORD*)pos << '\t';
+			break;
+		case LAZY_TYPE_FLAG::_2BYTE_ | LAZY_TYPE_FLAG::_SIGNED_:
+			os << *(short*)pos << '\t';
+			break;
+		case LAZY_TYPE_FLAG::_4BYTE_:
+			os << *(DWORD*)pos << '\t';
+			break;
+		case LAZY_TYPE_FLAG::_4BYTE_ | LAZY_TYPE_FLAG::_SIGNED_:
+			os << *(int*)pos << '\t';
+			break;
+		case LAZY_TYPE_FLAG::_FLOAT_:
+			os << *(float*)pos << '\t';
+			break;
+		case LAZY_TYPE_FLAG::_DOUBLE_:
+			os << *(double*)pos << '\t';
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+template<typename T>
 void TxtConvertor<T>::TxtOut(ofstream & os)
 {
 	assert(os);
-
-	static const vector<OffsetInfo> OFFSET = T::GetOffset();
 
 	MakeLabelEx(os);
 	MakeLabel(os);
@@ -137,48 +184,7 @@ void TxtConvertor<T>::TxtOut(ofstream & os)
 	for (auto it = _map.begin(); it != _map.end(); it++)
 	{
 		T* ptr = it->second;
-
-		for (int i = 0; i < OFFSET.size(); i++)
-		{
-			int type = OFFSET[i].Type;
-			size_t pos = OFFSET[i].Offset;
-			if (pos < 0 || pos >= sizeof(T)) continue;
-
-			pos += (size_t)ptr;
-			switch (type)
-			{
-			case LAZY_TYPE_FLAG::_CSTR_:
-				os << (const char*)pos << '\t';
-				break;
-			case LAZY_TYPE_FLAG::_1BYTE_:
-				os << (DWORD)(*(BYTE*)pos) << '\t';
-				break;
-			case LAZY_TYPE_FLAG::_1BYTE_ | LAZY_TYPE_FLAG::_SIGNED_:
-				os << (int)(*(char*)pos) << '\t';
-				break;
-			case LAZY_TYPE_FLAG::_2BYTE_:
-				os << *(WORD*)pos << '\t';
-				break;
-			case LAZY_TYPE_FLAG::_2BYTE_ | LAZY_TYPE_FLAG::_SIGNED_:
-				os << *(short*)pos << '\t';
-				break;
-			case LAZY_TYPE_FLAG::_4BYTE_:
-				os << *(DWORD*)pos << '\t';
-				break;
-			case LAZY_TYPE_FLAG::_4BYTE_ | LAZY_TYPE_FLAG::_SIGNED_:
-				os << *(int*)pos << '\t';
-				break;
-			case LAZY_TYPE_FLAG::_FLOAT_:
-				os << *(float*)pos << '\t';
-				break;
-			case LAZY_TYPE_FLAG::_DOUBLE_:
-				os << *(double*)pos << '\t';
-				break;
-			default:
-				break;
-			}
-		}
-
+		OffsetOut(os, ptr);
 		os << endl;
 	}
 }

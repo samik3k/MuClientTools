@@ -1,13 +1,6 @@
 #include "Core.h"
 #include "MuunExchangeBmd.h"
 
-//BOOL MuunExchangeBmd::Unpack(const char * szSrcBmd, const char * szDestTxt)
-//{
-//	return FileOpen(szSrcBmd)
-//		&& Decrypt()
-//		&& FileWrite(fs::path(szSrcBmd).replace_extension(".debug").string().c_str());
-//}
-
 BOOL MuunExchangeBmd::Decrypt()
 {
 	assert(_buf.size() > 12);
