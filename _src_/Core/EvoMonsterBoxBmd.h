@@ -12,7 +12,6 @@ public:
 	virtual ~EvoMonsterBoxBmd() {};
 
 private:
-
 	BOOL Decrypt();
 	BOOL Encrypt();
 	void MakeLabelEx(ofstream& os);

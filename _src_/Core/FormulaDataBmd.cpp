@@ -4,35 +4,23 @@ BOOL FormulaDataBmd::Decrypt()
 {
 	assert(_buf.size() > 12);
 
-	int size = sizeof(FORMULA_DATA);
-	int total = *(int*)&_buf[0];
-	int group_count = *(int*)&_buf[4];
+	size_t size = sizeof(FORMULA_DATA);
+	size_t total = *(size_t*)&_buf[0];
+	size_t group_count = *(size_t*)&_buf[4];
+	size_t pos = 8;
+	int err = -1;
 
-	DWORD CRC = *(DWORD*)&_buf[_buf.size() - 4];
-	if (CRC != CalculateCRC(&_buf[8], _buf.size() - 12, _wkey))
+	for (size_t i = 0; i < group_count; i++)
 	{
-		cout << "Warning: CRC check failed. (may be a wrong file) \n";
-#ifdef STRICT_CRC_CHECK
-		return FALSE;
-#endif
-	}
+		if (pos + 4 > _buf.size()) return TRUE;	//ignore error
 
-	if ((_buf.size() - 12) != ((total * size) + (4 * group_count)))
-	{
-		cout << "Warning: InputFile size check failed. (may be a wrong file) \n";
-#ifdef STRICT_SIZE_CHECK
-		return FALSE;
-#endif
-	}
-
-	int pos = 8, err = -1;
-	for (int i = 0; i < group_count; i++)
-	{
 		Xor3Byte(&_buf[pos], 4);
 		int sub_count = *(int*)&_buf[pos];
 		pos += 4;
 		for (int j = 0; j < sub_count; j++)
 		{
+			if (pos + size > _buf.size()) return TRUE;	//ignore error
+
 			Xor3Byte(&_buf[pos], size);
 			FORMULA_DATA* pData = (FORMULA_DATA*)&_buf[pos];
 			int key = (i << 8) | j;
@@ -52,19 +40,19 @@ BOOL FormulaDataBmd::Decrypt()
 BOOL FormulaDataBmd::Encrypt()
 {
 	assert(_buf.size() > 12);
-	int size = sizeof(FORMULA_DATA);
-	int total = *(int*)&_buf[0];
-	int group_count = *(int*)&_buf[4];
+	size_t size = sizeof(FORMULA_DATA);
+	size_t total = *(size_t*)&_buf[0];
+	size_t group_count = *(size_t*)&_buf[4];
+	size_t pos = 8;
 
 	assert(_buf.size() == 12 + (total * size) + (group_count * 4));
 
-	int pos = 8;
-	for (int i = 0; i < group_count; i++)
+	for (size_t i = 0; i < group_count; i++)
 	{
-		int sub_count = *(int*)&_buf[pos];
+		size_t sub_count = *(size_t*)&_buf[pos];
 		Xor3Byte(&_buf[pos], 4);
 		pos += 4;
-		for (int j = 0; j < sub_count; j++)
+		for (size_t j = 0; j < sub_count; j++)
 		{
 			Xor3Byte(&_buf[pos], size);
 			pos += size;
@@ -72,8 +60,6 @@ BOOL FormulaDataBmd::Encrypt()
 	}
 	DWORD CRC = CalculateCRC(&_buf[8], _buf.size() - 12, _wkey);
 	*(DWORD*)&_buf[_buf.size() - 4] = CRC;
-
-	_map.clear();
 
 	return TRUE;
 }
@@ -105,11 +91,9 @@ void FormulaDataBmd::TxtIn(ifstream & is)
 	static const string FORMAT = "%d\t" + FORMULA_DATA::GetFormat();
 
 	string line;
-	int size = sizeof(FORMULA_DATA);
-	int n = 0;
-
+	size_t size = sizeof(FORMULA_DATA);
+	size_t n = 0;
 	map<int, vector<FORMULA_DATA>> temp;
-	_map.clear();
 
 	while (getline(is, line))
 	{
@@ -129,19 +113,17 @@ void FormulaDataBmd::TxtIn(ifstream & is)
 	*(DWORD*)&_buf[0] = n;
 	*(DWORD*)&_buf[4] = temp.size();
 
-	int pos = 8;
+	size_t pos = 8;
 	for (auto it = temp.begin(); it != temp.end(); it++)
 	{
-		int group = it->first;
-		int sub_count = it->second.size();
+		size_t group = it->first;
+		size_t sub_count = it->second.size();
 		*(int*)&_buf[pos] = sub_count;
 		pos += 4;
-		for (int i = 0; i < sub_count; i++)
+		for (size_t i = 0; i < sub_count; i++)
 		{
-			FORMULA_DATA* ptr = &it->second[i];
-			memcpy(&_buf[pos], ptr, size);
-			int key = (group << 8) | ptr->ID;
-			_map.insert(make_pair(key, (FORMULA_DATA*)&_buf[pos]));
+			FORMULA_DATA* formula = &it->second[i];
+			memcpy(&_buf[pos], formula, size);
 			pos += size;
 		}
 	}

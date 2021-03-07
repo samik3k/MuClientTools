@@ -1,34 +1,18 @@
-#include "Core.h"
 #include "MuunExchangeBmd.h"
 
 BOOL MuunExchangeBmd::Decrypt()
 {
-	assert(_buf.size() > 12);
+	if(_buf.size() < 8) return FALSE;
 
-	int size = sizeof(MUUN_EXCHANGE);
-	int count1 = *(int*)&_buf[0];
-	int count2 = *(int*)&_buf[4];
+	size_t size = sizeof(MUUN_EXCHANGE);
+	size_t count1 = *(int*)&_buf[0];
+	size_t count2 = *(int*)&_buf[4];
+	size_t pos = 8;
 
-	DWORD CRC = *(DWORD*)&_buf[_buf.size() - 4];
-	if (CRC != CalculateCRC(&_buf[8], _buf.size() - 12, _wkey))
+	for (size_t i = 0; i < count1; i++)
 	{
-		cout << "Warning: CRC check failed. (may be a wrong file) \n";
-#ifdef STRICT_CRC_CHECK
-		return FALSE;
-#endif
-	}
+		if (pos + size > _buf.size()) return TRUE; //ignore error
 
-	if ((_buf.size() - 12) != ((count1 + count2) * size))
-	{
-		cout << "Warning: InputFile size check failed. (may be a wrong file) \n";
-#ifdef STRICT_SIZE_CHECK
-		return FALSE;
-#endif
-	}
-
-	int pos = 8, err = -1;
-	for (int i = 0; i < count1; i++)
-	{
 		Xor3Byte(&_buf[pos], size);
 		MUUN_EXCHANGE* ptr = (MUUN_EXCHANGE*)&_buf[pos];
 		int key = (0 << 8) | ptr->Column_4;
@@ -36,8 +20,10 @@ BOOL MuunExchangeBmd::Decrypt()
 		pos += size;
 	}
 
-	for (int i = 0; i < count2; i++)
+	for (size_t i = 0; i < count2; i++)
 	{
+		if (pos + size > _buf.size()) return TRUE; //ignore error
+
 		Xor3Byte(&_buf[pos], size);
 		MUUN_EXCHANGE* ptr = (MUUN_EXCHANGE*)&_buf[pos];
 		int key = (1 << 8) | ptr->Column_1;
@@ -50,17 +36,16 @@ BOOL MuunExchangeBmd::Decrypt()
 
 BOOL MuunExchangeBmd::Encrypt()
 {
-	assert(_buf.size() > 12);
+	assert(_buf.size() >= 12);
 
-	int size = sizeof(MUUN_EXCHANGE);
-	for (int p = 8; p + size < _buf.size(); p += size)
+	size_t size = sizeof(MUUN_EXCHANGE);
+	for (size_t p = 8; p + size <= _buf.size() - 4; p += size)
 	{
 		Xor3Byte(&_buf[p], size);
 	}
 	DWORD CRC = CalculateCRC(&_buf[8], _buf.size() - 12, _wkey);
 	*(DWORD*)&_buf[_buf.size() - 4] = CRC;
 
-	_map.clear(); // T* now -> encrypted data
 	return TRUE;
 }
 
@@ -110,7 +95,6 @@ void MuunExchangeBmd::TxtIn(ifstream & is)
 	string line;
 	int size = sizeof(MUUN_EXCHANGE);
 	int n = 0;
-	_map.clear();
 
 	map<int, vector<MUUN_EXCHANGE>> temp;
 
@@ -141,11 +125,7 @@ void MuunExchangeBmd::TxtIn(ifstream & is)
 			MUUN_EXCHANGE* dst = (MUUN_EXCHANGE*)&_buf[pos];
 			MUUN_EXCHANGE* src = &temp[i][j];
 			memcpy(dst, src, size);
-
-			int key = i == 0 ? dst->Column_4 : (1 << 8) | dst->Column_1;
-			_map.insert(make_pair(key, dst));
 			pos += size;
-
 		}
 	}
 }

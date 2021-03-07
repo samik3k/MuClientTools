@@ -1,3 +1,4 @@
+
 #ifndef STAT_OPTION_BMD_H
 #define STAT_OPTION_BMD_H
 

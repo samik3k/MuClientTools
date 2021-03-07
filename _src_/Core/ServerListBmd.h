@@ -1,3 +1,4 @@
+
 #ifndef SERVER_LIST_BMD_H
 #define SERVER_LIST_BMD_H
 
@@ -9,7 +10,6 @@ public:
 	virtual ~ServerListBmd() {};
 
 private:
-	vector<string> _msg;
 	BOOL Decrypt();
 	BOOL Encrypt();
 	void TxtOut(ofstream& os);

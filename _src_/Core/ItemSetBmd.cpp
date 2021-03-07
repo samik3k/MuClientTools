@@ -6,22 +6,26 @@
 
 BOOL ItemSetTypeBmd::Decrypt()
 {
-	int size = sizeof(ITEM_SET_TYPE);
-	int count = ITEM_CATEGORY_MAX * ITEM_INDEX_MAX;
+	assert(_buf.size());
 
-	assert(_buf.size() == count * size + 4);
+	size_t size = sizeof(ITEM_SET_TYPE);
+	size_t count = ITEM_CATEGORY_MAX * ITEM_INDEX_MAX;
+	size_t pos = 0;
+
+	//assert(_buf.size() == count * size + 4);
 
 	_map.clear();
 
-	int pos = 0;
-	for (int i = 0; i < count; i++)
+	for (size_t i = 0; i < count; i++)
 	{
+		if (pos + size > _buf.size()) return TRUE; //ignore error
+
 		Xor3Byte(&_buf[pos], size);
 		ITEM_SET_TYPE* ptr = (ITEM_SET_TYPE*)&_buf[pos];
 		if (ptr->Tier1 | ptr->Tier2 | ptr->Tier3 | ptr->Tier4 | ptr->Unk1 | ptr->Unk2 > 0)
 		{
 			int key = i;
-			_map.insert(make_pair(key, ptr));
+			InsertToMap(key, ptr);
 		}
 
 		pos += size;
@@ -32,13 +36,13 @@ BOOL ItemSetTypeBmd::Decrypt()
 
 BOOL ItemSetTypeBmd::Encrypt()
 {
-	int size = sizeof(ITEM_SET_TYPE);
-	int count = ITEM_CATEGORY_MAX * ITEM_INDEX_MAX;
+	size_t size = sizeof(ITEM_SET_TYPE);
+	size_t count = ITEM_CATEGORY_MAX * ITEM_INDEX_MAX;
+	size_t pos = 0;
 
 	assert(_buf.size() == count * size + 4);
 
-	int pos = 0;
-	for (int i = 0; i < count; i++)
+	for (size_t i = 0; i < count; i++)
 	{
 		Xor3Byte(&_buf[pos], size);
 		pos += size;
@@ -82,7 +86,6 @@ void ItemSetTypeBmd::TxtIn(ifstream & is)
 	string line;
 	size_t size = sizeof(ITEM_SET_TYPE);
 	size_t count = ITEM_CATEGORY_MAX * ITEM_INDEX_MAX;
-	_map.clear();
 
 	_buf.resize((count * size) + 4);
 	memset(_buf.data(), 0x0, _buf.size());
@@ -103,12 +106,10 @@ void ItemSetTypeBmd::TxtIn(ifstream & is)
 
 		if (item_cat < ITEM_CATEGORY_MAX && item_idx < ITEM_INDEX_MAX)
 		{
-			size_t pos = (item_cat * 512 + item_idx) * size;
+			size_t pos = ITEM_MAKE(item_cat, item_idx) * size;
 			memcpy(&_buf[pos], &temp, size);
-			//_map.insert
 		}
 	}
-
 }
 
 //------------------------------------------------------------------------
@@ -117,21 +118,26 @@ void ItemSetTypeBmd::TxtIn(ifstream & is)
 
 BOOL ItemSetOptionBmd::Decrypt()
 {
-	int size = sizeof(ITEM_SET_OPTION);
-	int count = 255;
+	assert(_buf.size());
 
-	assert(_buf.size() == count * size + 4);
+	size_t size = sizeof(ITEM_SET_OPTION);
+	size_t count = 255;
+	size_t pos = 0;
+
+	//assert(_buf.size() == count * size + 4);
 
 	_map.clear();
 
-	int pos = 0;
-	for (int i = 0; i < count; i++)
+	for (size_t i = 0; i < count; i++)
 	{
+		if (pos + size > _buf.size()) return TRUE; //ignore error
+
 		Xor3Byte(&_buf[pos], size);
 		ITEM_SET_OPTION* ptr = (ITEM_SET_OPTION*)&_buf[pos];
+
 		int key = i;
-		_map.insert(make_pair(key, ptr));
-		
+		InsertToMap(key, ptr);
+
 		pos += size;
 	}
 
@@ -140,12 +146,12 @@ BOOL ItemSetOptionBmd::Decrypt()
 
 BOOL ItemSetOptionBmd::Encrypt()
 {
-	int size = sizeof(ITEM_SET_OPTION);
-	int count = 255;
+	size_t size = sizeof(ITEM_SET_OPTION);
+	size_t count = 255;
+	size_t pos = 0;
 
 	assert(_buf.size() == count * size + 4);
 
-	int pos = 0;
 	for (int i = 0; i < count; i++)
 	{
 		Xor3Byte(&_buf[pos], size);
@@ -183,7 +189,6 @@ void ItemSetOptionBmd::TxtIn(ifstream & is)
 	size_t count = 255;
 
 	_buf.resize(size * count + 4);
-	_map.clear();
 
 	while (getline(is, line))
 	{

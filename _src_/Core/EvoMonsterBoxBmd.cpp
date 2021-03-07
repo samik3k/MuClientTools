@@ -1,17 +1,23 @@
-#include "Core.h"
 #include "EvoMonsterBoxBmd.h"
 
 BOOL EvoMonsterBoxBmd::Decrypt()
 {
-	assert(_buf.size() == 164);
+	if (_buf.size() != 164)
+	{
+		cout << "Error: File size must equal 164." << endl;
+		//return FALSE; //ignore
 
-	//int size = *(int*)&_buf[0];
-	int size = 156;
+		while (_buf.size() < 164)
+			_buf.push_back(0);
+		if (_buf.size() > 164)
+			_buf.resize(164);
+	}
+	size_t size = 156;
 
 	_map.clear();
 
 	Xor3Byte(&_buf[4], size);
-	for (int i = 0; i < size; i++)
+	for (size_t i = 0; i < size; i++)
 	{
 		EVO_MONSTER_BOX* ptr = (EVO_MONSTER_BOX*)&_buf[4 + i];
 		int key = GetKey(ptr);
@@ -23,15 +29,17 @@ BOOL EvoMonsterBoxBmd::Decrypt()
 
 BOOL EvoMonsterBoxBmd::Encrypt()
 {
-	assert(_buf.size() == 164);
+	while(_buf.size() < 164)
+		_buf.push_back(0);
+	if(_buf.size() > 164)
+		_buf.resize(164);
 
-	//int size = *(int*)&_buf[0];
-	int size = 156;
+	size_t size = 156;
 
 	*(DWORD*)&_buf[0] = size;
 	Xor3Byte(&_buf[4], size);
 	*(DWORD*)&_buf[_buf.size()-4] = CalculateCRC(&_buf[4], size, _wkey);
-	_map.clear();
+
 	return TRUE;
 }
 

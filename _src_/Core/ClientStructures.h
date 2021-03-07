@@ -1,6 +1,23 @@
 #ifndef CLIENT_STRUCT_H
 #define CLIENT_STRUCT_H
 
+//struct MONSTER_SKILL
+STRUCT(MONSTER_SKILL) LAZY
+(
+	int MonsterID;
+	int Skill_1;
+	int Skill_2;
+	int Skill_3;
+	int Skill_4;
+	int Skill_5;
+	int Skill_6;
+	int Skill_7;
+	int Skill_8;
+	int Skill_9;
+	int Skill_10;
+	int Unk;
+);
+
 //struct ITEM_SET_OPTION_TEXT
 STRUCT(ITEM_SET_OPTION_TEXT) LAZY
 (
@@ -226,7 +243,6 @@ struct QUEST_INFO_TYPE
 
 struct QUEST_INFO
 {
-	//BYTE Unk[744];
 	WORD ItemCount;
 	WORD TypeCount;
 	WORD NPC;

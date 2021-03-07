@@ -56,13 +56,6 @@ class ItemSetOptionTextBmd : public ItemSetOptionTextBmdConvert
 public:
 	ItemSetOptionTextBmd() : ItemSetOptionTextBmdConvert(_ITEM_SET_OPTION_TEXT_BMD_WKEY_) {};
 	virtual ~ItemSetOptionTextBmd() { };
-
-	//BOOL Unpack(const char *szSrcBmd, const char *szDestTxt)
-	//{
-	//	return FileOpen(szSrcBmd)
-	//		&& Decrypt()
-	//		&& FileWrite(fs::path(szSrcBmd).replace_extension(".debug").string().c_str());
-	//};
 };
 
 #endif

@@ -1,52 +1,4 @@
-#include "Core.h"
 #include "QuestBmd.h"
-
-BOOL QuestBmd::Decrypt()
-{
-	assert(_buf.size() > 0);
-
-	int size = sizeof(QUEST_INFO);
-	int count = 200;
-
-	if (_buf.size() != (count * size))
-	{
-		cout << "Warning: InputFile size check failed. (may be a wrong file) \n";
-#ifdef STRICT_SIZE_CHECK
-		return FALSE;
-#endif
-	}
-
-	_map.clear();
-
-	int pos = 0;
-	for (int i = 0; i < count; i++)
-	{
-		Xor3Byte(&_buf[pos], size);
-		QUEST_INFO* ptr = (QUEST_INFO*)&_buf[pos];
-
-		if (ptr->ItemCount + ptr->TypeCount > 0)
-		{
-			int key = i;
-			_map.insert(make_pair(key, ptr));
-		}
-
-		pos += size;
-	}
-
-	return TRUE;
-}
-
-BOOL QuestBmd::Encrypt()
-{
-	assert(_buf.size() > 0);
-
-	int size = sizeof(QUEST_INFO);
-	for (int p = 0; p + size <= _buf.size(); p += size)
-		Xor3Byte(&_buf[p], size);
-
-	_map.clear(); // T* now -> encrypted data
-	return TRUE;
-}
 
 void QuestBmd::TxtOut(ofstream & os)
 {
@@ -55,6 +7,9 @@ void QuestBmd::TxtOut(ofstream & os)
 	for (auto it = _map.begin(); it != _map.end(); it++)
 	{
 		QUEST_INFO* ptr = it->second;
+
+		if (ptr->ItemCount + ptr->TypeCount == 0)	//blank
+			continue;
 
 		os << "//================================================="<< endl;
 		os << "//==Quest: " << ptr->QuestName << endl;
@@ -118,14 +73,13 @@ void QuestBmd::TxtIn(ifstream & is)
 	assert(is);
 
 	string line;
-	int size = sizeof(QUEST_INFO);
-	int count = 200;
-	_map.clear();
+	size_t size = sizeof(QUEST_INFO);
+	size_t count = 200;
 
 	_buf.resize(count * size);
-	memset(_buf.data(), 0x0, _buf.size());
+	memset(_buf.data(), 0x00, _buf.size());
 
-	int n = 0;
+	size_t n = 0;
 	while (getline(is, line) && n < count)
 	{
 		if (line[0] == '/' && line[1] == '/')
@@ -158,6 +112,7 @@ void QuestBmd::TxtIn(ifstream & is)
 				, &pItem->GL, &pItem->DW, &pItem->DK, &pItem->FE, &pItem->MG, &pItem->DL, &pItem->SU, &pItem->RF
 				, &pItem->Msg_1, &pItem->Msg_2, &pItem->Msg_3, &pItem->Msg_4
 			);
+
 			i++;
 		}
 

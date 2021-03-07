@@ -6,7 +6,7 @@
 int main(int argc, char** argv)
 {
 	ServerListBmd opener;
-	const char* szInputPath = "serverlist.txt";
+	const char* szInputPath = "serverlist.bmd";
 	const char* szOutputPath = nullptr;
 
 	if (argc >= 2)

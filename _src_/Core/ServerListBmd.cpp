@@ -4,12 +4,11 @@ BOOL ServerListBmd::Decrypt()
 {
 	assert(_buf.size() > 0);
 
-	int size = sizeof(SERVER_LIST);
+	size_t size = sizeof(SERVER_LIST);
+	size_t pos = 0;
 
 	_map.clear();
-	//_msg.clear();
 
-	int pos = 0;
 	while(pos < _buf.size())
 	{
 		Xor3Byte(&_buf[pos], size);
@@ -21,7 +20,6 @@ BOOL ServerListBmd::Decrypt()
 		Xor3Byte(&_buf[pos], len);
 
 		int key = GetKey(ptr);
-		//_msg.push_back((char*)&_buf[pos]);
 		_map.insert(make_pair(key, ptr));
 
 		pos += len;
@@ -34,8 +32,9 @@ BOOL ServerListBmd::Encrypt()
 {
 	assert(_buf.size() > 0);
 
-	int size = sizeof(SERVER_LIST);
-	int pos = 0;
+	size_t size = sizeof(SERVER_LIST);
+	size_t pos = 0;
+
 	while (pos < _buf.size())
 	{
 		SERVER_LIST * ptr = (SERVER_LIST*)&_buf[pos];
@@ -74,10 +73,9 @@ void ServerListBmd::TxtIn(ifstream & is)
 	assert(is);
 
 	string line;
-	int size = sizeof(SERVER_LIST);
-	_map.clear();
+	size_t size = sizeof(SERVER_LIST);
+	size_t pos = 0;
 
-	int pos = 0;
 	while (getline(is, line))
 	{
 		if (line[0] == '/' && line[1] == '/')

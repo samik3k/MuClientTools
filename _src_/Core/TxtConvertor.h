@@ -7,18 +7,18 @@ template<typename T>
 class TxtConvertor : public BaseIO
 {
 public:
-	TxtConvertor(WORD w = _COMMON_TXTCONVERTOR_WKEY_) : _wkey(w) {};
+	TxtConvertor(WORD w = _COMMON_TXTCONVERTOR_WKEY_) : _wkey(w), hasCounter(true), hasCRC(true) {};
 	virtual ~TxtConvertor() {};
 
 	virtual BOOL Unpack(const char *szSrcBmd, const char *szDestTxt);
 	virtual BOOL Pack(const char *szSrcTxt, const char *szDestBmd);
 
-	map<int, T*> _map;	//make public for further ref. (temporary)
 protected:
-	virtual int GetKey(T* pT) { static int i = 0;  return i++; };
+	virtual int GetKey(T* ptr) { static int i = 0;  return i++; };
 	virtual void MakeLabel(ofstream& os);
 	virtual void MakeLabelEx(ofstream& os) {};
 	virtual void OffsetOut(ofstream& os, T* ptr);
+	virtual void InsertToMap(int key, T* ptr, int* err = nullptr);
 	//----------------------
 
 	virtual BOOL Decrypt();
@@ -28,7 +28,10 @@ protected:
 	virtual BOOL ComposeTxt(const char *szDestTxt);
 	virtual BOOL ParseTxt(const char *szSrcTxt);
 
+	map<int, T*> _map;
 	WORD _wkey;
+	bool hasCounter;
+	bool hasCRC;
 };
 
 //--END HEADER PART
@@ -56,43 +59,20 @@ inline BOOL TxtConvertor<T>::Pack(const char * szSrcTxt, const char * szDestBmd)
 template<typename T>
 BOOL TxtConvertor<T>::Decrypt()
 {
-	assert(_buf.size() > 8);
+	assert(_buf.size());
 
-	const int size = sizeof(T);
-
-	DWORD CRC = *(DWORD*)&_buf[_buf.size() - 4];
-	if (CRC != CalculateCRC(&_buf[4], _buf.size() - 8, _wkey))
-	{
-		cout << "Warning: CRC check failed. (may be a wrong file) \n";
-#ifdef STRICT_CRC_CHECK
-		return FALSE;
-#endif
-	}
-
-	int N = *(int*)&_buf[0];
-	if ((_buf.size() - 8) != N * size)
-	{
-		cout << "Warning: InputFile size check failed. (may be a wrong file) \n";
-#ifdef STRICT_SIZE_CHECK
-		return FALSE;
-#endif
-	}
+	size_t size = sizeof(T);
 
 	_map.clear();
 
-	int err = -1;
-	for (int p = 4; p + size < _buf.size(); p += size)
+	int err = -1; 
+	for (size_t p = (hasCounter * 4); p + size <= _buf.size() - (hasCRC * 4); p += size)
 	{
 		Xor3Byte(&_buf[p], size);
 
-		T *pT = (T *)&_buf[p];
-		int key = GetKey(pT);
-		while (_map.find(key) != _map.end())	//check duplicated keys
-		{
-			key = err;
-			err--;
-		}
-		_map.insert(make_pair(key, pT));
+		T *ptr = (T *)&_buf[p]; 
+		int key = GetKey(ptr);
+		InsertToMap(key, ptr, &err);
 	}
 
 	return TRUE;
@@ -101,15 +81,19 @@ BOOL TxtConvertor<T>::Decrypt()
 template<typename T>
 BOOL TxtConvertor<T>::Encrypt()
 {
-	assert(_buf.size() > 8);
+	assert(_buf.size());
 
-	int size = sizeof(T);
-	for (int p = 4; p + size < _buf.size(); p += size)
+	size_t size = sizeof(T);
+	for (size_t p = (hasCounter * 4); p + size <= _buf.size() - (hasCRC * 4); p += size)
 	{
 		Xor3Byte(&_buf[p], size);
 	}
-	DWORD CRC = CalculateCRC(&_buf[4], _buf.size() - 8, _wkey);
-	*(DWORD*)&_buf[_buf.size() - 4] = CRC;
+
+	if (hasCRC)
+	{
+		DWORD CRC = CalculateCRC(&_buf[4], _buf.size() - 8, _wkey);
+		*(DWORD*)&_buf[_buf.size() - 4] = CRC;
+	}
 
 	_map.clear(); // T* now -> encrypted data
 	return TRUE;
@@ -131,7 +115,7 @@ inline void TxtConvertor<T>::OffsetOut(ofstream & os, T* ptr)
 
 	static const vector<OffsetInfo> OFFSET = T::GetOffset();
 
-	for (int i = 0; i < OFFSET.size(); i++)
+	for (size_t i = 0; i < OFFSET.size(); i++)
 	{
 		int type = OFFSET[i].Type;
 		size_t pos = OFFSET[i].Offset;
@@ -174,6 +158,20 @@ inline void TxtConvertor<T>::OffsetOut(ofstream & os, T* ptr)
 }
 
 template<typename T>
+inline void TxtConvertor<T>::InsertToMap(int key, T * ptr, int* err)
+{
+	if (err)
+	{
+		while (_map.find(key) != _map.end())	//check duplicated keys
+		{
+			key = *err;
+			*err--;
+		}
+	}
+	_map.insert(make_pair(key, ptr));
+}
+
+template<typename T>
 void TxtConvertor<T>::TxtOut(ofstream & os)
 {
 	assert(os);
@@ -198,16 +196,16 @@ void TxtConvertor<T>::TxtIn(ifstream & is)
 
 	string line;
 	size_t size = sizeof(T);
+	size_t head = hasCounter * 4;
 	size_t n = 0;
 
-	_map.clear();
 	while (getline(is, line))
 	{
 		if (line[0] == '/' && line[1] == '/')
 			continue;
-		_buf.resize(4 + ((n + 1) * size));
+		_buf.resize(head + ((n + 1) * size));
 
-		T* ptr = (T*)&_buf[4 + (n * size)];
+		T* ptr = (T*)&_buf[head + (n * size)];
 		memset(ptr, 0x00, size);
 
 		line += '\t';
@@ -228,13 +226,12 @@ void TxtConvertor<T>::TxtIn(ifstream & is)
 			b = line.find('\t', a);
 		} while (b != string::npos && i < OFFSET.size());
 		
-		// No need
-		//int key = GetKey(ptr);
-		//_map.insert(make_pair(key, ptr));
 		n++;
 	}
-	*(DWORD*)&_buf[0] = n;
-	_buf.resize(4 + (n * size) + 4);	//last 4 BYTES for CRC
+	if(hasCounter)
+		*(DWORD*)&_buf[0] = n;
+	if(hasCRC)
+		_buf.resize(4 + (n * size) + 4);	//last 4 BYTES for CRC
 }
 
 template<typename T>
@@ -262,7 +259,7 @@ BOOL TxtConvertor<T>::ComposeTxt(const char * szDestTxt)
 template<typename T>
 BOOL TxtConvertor<T>::ParseTxt(const char * szSrcTxt)
 {
-	assert(szSrcTxt);
+	if(!szSrcTxt) return FALSE;
 
 	ifstream is(szSrcTxt);
 	if (!is.is_open())
@@ -270,11 +267,8 @@ BOOL TxtConvertor<T>::ParseTxt(const char * szSrcTxt)
 		cout << "Error: Failed to read the txt file: " << szSrcTxt << '\n';
 		return FALSE;
 	}
-
 	_map.clear();
-
 	TxtIn(is);
-
 	is.close();
 
 	return TRUE;

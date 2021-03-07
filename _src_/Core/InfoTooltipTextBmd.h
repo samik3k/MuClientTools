@@ -1,3 +1,4 @@
+
 #ifndef INFO_TOOLTIP_TEXT_BMD_H
 #define INFO_TOOLTIP_TEXT_BMD_H
 

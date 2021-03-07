@@ -35,7 +35,7 @@ BOOL MapCharactersBmd::Decrypt()
 		}
 
 		int key = GetKey(ptr);
-		_map.insert(make_pair(key, ptr));
+		InsertToMap(key, ptr);
 	}
 
 	return TRUE;
@@ -73,8 +73,6 @@ BOOL MapCharactersBmd::Encrypt()
 			pos += 4;
 		}
 	}
-
-	_map.clear();
 	return TRUE;
 }
 
