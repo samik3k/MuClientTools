@@ -44,7 +44,7 @@ C/C++ reversing skills is a plus to see the changes in thier game client.
 ```
   
 :heavy_check_mark:	2.	Item.bmd  
-:heavy_check_mark:	3.	ExcellentCommonOption.bm						
+:heavy_check_mark:	3.	ExcellentCommonOption.bmd  						
 :heavy_check_mark:	4.	ExcellentWingOption.bmd  
 :heavy_check_mark:	5.	FormulaData.bmd  
 :heavy_check_mark:	6.	PentagramMixNeedSource.bmd  
