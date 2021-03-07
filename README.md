@@ -22,29 +22,29 @@ C/C++ reversing skills is a plus to see the changes in thier game client.
 :heavy_check_mark:	1.	Lang.mpr  
   
 ```cpp
-	/*
-	(7z.dll is required for (un)zipping)
-	The file is an archive of most newly updated data files as listed below:
-	4ThTreeData.txt					4ThTreeSideOption.txt			4ThTreeSkillTooltip.txt
-	ArcaBattleBootyMix.txt				ArcaBattleScript.txt			AttributeVariation.txt
-	BonusExp.txt					BuffEffect.txt				CharacterInfoSetup.txt
-	Credit.txt					Dialog(kor).txt				ElementalMixList.txt
-	Filter(kor).txt					FilterName(kor).txt			Gate.txt
-	GradedOption.txt				GuideQuest.txt				GuideQuestString(Kor).txt
-	HuntingRecord.txt				ItemLevelTooltip.txt			ItemTRSData.txt
-	LabyrinthOfDimensionInfo.txt			MasteryItemBonusOption.txt		MBoxShop(kor).txt
-	Mixslotframe.txt				movereq(kor).txt			MuunEffectInfo.txt
-	npcName(kor).txt				PentagramJewelOptionValue.txt		PentagramOption.txt
-	SeedsphereUpgrade.txt				Skill(kor).txt				SkillRequire.txt
-	Slide(kor).txt					SocketitemUpgrade.txt			SpellStone.txt
-	Text(kor).txt					WingAttribute.txt
-	RenderingData/EnchantEffect.txt
-	EffectInfo/EffectInfoxxx.txt
-	*/
+/*
+(7z.dll is required for (un)zipping)
+The file is an archive of most newly updated data files as listed below:
+4ThTreeData.txt					4ThTreeSideOption.txt			4ThTreeSkillTooltip.txt
+ArcaBattleBootyMix.txt				ArcaBattleScript.txt			AttributeVariation.txt
+BonusExp.txt					BuffEffect.txt				CharacterInfoSetup.txt
+Credit.txt					Dialog(kor).txt				ElementalMixList.txt
+Filter(kor).txt					FilterName(kor).txt			Gate.txt
+GradedOption.txt				GuideQuest.txt				GuideQuestString(Kor).txt
+HuntingRecord.txt				ItemLevelTooltip.txt			ItemTRSData.txt
+LabyrinthOfDimensionInfo.txt			MasteryItemBonusOption.txt		MBoxShop(kor).txt
+Mixslotframe.txt				movereq(kor).txt			MuunEffectInfo.txt
+npcName(kor).txt				PentagramJewelOptionValue.txt		PentagramOption.txt
+SeedsphereUpgrade.txt				Skill(kor).txt				SkillRequire.txt
+Slide(kor).txt					SocketitemUpgrade.txt			SpellStone.txt
+Text(kor).txt					WingAttribute.txt
+RenderingData/EnchantEffect.txt
+EffectInfo/EffectInfoxxx.txt
+*/
 ```
   
 :heavy_check_mark:	2.	Item.bmd  
-:heavy_check_mark:	3.	ExcellentCommonOption.bmd  						
+:heavy_check_mark:	3.	ExcellentCommonOption.bmd  
 :heavy_check_mark:	4.	ExcellentWingOption.bmd  
 :heavy_check_mark:	5.	FormulaData.bmd  
 :heavy_check_mark:	6.	PentagramMixNeedSource.bmd  
