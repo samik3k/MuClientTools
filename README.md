@@ -18,7 +18,7 @@ C/C++ reversing skills is a plus to see the changes in thier game client.
 
 ### PROJECT'S CHECKLIST:
 
-### Data and Config Files: 57% (25 / 44)  
+### Data and Config Files: 61% (27 / 44)  
 :heavy_check_mark:	1.	Lang.mpr  
   
 ```cpp
