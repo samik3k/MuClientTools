@@ -124,10 +124,11 @@ namespace LazyStruct
 		return 0;
 	}
 
-	void CalculateOffset(vector<OffsetInfo>& offset)
+	void CalculateOffset(vector<OffsetInfo>& offset,int pack)
 	{
 		// vector saves members' sizes at the initial
 		// we have to calculate the offset positions (with padding) then replace it.
+		// for now only use pack 0 (default #pragma pack()) and pack 1
 
 		size_t pos = 0;
 		for (int i = 0; i < offset.size(); i++)
@@ -137,9 +138,16 @@ namespace LazyStruct
 			size_t member_size = member_offset;			//value
 			int member_type = offset[i].Type;
 
-			if (member_type != LAZY_TYPE_FLAG::_CSTR_)
-				while (pos % member_size)
-					pos++;
+			if (pack == 0)
+			{
+				if (member_type != LAZY_TYPE_FLAG::_CSTR_)
+					while (pos % member_size)
+						pos++;
+			}
+			else if (pack == 1)
+			{
+				//do nothing
+			}
 
 			member_offset = pos;
 			pos += member_size;
@@ -233,7 +241,7 @@ namespace LazyStruct
 		return format;
 	}
 
-	vector<OffsetInfo> ParseMembersToOffset(string && members)
+	vector<OffsetInfo> ParseMembersToOffset(string && members, int pack)
 	{
 		vector<OffsetInfo> offset;
 		size_t pos = 0;
@@ -273,7 +281,7 @@ namespace LazyStruct
 			b = members.find(';', a);
 		}
 
-		CalculateOffset(offset);
+		CalculateOffset(offset, pack);
 
 		return offset;
 	}

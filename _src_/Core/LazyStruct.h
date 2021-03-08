@@ -27,34 +27,59 @@ namespace LazyStruct
 	size_t ParseType(string& type);
 	size_t ParseMember(string& member, string& member_type, string& member_name);
 	int ParseMemberType(string& member_type, string& format);
-	void CalculateOffset(vector<OffsetInfo>& offset);
+	void CalculateOffset(vector<OffsetInfo>& offset, int pack);
 	string ParseMembersToLabel(string&& members);
 	string ParseMembersToFormat(string&& members);
-	vector<OffsetInfo> ParseMembersToOffset(string && members);
+	vector<OffsetInfo> ParseMembersToOffset(string && members, int pack);
 }
 
 #define STRUCT(_) struct _
-#define LAZY(Members)										\
-{															\
-	Members													\
-	static string GetLabel()								\
-	{														\
-		static const string LABEL							\
-			= LazyStruct::ParseMembersToLabel(#Members);	\
-		return LABEL;										\
-	};														\
-	static string GetFormat()								\
-	{														\
-		static const string FORMAT							\
-			= LazyStruct::ParseMembersToFormat(#Members);	\
-		return FORMAT;										\
-	};														\
-	static vector<OffsetInfo> GetOffset()					\
-	{														\
-		static const vector<OffsetInfo> OFFSET				\
-			= LazyStruct::ParseMembersToOffset(#Members);	\
-		return OFFSET;										\
-	}														\
+#define LAZY(Members)											\
+{																\
+	Members														\
+	static string GetLabel()									\
+	{															\
+		static const string LABEL								\
+			= LazyStruct::ParseMembersToLabel(#Members);		\
+		return LABEL;											\
+	};															\
+	static string GetFormat()									\
+	{															\
+		static const string FORMAT								\
+			= LazyStruct::ParseMembersToFormat(#Members);		\
+		return FORMAT;											\
+	};															\
+	static vector<OffsetInfo> GetOffset()						\
+	{															\
+		static const vector<OffsetInfo> OFFSET					\
+			= LazyStruct::ParseMembersToOffset(#Members, pack);	\
+		return OFFSET;											\
+	}															\
+	static const int pack = 0;									\
+}
+
+#define LAZY1(Members)											\
+{																\
+	Members														\
+	static string GetLabel()									\
+	{															\
+		static const string LABEL								\
+			= LazyStruct::ParseMembersToLabel(#Members);		\
+		return LABEL;											\
+	};															\
+	static string GetFormat()									\
+	{															\
+		static const string FORMAT								\
+			= LazyStruct::ParseMembersToFormat(#Members);		\
+		return FORMAT;											\
+	};															\
+	static vector<OffsetInfo> GetOffset()						\
+	{															\
+		static const vector<OffsetInfo> OFFSET					\
+			= LazyStruct::ParseMembersToOffset(#Members, pack);	\
+		return OFFSET;											\
+	}															\
+	static const int pack = 1;									\
 }
 
 #endif // LAZY_STRUCT_H

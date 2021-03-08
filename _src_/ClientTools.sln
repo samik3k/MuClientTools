@@ -65,6 +65,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MasterSkillTreeData_bmd", "
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MasterSkillTooltip_bmd", "Tools\MasterSkillTooltip_bmd\MasterSkillTooltip_bmd.vcxproj", "{CBA49925-9136-4B4B-8337-23EEE987E780}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NPCDialogue_bmd", "Tools\NPCDialogue_bmd\NPCDialogue_bmd.vcxproj", "{E4D1E246-AF7F-49D2-9D15-A1AAF1AE5006}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuestWords_bmd", "Tools\QuestWords_bmd\QuestWords_bmd.vcxproj", "{1A0002FF-7B1B-4DA1-B9BE-A83FE3B66927}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuestProgress_bmd", "Tools\QuestProgress_bmd\QuestProgress_bmd.vcxproj", "{15B3C6F0-2EB4-46FA-A46E-EB51ECA07B07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Release|x64 = Release|x64
@@ -158,6 +164,15 @@ Global
 		{CBA49925-9136-4B4B-8337-23EEE987E780}.Release|x64.ActiveCfg = Release|Win32
 		{CBA49925-9136-4B4B-8337-23EEE987E780}.Release|x86.ActiveCfg = Release|Win32
 		{CBA49925-9136-4B4B-8337-23EEE987E780}.Release|x86.Build.0 = Release|Win32
+		{E4D1E246-AF7F-49D2-9D15-A1AAF1AE5006}.Release|x64.ActiveCfg = Release|Win32
+		{E4D1E246-AF7F-49D2-9D15-A1AAF1AE5006}.Release|x86.ActiveCfg = Release|Win32
+		{E4D1E246-AF7F-49D2-9D15-A1AAF1AE5006}.Release|x86.Build.0 = Release|Win32
+		{1A0002FF-7B1B-4DA1-B9BE-A83FE3B66927}.Release|x64.ActiveCfg = Release|Win32
+		{1A0002FF-7B1B-4DA1-B9BE-A83FE3B66927}.Release|x86.ActiveCfg = Release|Win32
+		{1A0002FF-7B1B-4DA1-B9BE-A83FE3B66927}.Release|x86.Build.0 = Release|Win32
+		{15B3C6F0-2EB4-46FA-A46E-EB51ECA07B07}.Release|x64.ActiveCfg = Release|Win32
+		{15B3C6F0-2EB4-46FA-A46E-EB51ECA07B07}.Release|x86.ActiveCfg = Release|Win32
+		{15B3C6F0-2EB4-46FA-A46E-EB51ECA07B07}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -192,6 +207,9 @@ Global
 		{48A10943-1869-4FD7-8107-7A4F99BB0A63} = {3DC33840-E750-4DF4-9CAA-E7FB5B936875}
 		{0FC8AF96-1D2D-4A6C-91E3-9D6D7C3A73DF} = {3DC33840-E750-4DF4-9CAA-E7FB5B936875}
 		{CBA49925-9136-4B4B-8337-23EEE987E780} = {3DC33840-E750-4DF4-9CAA-E7FB5B936875}
+		{E4D1E246-AF7F-49D2-9D15-A1AAF1AE5006} = {3DC33840-E750-4DF4-9CAA-E7FB5B936875}
+		{1A0002FF-7B1B-4DA1-B9BE-A83FE3B66927} = {3DC33840-E750-4DF4-9CAA-E7FB5B936875}
+		{15B3C6F0-2EB4-46FA-A46E-EB51ECA07B07} = {3DC33840-E750-4DF4-9CAA-E7FB5B936875}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {78828549-D639-412A-A60F-6AC294C049AF}

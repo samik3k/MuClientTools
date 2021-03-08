@@ -27,13 +27,6 @@ class MasterSkillTooltipBmd : public MasterSkillTooltipBmdConvert
 public:
 	MasterSkillTooltipBmd() : MasterSkillTooltipBmdConvert(_MASTER_SKILL_TOOLTIP_BMD_WKEY_) { hasCounter = false; };
 	virtual ~MasterSkillTooltipBmd() {};
-
-	//BOOL Unpack(const char *szSrcBmd, const char *szDestTxt)
-	//{		
-	//	return FileOpen(szSrcBmd)
-	//		&& Decrypt()
-	//		&& FileWrite(fs::path(szSrcBmd).replace_extension(".debug").string().c_str());
-	//};
 };
 
 #endif

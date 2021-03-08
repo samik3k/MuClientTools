@@ -1,0 +1,15 @@
+//ID	Name	Type	Index	Pvp	Msg
+0	X5000	0	2	0	Welcome to Mu Online Season XIII
+1	NORESET	0	3	0	Welcome to Mu Online Season XIII
+2	X100	0	1	0	Welcome to Mu Online Season XIII
+3	X1000	0	4	0	Welcome to Mu Online Season XIII
+24	BattleCore	2	0	1	Welcome to Mu Online Season XIII
+26	Speed (Event)	1	18	3	Welcome to Mu Online Season XIII
+35	Speed (Event)	1	44	3	Welcome to Mu Online Season XIII
+36	Lunedil	0	36	0	Welcome to Mu Online Season XIII
+37	Bulgas	0	32	0	Welcome to Mu Online Season XIII
+38	Cations	0	33	0	Welcome to Mu Online Season XIII
+40	Ice	0	37	0	Welcome to Mu Online Season XIII
+41	Aruan	0	35	0	Welcome to Mu Online Season XIII
+44	BETA	1	40	0	Welcome to Mu Online Season XIII
+47	BattleCore	2	0	1	Welcome to Mu Online Season XIII

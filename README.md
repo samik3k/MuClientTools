@@ -18,7 +18,7 @@ C/C++ reversing skills is a plus to see the changes in thier game client.
 
 ### PROJECT'S CHECKLIST:
 
-### Data and Config Files: 61% (27 / 44)  
+### Data and Config Files: 68% (30 / 44)  
 :heavy_check_mark:	1.	Lang.mpr  
   
 ```cpp
@@ -69,10 +69,10 @@ EffectInfo/EffectInfoxxx.txt
 :heavy_check_mark:	25.	MonsterSkill.bmd  
 :heavy_check_mark:	26.	MasterSkillTreeData.bmd  
 :heavy_check_mark:	27.	MasterSkillTooltip.bmd  
+:heavy_check_mark:	28.	NPCDialogue.bmd  
+:heavy_check_mark:	29.	QuestProgress.bmd  
+:heavy_check_mark:	30.	QuestWords.bmd  
   
-28.	NPCDialogue.bmd  
-29.	QuestProgress.bmd  
-30.	QuestWords.bmd  
 31.	SkillTooltipText.bmd  
 32.	ItemAddOption.bmd  
 33.	JewelOfHarmonyOption.bmd  

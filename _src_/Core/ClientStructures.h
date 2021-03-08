@@ -1,5 +1,70 @@
 #ifndef CLIENT_STRUCT_H
 #define CLIENT_STRUCT_H
+
+//struct QUEST_PROGRESS
+#pragma pack(1)
+STRUCT(QUEST_PROGRESS) LAZY1	//size = 41
+(
+	WORD QuestSwitch;
+	WORD Ep;
+	BYTE Unk;
+	DWORD Introduction;
+	DWORD Conversation;
+	DWORD Button_1;
+	DWORD Button_2;
+	DWORD Button_3;
+	DWORD Button_4;
+	DWORD Button_5;
+	DWORD QuestName;
+	DWORD QuestDesc;
+);
+#pragma pack()
+
+//struct QUEST_WORDS
+#pragma pack(1)
+STRUCT(QUEST_WORDS) LAZY	//size = 6
+(
+	DWORD ID;
+	WORD Len;
+);
+#pragma pack()
+struct QUEST_WORDS_EX
+{
+	BYTE DontCare[sizeof(QUEST_WORDS)];
+	char Text[1];
+};
+
+
+//struct NPC_DIALOGUE
+STRUCT(NPC_DIALOGUE) LAZY
+(
+	//BYTE Unk[88];
+	WORD ID;
+	WORD NPC;
+	DWORD Label;
+	DWORD Button_1;
+	DWORD BtnValue_1;
+	DWORD Button_2;
+	DWORD BtnValue_2;
+	DWORD Button_3;
+	DWORD BtnValue_3;
+	DWORD Button_4;
+	DWORD BtnValue_4;
+	DWORD Button_5;
+	DWORD BtnValue_5;
+	DWORD Button_6;
+	DWORD BtnValue_6;
+	DWORD Button_7;
+	DWORD BtnValue_7;
+	DWORD Button_8;
+	DWORD BtnValue_8;
+	DWORD Button_9;
+	DWORD BtnValue_9;
+	DWORD Button_10;
+	DWORD BtnValue_10;
+
+);
+
 //struct MASTER_SKILL_TOOLTIP
 STRUCT(MASTER_SKILL_TOOLTIP) LAZY
 (
@@ -143,21 +208,17 @@ STRUCT(EVO_MONSTER_BOX) LAZY
 	BYTE RewardEvoBoxChanceTable;
 );
 
-//should not use Lazy_Struct for any struct has pack != default
+//struct SERVER_LIST	
 #pragma pack(1)
-struct SERVER_LIST	//size = 29
-{
+STRUCT(SERVER_LIST) LAZY1	//size = 39
+(
 	short ID;
 	char Name[32];
 	BYTE PosType;
 	BYTE Index;
 	BYTE Type;
 	WORD MsgLen;
-
-	static string GetLabel() { return string(); };
-	static string GetFormat() { return string(); };
-	static vector<OffsetInfo> GetOffset() { return vector<OffsetInfo>(); };
-};
+);
 #pragma pack()
 
 struct SERVER_LIST_EX
