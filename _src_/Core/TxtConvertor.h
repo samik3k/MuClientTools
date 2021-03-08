@@ -95,7 +95,6 @@ BOOL TxtConvertor<T>::Encrypt()
 		*(DWORD*)&_buf[_buf.size() - 4] = CRC;
 	}
 
-	_map.clear(); // T* now -> encrypted data
 	return TRUE;
 }
 

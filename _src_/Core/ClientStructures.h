@@ -1,6 +1,32 @@
 #ifndef CLIENT_STRUCT_H
 #define CLIENT_STRUCT_H
 
+//struct ITEM_ADD_OPTION
+STRUCT(ITEM_ADD_OPTION) LAZY
+(
+	WORD Option_1;
+	WORD Value_1;
+	WORD Option_2;
+	WORD Value_2;
+	DWORD Idx;
+	int Time;
+);
+
+//struct SKILL_TOOLTIP_TEXT
+STRUCT(SKILL_TOOLTIP_TEXT) LAZY
+(
+	WORD ID;
+	char Name[256];
+	//WORD Gap;
+	int C3;
+	int C4;
+	char Desc_1[256];
+	int C6;
+	int C7;
+	char Desc_2[256];
+	int C9;
+);
+
 //struct QUEST_PROGRESS
 #pragma pack(1)
 STRUCT(QUEST_PROGRESS) LAZY1	//size = 41
@@ -28,6 +54,7 @@ STRUCT(QUEST_WORDS) LAZY	//size = 6
 	WORD Len;
 );
 #pragma pack()
+
 struct QUEST_WORDS_EX
 {
 	BYTE DontCare[sizeof(QUEST_WORDS)];

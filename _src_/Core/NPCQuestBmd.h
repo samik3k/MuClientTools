@@ -29,12 +29,6 @@ public:
 	QuestProgressBmd() : QuestProgressBmdConvert() { hasCounter = false; hasCRC = false; };
 	virtual ~QuestProgressBmd() {};
 
-	//BOOL Unpack(const char *szSrcBmd, const char *szDestTxt)
-	//{
-	//	return FileOpen(szSrcBmd)
-	//		&& Decrypt()
-	//		&& FileWrite(fs::path(szSrcBmd).replace_extension(".debug").string().c_str());
-	//};
 private:
 	void MakeLabelEx(ofstream& os)
 	{
