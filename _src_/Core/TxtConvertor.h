@@ -218,6 +218,17 @@ void TxtConvertor<T>::TxtIn(ifstream & is)
 			{
 				string s = line.substr(a, b - a);
 				size_t pos = OFFSET[i].Offset + (size_t)ptr;
+
+				if (OFFSET[i].Type == LAZY_TYPE_FLAG::_CSTR_)
+				{
+					size_t len = sizeof(T);
+					if (i < OFFSET.size() - 1)
+						len = OFFSET[i + 1].Offset;
+					len -= OFFSET[i].Offset;
+					if (len - 1 < s.length())
+						s.resize(len - 1);
+				}
+
 				sscanf(s.c_str(), OFFSET[i].Format.c_str(), (void*)pos);
 			}
 

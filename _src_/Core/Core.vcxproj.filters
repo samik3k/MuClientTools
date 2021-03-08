@@ -97,6 +97,9 @@
     <ClInclude Include="MonsterSkillBmd.h">
       <Filter>Source Files\Client\DataFiles</Filter>
     </ClInclude>
+    <ClInclude Include="MasterSkillTreeBmd.h">
+      <Filter>Source Files\Client\DataFiles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseIO.cpp">

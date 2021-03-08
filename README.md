@@ -66,10 +66,10 @@ EffectInfo/EffectInfoxxx.txt
 :heavy_check_mark:	22.	ItemSetType.bmd  
 :heavy_check_mark:	23.	ItemSetOption.bmd  
 :heavy_check_mark:	24.	ItemSetOptionText.bmd  
-:heavy_check_mark:25.	MonsterSkill.bmd  
+:heavy_check_mark:	25.	MonsterSkill.bmd  
+:heavy_check_mark:	26.	MasterSkillTreeData.bmd  
+:heavy_check_mark:	27.	MasterSkillTooltip.bmd  
   
-26.	MasterSkillTreeData.bmd  
-27.	MasterSkillTooltip.bmd  
 28.	NPCDialogue.bmd  
 29.	QuestProgress.bmd  
 30.	QuestWords.bmd  

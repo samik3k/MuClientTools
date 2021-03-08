@@ -158,6 +158,7 @@
     <ClInclude Include="LangMpr.h" />
     <ClInclude Include="LazyStruct.h" />
     <ClInclude Include="MapCharactersBmd.h" />
+    <ClInclude Include="MasterSkillTreeBmd.h" />
     <ClInclude Include="MonsterSkillBmd.h" />
     <ClInclude Include="MuCommon.h" />
     <ClInclude Include="MuCrypto.h" />

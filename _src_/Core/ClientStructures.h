@@ -1,10 +1,37 @@
 #ifndef CLIENT_STRUCT_H
 #define CLIENT_STRUCT_H
+//struct MASTER_SKILL_TOOLTIP
+STRUCT(MASTER_SKILL_TOOLTIP) LAZY
+(
+	DWORD SkillNum;
+	WORD Class;
+	char Text_Lvl[64];
+	char Text_Desc[256];
+	char Text_Req_1[96];
+	char Text_Req_2[128];
+	char Text_Req_3[256];
+	//BYTE GAP[2];
+);
+
+//struct MASTER_SKILL_TREE_DATA
+STRUCT(MASTER_SKILL_TREE_DATA) LAZY
+(
+	WORD ID;
+	WORD Class;
+	BYTE TreeType;
+	BYTE ReqPoint;
+	BYTE MaxPoint;
+	BYTE Unk1;
+	DWORD Parent_Skill_1;
+	DWORD Parent_Skill_2;
+	DWORD SkillNum;
+	DWORD Unk2;
+);
 
 //struct MONSTER_SKILL
 STRUCT(MONSTER_SKILL) LAZY
 (
-	int MonsterID;
+	int ID;
 	int Skill_1;
 	int Skill_2;
 	int Skill_3;
