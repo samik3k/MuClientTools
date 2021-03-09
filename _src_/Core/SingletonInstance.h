@@ -1,17 +1,20 @@
 #ifndef SINGLETON_INSTANCE_H
 #define SINGLETON_INSTANCE_H
 
-#define SingletonInstance(TYPE) \
-	public: \
-		static TYPE* instance() \
-		{ \
-			static TYPE instance; \
-			return &instance; \
-		} \
-	private: \
-		TYPE(TYPE const&); \
-		TYPE& operator=(TYPE const&); \
+template<typename T>
+class Singleton
+{
+public:
+	Singleton() {};
+	virtual ~Singleton() {};
 
+	static T* Instance()
+	{
+		static T instance;
+		return &instance;
+	}
+};
 
-#define SingInst(TYPE) TYPE::instance()
+#define sInstance(T) Singleton<T>::Instance()
+
 #endif

@@ -4,15 +4,15 @@ This project is using test files obtained from client Mu Online Season 13 ep.1 (
 
 ```cpp
 /*
-It might (or not) work for files from older/newer version. 
+It might (or might not) work for files from older/newer versions. 
 The ones want to modify the tools in order to fit with their data files should check:
 	_wkey : used for calculating CRC of a data file.
 	_xor3key : used for basic Dec/Enc data.
 	_LANG_ZIP_PASSWORD_ : used for (un)zipping Lang.mpr file. 
-		Note: For some older version, the Lang.mpr can be open (w/o password) 
+		Note: For some older versions, the Lang.mpr can be open (w/o password) 
 		by zip tools such as: Winrar, 7z,...
 	Client Data Struct: Sometime, WZ might add a few bytes to the exsiting. 
-C/C++ reversing skills is a plus to see the changes in thier game client.
+C/C++ reversing skill is a plus to see the changes in their game client.
 */
 ```
 
