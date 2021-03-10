@@ -23,7 +23,7 @@ namespace LazyStruct
 
 		if (type.find("DWORD") != string::npos)
 		{
-			return LAZY_TYPE_FLAG::_2BYTE_;
+			return LAZY_TYPE_FLAG::_4BYTE_;
 		}
 
 		for (auto it = TYPES.begin(); it != TYPES.end(); it++)
