@@ -132,9 +132,11 @@
     <ClCompile Include="FormulaDataBmd.cpp" />
     <ClCompile Include="ItemAddOptionBmd.cpp" />
     <ClCompile Include="ItemSetBmd.cpp" />
+    <ClCompile Include="JewelOfHarmonyBmd.cpp" />
     <ClCompile Include="LangMpr.cpp" />
     <ClCompile Include="LazyStruct.cpp" />
     <ClCompile Include="MapCharactersBmd.cpp" />
+    <ClCompile Include="MixBmd.cpp" />
     <ClCompile Include="MuCrypto.cpp" />
     <ClCompile Include="MuunExchangeBmd.cpp" />
     <ClCompile Include="NPCQuestBmd.cpp" />
@@ -158,10 +160,12 @@
     <ClInclude Include="ItemAddOptionBmd.h" />
     <ClInclude Include="ItemBmd.h" />
     <ClInclude Include="ItemSetBmd.h" />
+    <ClInclude Include="JewelOfHarmonyBmd.h" />
     <ClInclude Include="LangMpr.h" />
     <ClInclude Include="LazyStruct.h" />
     <ClInclude Include="MapCharactersBmd.h" />
     <ClInclude Include="MasterSkillTreeBmd.h" />
+    <ClInclude Include="MixBmd.h" />
     <ClInclude Include="MonsterSkillBmd.h" />
     <ClInclude Include="MuCommon.h" />
     <ClInclude Include="MuCrypto.h" />

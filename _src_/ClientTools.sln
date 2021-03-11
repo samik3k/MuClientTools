@@ -75,6 +75,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SkillTooltipText_bmd", "Too
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ItemAddOption_bmd", "Tools\ItemAddOption_bmd\ItemAddOption_bmd.vcxproj", "{04528F22-4CF9-4E46-8B76-16F573FEA058}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JewelOfHarmonyOption_bmd", "Tools\JewelOfHarmonyOption_bmd\JewelOfHarmonyOption_bmd.vcxproj", "{D8C1DCAA-B12E-4673-A4D7-7737CBC8F5C9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Mix_bmd", "Tools\Mix_bmd\Mix_bmd.vcxproj", "{52ED805B-5A26-4BAC-B7F3-85EDE5F64E4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Release|x64 = Release|x64
@@ -183,6 +187,12 @@ Global
 		{04528F22-4CF9-4E46-8B76-16F573FEA058}.Release|x64.ActiveCfg = Release|Win32
 		{04528F22-4CF9-4E46-8B76-16F573FEA058}.Release|x86.ActiveCfg = Release|Win32
 		{04528F22-4CF9-4E46-8B76-16F573FEA058}.Release|x86.Build.0 = Release|Win32
+		{D8C1DCAA-B12E-4673-A4D7-7737CBC8F5C9}.Release|x64.ActiveCfg = Release|Win32
+		{D8C1DCAA-B12E-4673-A4D7-7737CBC8F5C9}.Release|x86.ActiveCfg = Release|Win32
+		{D8C1DCAA-B12E-4673-A4D7-7737CBC8F5C9}.Release|x86.Build.0 = Release|Win32
+		{52ED805B-5A26-4BAC-B7F3-85EDE5F64E4D}.Release|x64.ActiveCfg = Release|Win32
+		{52ED805B-5A26-4BAC-B7F3-85EDE5F64E4D}.Release|x86.ActiveCfg = Release|Win32
+		{52ED805B-5A26-4BAC-B7F3-85EDE5F64E4D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -222,6 +232,8 @@ Global
 		{15B3C6F0-2EB4-46FA-A46E-EB51ECA07B07} = {3DC33840-E750-4DF4-9CAA-E7FB5B936875}
 		{0FCA7FE6-D4F0-4AB0-9F8A-E90364AB29D9} = {3DC33840-E750-4DF4-9CAA-E7FB5B936875}
 		{04528F22-4CF9-4E46-8B76-16F573FEA058} = {3DC33840-E750-4DF4-9CAA-E7FB5B936875}
+		{D8C1DCAA-B12E-4673-A4D7-7737CBC8F5C9} = {3DC33840-E750-4DF4-9CAA-E7FB5B936875}
+		{52ED805B-5A26-4BAC-B7F3-85EDE5F64E4D} = {3DC33840-E750-4DF4-9CAA-E7FB5B936875}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {78828549-D639-412A-A60F-6AC294C049AF}

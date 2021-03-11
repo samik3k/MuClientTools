@@ -1,6 +1,72 @@
 #ifndef CLIENT_STRUCT_H
 #define CLIENT_STRUCT_H
 
+struct MIX_RULE
+{
+	int Rule;
+	float Div;
+};
+
+struct MIX_ITEM
+{
+	short StartID;
+	short EndID;
+	int MinLvl;
+	int MaxLvl;
+	int MinOpt;
+	int MaxOpt;
+	int MinDur;
+	int MaxDur;
+	int MinCount;
+	int MaxCount;
+	int Type;
+};
+
+//struct MIX_INFO
+struct MIX_INFO
+{
+	int ID;
+	int Type;
+	int Desc_Msg_1;
+	int Desc_Msg_2;
+	int Desc_Msg_3;
+	int Bad_Msg_1;
+	int Bad_Msg_2;
+	int Bad_Msg_3;
+	int Good_Msg_1;
+	int Good_Msg_2;
+	int Good_Msg_3;
+	int Height;
+	int Width;
+	int MinLevel;
+	BYTE MoneyRule;
+	int MoneyReq;
+	int RulesCount;
+	MIX_RULE Rules[32];
+	int MaxSuccesRate;
+	BYTE Unk_1;
+	BYTE Unk_2;
+	BYTE Unk_3;
+	BYTE Unk_4;
+	BYTE Unk_5;
+	BYTE Unk_6;
+	MIX_ITEM Items[8];
+	int ItemsCount;
+
+	static string GetLabel() { return string(); };
+	static string GetFormat() { return string(); };
+	static vector<OffsetInfo> GetOffset() { return vector<OffsetInfo>(); };
+};
+
+//struct JEWEL_OF_HARMONY_OPTION
+STRUCT(JEWEL_OF_HARMONY_OPTION) LAZY
+(
+	int ID;
+	char Name[64];
+	int Value[14];
+	int ZenReq[14];
+);
+
 //struct ITEM_ADD_OPTION
 STRUCT(ITEM_ADD_OPTION) LAZY
 (

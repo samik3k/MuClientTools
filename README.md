@@ -74,10 +74,10 @@ EffectInfo/EffectInfoxxx.txt
 :heavy_check_mark:	30.	QuestWords.bmd  
 :heavy_check_mark:	31.	SkillTooltipText.bmd  
 :heavy_check_mark:	32.	ItemAddOption.bmd  
-  
-33.	JewelOfHarmonyOption.bmd  
+:heavy_check_mark:	33.	JewelOfHarmonyOption.bmd  
 ~~34.	JewelOfHarmonySmelt.bmd~~  
-34.	Mix.bmd  
+:heavy_check_mark:	34.	Mix.bmd  
+  
 35.	itemtooltip.bmd  
 36.	itemtooltiptext.bmd  
 37.	petdata.bmd  
