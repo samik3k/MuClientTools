@@ -43,4 +43,5 @@ namespace fs = std::filesystem;
 #include "MuCrypto.h"
 #include "BaseIO.h"
 #include "TxtConvertor.h"
+#include "ImgConvertor.h"
 #endif // !CORE_PCH_H

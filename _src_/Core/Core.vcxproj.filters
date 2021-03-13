@@ -121,6 +121,15 @@
     <ClInclude Include="OZJ.h">
       <Filter>Source Files\Client\Graphic</Filter>
     </ClInclude>
+    <ClInclude Include="ImgConvertor.h">
+      <Filter>Source Files\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="OZT.h">
+      <Filter>Source Files\Client\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="OZB.h">
+      <Filter>Source Files\Client\Graphic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseIO.cpp">
@@ -176,9 +185,6 @@
     </ClCompile>
     <ClCompile Include="MixBmd.cpp">
       <Filter>Source Files\Client\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="OZJ.cpp">
-      <Filter>Source Files\Client\Graphic</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
