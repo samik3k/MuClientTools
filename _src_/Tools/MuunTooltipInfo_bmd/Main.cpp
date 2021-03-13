@@ -3,6 +3,8 @@
 #include "Core.h"
 #include "MuunBmd.h"
 
+using namespace std;
+
 int main(int argc, char** argv)
 {
 	MuunTooltipInfoBmd opener;

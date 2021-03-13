@@ -3,6 +3,8 @@
 #include "Core.h"
 #include "ItemAddOptionBmd.h"
 
+using namespace std;
+
 int main(int argc, char** argv)
 {
 	ItemAddOptionBmd opener;

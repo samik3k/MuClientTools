@@ -1,6 +1,6 @@
 #include "QuestBmd.h"
 
-void QuestBmd::TxtOut(ofstream & os)
+void QuestBmd::TxtOut(std::ofstream & os)
 {
 	assert(os);
 
@@ -11,18 +11,18 @@ void QuestBmd::TxtOut(ofstream & os)
 		if (ptr->ItemCount + ptr->TypeCount == 0)	//blank
 			continue;
 
-		os << "//================================================="<< endl;
-		os << "//==Quest: " << ptr->QuestName << endl;
-		os << "//=================================================" << endl;
-		os << "//ItemCount\tTypeCount\tNPC\tQuestName" << endl;
+		os << "//================================================="<< std::endl;
+		os << "//==Quest: " << ptr->QuestName << std::endl;
+		os << "//=================================================" << std::endl;
+		os << "//ItemCount\tTypeCount\tNPC\tQuestName" << std::endl;
 		os << ptr->ItemCount << '\t';
 		os << ptr->TypeCount << '\t';
 		os << ptr->NPC << '\t';
 		os << ptr->QuestName << '\t';
-		os << endl;
+		os << std::endl;
 
-		os << "//QuestItems" << endl;
-		os << "//Flag\tQuestType\tItemCat\tItemIndex\tLevel\tAmount\tGL\tDW\tDK\tFE\tMG\tDL\tSU\tRF\tMsg_1\tMsg_2\tMsg_3\tMsg_4" << endl;
+		os << "//QuestItems" << std::endl;
+		os << "//Flag\tQuestType\tItemCat\tItemIndex\tLevel\tAmount\tGL\tDW\tDK\tFE\tMG\tDL\tSU\tRF\tMsg_1\tMsg_2\tMsg_3\tMsg_4" << std::endl;
 		
 		for (int i = 0; i < ptr->ItemCount; i++)
 		{
@@ -44,11 +44,11 @@ void QuestBmd::TxtOut(ofstream & os)
 			os << ptr->Items[i].Msg_2 << '\t';
 			os << ptr->Items[i].Msg_3 << '\t';
 			os << ptr->Items[i].Msg_4 << '\t';
-			os << endl;
+			os << std::endl;
 		}
 
-		os << "//QuestTypes" << endl;
-		os << "//Flag\tType\tQuestIndex\tMinLvl\tMaxLvl\tNeedStr\tNeedZen\tMsg" << endl;
+		os << "//QuestTypes" << std::endl;
+		os << "//Flag\tType\tQuestIndex\tMinLvl\tMaxLvl\tNeedStr\tNeedZen\tMsg" << std::endl;
 
 		for (int i = 0; i < ptr->TypeCount; i++)
 		{
@@ -60,19 +60,19 @@ void QuestBmd::TxtOut(ofstream & os)
 			os << ptr->Types[i].NeedStr << '\t';
 			os << ptr->Types[i].NeedZen << '\t';
 			os << ptr->Types[i].Msg << '\t';
-			os << endl;
+			os << std::endl;
 		}
 
-		os << "//" << endl;
+		os << "//" << std::endl;
 	}
 
 }
 
-void QuestBmd::TxtIn(ifstream & is)
+void QuestBmd::TxtIn(std::ifstream & is)
 {
 	assert(is);
 
-	string line;
+	std::string line;
 	size_t size = sizeof(QUEST_INFO);
 	size_t count = 200;
 
@@ -93,7 +93,7 @@ void QuestBmd::TxtIn(ifstream & is)
 		
 		if (ptr->ItemCount > 16 || ptr->TypeCount > 16)
 		{
-			cout << "Error: Quest Items/Types Count must not > 16." << endl;
+			std::cout << "Error: Quest Items/Types Count must not > 16." << std::endl;
 			return;
 		}
 

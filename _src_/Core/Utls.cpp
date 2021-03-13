@@ -6,11 +6,13 @@ namespace Utls {
 	void CreateParentDir(fs::path pPath)
 	{
 		fs::path pParent = fs::_Parse_parent_path(pPath.wstring());
-		if (!pParent.empty() && !fs::exists(pParent))
-		{
-			Utls::CreateParentDir(pParent);
-			fs::create_directory(pParent);
-		}
+		fs::create_directories(pParent);
+
+		//if (!pParent.empty() && !fs::exists(pParent))
+		//{
+		//	Utls::CreateParentDir(pParent);
+		//	fs::create_directory(pParent);
+		//}
 	}
 	
 	fs::path RemoveSlashEnd(fs::path&& path)
@@ -32,12 +34,12 @@ namespace Utls {
 		if (fs::exists(pFile))
 		{
 			int i = 0;
-			wstring temp = pFile.wstring() + L"_bak_";
+			std::wstring temp = pFile.wstring() + L"_bak_";
 			while (++i)
 			{
-				if (!fs::exists(temp + to_wstring(i)))
+				if (!fs::exists(temp + std::to_wstring(i)))
 				{
-					pBak = temp + to_wstring(i);
+					pBak = temp + std::to_wstring(i);
 					break;
 				}
 			}
@@ -46,12 +48,12 @@ namespace Utls {
 			{
 				fs::rename(pFile, pBak);
 			}
-			catch (exception ex)
+			catch (std::exception ex)
 			{
-				cout << ex.what() << '\n';
+				std::cout << ex.what() << '\n';
 				char msg[256];
 				printf(msg, "Use '%s' instead. \n", pBak);
-				cout << msg;
+				std::cout << msg;
 				//MessageBox(NULL, msg, "Warning", MB_OK);
 				return pBak;
 			}
@@ -65,7 +67,7 @@ namespace Utls {
 		return str[0] == '\0';
 	}
 
-	void RemoveAllStringSpaces(string& s)
+	void RemoveAllStringSpaces(std::string& s)
 	{
 		int count = 0;
 		for (int i = 0; i < s.length(); i++)

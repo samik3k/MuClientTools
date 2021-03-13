@@ -3,6 +3,8 @@
 #include "Core.h"
 #include "MapCharactersBmd.h"
 
+using namespace std;
+
 int main(int argc, char** argv)
 {
 	MapCharactersBmd opener;

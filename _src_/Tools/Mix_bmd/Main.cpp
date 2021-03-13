@@ -3,6 +3,8 @@
 #include "Core.h"
 #include "MixBmd.h"
 
+using namespace std;
+
 int main(int argc, char** argv)
 {
 	MixBmd opener;

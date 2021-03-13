@@ -3,6 +3,8 @@
 #include "Core.h"
 #include "SocketItemBmd.h"
 
+using namespace std;
+
 int main(int argc, char** argv)
 {
 	SocketItemBmd opener;

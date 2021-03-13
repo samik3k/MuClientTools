@@ -3,6 +3,8 @@
 #include "Core.h"
 #include "StatOptionBmd.h"
 
+using namespace std;
+
 int main(int argc, char** argv)
 {
 	StatOptionBmd opener;

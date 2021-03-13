@@ -3,6 +3,8 @@
 #include "Core.h"
 #include "SkillTooltipTextBmd.h"
 
+using namespace std;
+
 int main(int argc, char** argv)
 {
 	SkillTooltipTextBmd opener;

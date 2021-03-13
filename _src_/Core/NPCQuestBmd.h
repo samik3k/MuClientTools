@@ -9,9 +9,9 @@ public:
 	NPCDialogueBmd() : NPCDialogueBmdConvert() { hasCounter = false; hasCRC = false; };
 	virtual ~NPCDialogueBmd() {};
 private:
-	void MakeLabelEx(ofstream& os) 
+	void MakeLabelEx(std::ofstream& os)
 	{
-		os << "//NPCQuest texts are in the QuestWords file." << endl;
+		os << "//NPCQuest texts are in the QuestWords file." << std::endl;
 	};
 };
 
@@ -30,9 +30,9 @@ public:
 	virtual ~QuestProgressBmd() {};
 
 private:
-	void MakeLabelEx(ofstream& os)
+	void MakeLabelEx(std::ofstream& os)
 	{
-		os << "//NPCQuest texts are in the QuestWords file." << endl;
+		os << "//NPCQuest texts are in the QuestWords file." << std::endl;
 	};
 };
 
@@ -53,8 +53,8 @@ public:
 private:
 	BOOL Decrypt();
 	BOOL Encrypt();
-	void TxtOut(ofstream& os);
-	void TxtIn(ifstream& is);
+	void TxtOut(std::ofstream& os);
+	void TxtIn(std::ifstream& is);
 };
 
 #endif

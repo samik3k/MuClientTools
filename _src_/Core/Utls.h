@@ -10,7 +10,7 @@ namespace Utls
 	fs::path RemoveSlashEnd(fs::path&& path);
 	fs::path BackupPath(fs::path&& path);
 	bool IsEmptyCStr(const char* str);
-	void RemoveAllStringSpaces(string& s);
+	void RemoveAllStringSpaces(std::string& s);
 
 }
 

@@ -3,6 +3,8 @@
 #include "Core.h"
 #include "ExcellentOptionBmd.h"
 
+using namespace std;
+
 int main(int argc, char** argv)
 {
 	ExcellentOptionBmd opener;

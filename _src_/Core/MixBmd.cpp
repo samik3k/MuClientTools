@@ -17,7 +17,7 @@ BOOL MixBmd::Decrypt()
 		size_t count = counts[i];
 		if (count > 1000)
 		{
-			cout << "Error: MixBmd::Decrypt() count > 1000." << endl;
+			std::cout << "Error: MixBmd::Decrypt() count > 1000." << std::endl;
 			return FALSE;
 		}
 
@@ -25,7 +25,7 @@ BOOL MixBmd::Decrypt()
 		{
 			if (pos + size > _buf.size())
 			{
-				cout << "Error: MixBmd::Decrypt() pos + size > _buf.size()." << endl;
+				std::cout << "Error: MixBmd::Decrypt() pos + size > _buf.size()." << std::endl;
 				return FALSE;
 			}
 
@@ -60,7 +60,7 @@ BOOL MixBmd::Encrypt()
 		size_t count = counts[i];
 		if (count > 1000)
 		{
-			cout << "Error: MixBmd::Encrypt() count > 1000." << endl;
+			std::cout << "Error: MixBmd::Encrypt() count > 1000." << std::endl;
 			return FALSE;
 		}
 
@@ -68,7 +68,7 @@ BOOL MixBmd::Encrypt()
 		{
 			if (pos + size > _buf.size())
 			{
-				cout << "Error: MixBmd::Encrypt() pos + size > _buf.size()." << endl;
+				std::cout << "Error: MixBmd::Encrypt() pos + size > _buf.size()." << std::endl;
 				return FALSE;
 			}
 
@@ -80,18 +80,18 @@ BOOL MixBmd::Encrypt()
 	return TRUE;
 }
 
-void MixBmd::TxtOut(ofstream & os)
+void MixBmd::TxtOut(std::ofstream & os)
 {
 	assert(os);
 	
 	os << "//Group\tID\tType\tDesc_Msg_1\tDesc_Msg_2\tDesc_Msg_3\tBad_Msg_1\tBad_Msg_2\tBad_Msg_3\t"
 		"Good_Msg_1\tGood_Msg_2\tGood_Msg_3\tHeight\tWidth\tMinLevel\ttMaxSuccesRate\tMoneyRule\tMoneyReq\t" 
-		"UnkByte_1\tUnkByte_2\tUnkByte_3\tUnkByte_4\tUnkByte_5\tUnkByte_6"<< endl;
-	os << "//(Rules Count)" << endl;
-	os << "//Rule\tDiv" << endl;
-	os << "//(Items Count)" << endl;
-	os << "//StartID\tEndID\tMinLvl\tMaxLvl\tMinOpt\tMaxOpt\tMinDur\tMaxDur\tMinCount\tMaxCount\tType" << endl;
-	os << "//=================================================================================================" << endl;
+		"UnkByte_1\tUnkByte_2\tUnkByte_3\tUnkByte_4\tUnkByte_5\tUnkByte_6"<< std::endl;
+	os << "//(Rules Count)" << std::endl;
+	os << "//Rule\tDiv" << std::endl;
+	os << "//(Items Count)" << std::endl;
+	os << "//StartID\tEndID\tMinLvl\tMaxLvl\tMinOpt\tMaxOpt\tMinDur\tMaxDur\tMinCount\tMaxCount\tType" << std::endl;
+	os << "//=================================================================================================" << std::endl;
 
 	for (auto it = _map.begin(); it != _map.end(); it++)
 	{
@@ -122,18 +122,18 @@ void MixBmd::TxtOut(ofstream & os)
 		os << (DWORD)ptr->Unk_5 << '\t';
 		os << (DWORD)ptr->Unk_6 << '\t';
 
-		os << endl;
+		os << std::endl;
 
-		os << ptr->RulesCount << endl;
+		os << ptr->RulesCount << std::endl;
 		for (int i = 0; i < ptr->RulesCount; i++)
 		{
 			MIX_RULE * rule = &ptr->Rules[i];
 			os << rule->Rule << '\t';
 			os << rule->Div << '\t';
-			os << endl;
+			os << std::endl;
 		}
 
-		os << ptr->ItemsCount << endl;
+		os << ptr->ItemsCount << std::endl;
 		for (int i = 0; i < ptr->ItemsCount; i++)
 		{
 			MIX_ITEM * item = &ptr->Items[i];
@@ -148,22 +148,22 @@ void MixBmd::TxtOut(ofstream & os)
 			os << item->MinCount << '\t';
 			os << item->MaxCount << '\t';
 			os << item->Type << '\t';
-			os << endl;
+			os << std::endl;
 		}
 
-		os << "//=================================================================================================" << endl;
+		os << "//=================================================================================================" << std::endl;
 	}
 }
 
-void MixBmd::TxtIn(ifstream & is)
+void MixBmd::TxtIn(std::ifstream & is)
 {
 	assert(is);
 
-	string line;
+	std::string line;
 	size_t size = sizeof(MIX_INFO);
 	size_t counts[11] { 0 };
 
-	map<int, MIX_INFO> m;
+	std::map<int, MIX_INFO> m;
 	size_t n = 0;
 	while (getline(is, line))
 	{
@@ -182,7 +182,7 @@ void MixBmd::TxtIn(ifstream & is)
 
 		if (group < 0 || group >= 11) 
 		{
-			cout << "MixBmd::TxtIn (group < 0 || group >= 11)" << endl;
+			std::cout << "MixBmd::TxtIn (group < 0 || group >= 11)" << std::endl;
 			return;
 		}
 
@@ -191,7 +191,7 @@ void MixBmd::TxtIn(ifstream & is)
 			sscanf(line.c_str(), "%d", &temp.RulesCount);
 			if (temp.RulesCount < 0 || temp.RulesCount > 32)
 			{
-				cout << "MixBmd::TxtIn (RulesCount < 0 || RulesCount > 32)" << endl;
+				std::cout << "MixBmd::TxtIn (RulesCount < 0 || RulesCount > 32)" << std::endl;
 				return;
 			}
 
@@ -207,7 +207,7 @@ void MixBmd::TxtIn(ifstream & is)
 			sscanf(line.c_str(), "%d", &temp.ItemsCount);
 			if (temp.ItemsCount < 0 || temp.ItemsCount > 8)
 			{
-				cout << "MixBmd::TxtIn (ItemsCount < 0 || ItemsCount > 8)" << endl;
+				std::cout << "MixBmd::TxtIn (ItemsCount < 0 || ItemsCount > 8)" << std::endl;
 				return;
 			}
 
@@ -230,7 +230,7 @@ void MixBmd::TxtIn(ifstream & is)
 		}
 		else
 		{
-			cout << " Duplicated Key : " << group << " " << temp.ID << endl;
+			std::cout << " Duplicated Key : " << group << " " << temp.ID << std::endl;
 		}
 	}
 

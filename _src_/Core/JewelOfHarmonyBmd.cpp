@@ -7,7 +7,7 @@ BOOL JewelOfHarmonyOptionBmd::Decrypt()
 
 	if (_buf.size() != size * count)
 	{
-		cout << "Error: File size != (ITEM_CATEGORY_MAX * ITEM_INDEX_MAX * 16)" << endl;
+		std::cout << "Error: File size != (ITEM_CATEGORY_MAX * ITEM_INDEX_MAX * 16)" << std::endl;
 		return false;
 	}
 
@@ -27,13 +27,13 @@ BOOL JewelOfHarmonyOptionBmd::Decrypt()
 	return TRUE;
 }
 
-void JewelOfHarmonyOptionBmd::TxtIn(ifstream & is)
+void JewelOfHarmonyOptionBmd::TxtIn(std::ifstream & is)
 {
 	assert(is);
 
-	static const vector<OffsetInfo> OFFSET = JEWEL_OF_HARMONY_OPTION::GetOffset();
+	static const std::vector<OffsetInfo> OFFSET = JEWEL_OF_HARMONY_OPTION::GetOffset();
 
-	string line;
+	std::string line;
 	size_t count = 750;
 	size_t size = sizeof(JEWEL_OF_HARMONY_OPTION);
 	size_t n = 0;
@@ -62,7 +62,7 @@ void JewelOfHarmonyOptionBmd::TxtIn(ifstream & is)
 		{
 			if (b > a)
 			{
-				string s = line.substr(a, b - a);
+				std::string s = line.substr(a, b - a);
 				size_t pos = OFFSET[i].Offset + (size_t)ptr;
 
 				if (OFFSET[i].Type == LAZY_TYPE_FLAG::_CSTR_)
@@ -81,7 +81,7 @@ void JewelOfHarmonyOptionBmd::TxtIn(ifstream & is)
 			i++;
 			a = b + 1;
 			b = line.find('\t', a);
-		} while (b != string::npos && i < OFFSET.size());
+		} while (b != std::string::npos && i < OFFSET.size());
 
 		n++;
 	}

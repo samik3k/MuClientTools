@@ -3,6 +3,8 @@
 #include "Core.h"
 #include "MasterSkillTreeBmd.h"
 
+using namespace std;
+
 int main(int argc, char** argv)
 {
 	MasterSkillTooltipBmd opener;

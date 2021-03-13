@@ -4,7 +4,7 @@ BOOL EvoMonsterBoxBmd::Decrypt()
 {
 	if (_buf.size() != 164)
 	{
-		cout << "Error: File size must equal 164." << endl;
+		std::cout << "Error: File size must equal 164." << std::endl;
 		//return FALSE; //ignore
 
 		while (_buf.size() < 164)
@@ -21,7 +21,7 @@ BOOL EvoMonsterBoxBmd::Decrypt()
 	{
 		EVO_MONSTER_BOX* ptr = (EVO_MONSTER_BOX*)&_buf[4 + i];
 		int key = GetKey(ptr);
-		_map.insert(make_pair(key, ptr));
+		_map.insert(std::make_pair(key, ptr));
 	}
 
 	return TRUE;
@@ -43,12 +43,12 @@ BOOL EvoMonsterBoxBmd::Encrypt()
 	return TRUE;
 }
 
-void EvoMonsterBoxBmd::MakeLabelEx(ofstream & os)
+void EvoMonsterBoxBmd::MakeLabelEx(std::ofstream & os)
 {
 	assert(os);
-	os << "//This table relates to some chance of EvoMonster Reward." << endl;
-	os << "//(the Drawing Cards Frame when using the box from killing golden evo monster)" << endl;
-	os << "//I didn't check what it's used for. What if we set it all to 1 ???" << endl;
-	os << "//www.youtube.com/watch?v=cvtJXclmj6E" << endl;
+	os << "//This table relates to some chance of EvoMonster Reward." << std::endl;
+	os << "//(the Drawing Cards Frame when using the box from killing golden evo monster)" << std::endl;
+	os << "//I didn't check what it's used for. What if we set it all to 1 ???" << std::endl;
+	os << "//www.youtube.com/watch?v=cvtJXclmj6E" << std::endl;
 
 }

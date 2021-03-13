@@ -3,6 +3,8 @@
 #include "Core.h"
 #include "QuestBmd.h"
 
+using namespace std;
+
 int main(int argc, char** argv)
 {
 	QuestBmd opener;

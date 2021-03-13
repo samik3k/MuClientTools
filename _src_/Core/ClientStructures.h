@@ -53,9 +53,9 @@ struct MIX_INFO
 	MIX_ITEM Items[8];
 	int ItemsCount;
 
-	static string GetLabel() { return string(); };
-	static string GetFormat() { return string(); };
-	static vector<OffsetInfo> GetOffset() { return vector<OffsetInfo>(); };
+	static std::string GetLabel() { return std::string(); };
+	static std::string GetFormat() { return std::string(); };
+	static std::vector<OffsetInfo> GetOffset() { return std::vector<OffsetInfo>(); };
 };
 
 //struct JEWEL_OF_HARMONY_OPTION
@@ -431,9 +431,9 @@ struct QUEST_INFO
 	QUEST_INFO_ITEM Items[16];
 	QUEST_INFO_TYPE Types[16];
 
-	static string GetLabel() { return string(); };
-	static string GetFormat() { return string(); };
-	static vector<OffsetInfo> GetOffset() { return vector<OffsetInfo>(); };
+	static std::string GetLabel() { return std::string(); };
+	static std::string GetFormat() { return std::string(); };
+	static std::vector<OffsetInfo> GetOffset() { return std::vector<OffsetInfo>(); };
 };
 
 //struct STAT_OPTION_TEXT

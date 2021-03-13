@@ -3,6 +3,8 @@
 #include "Core.h"
 #include "NPCQuestBmd.h"
 
+using namespace std;
+
 int main(int argc, char** argv)
 {
 	QuestWordsBmd opener;

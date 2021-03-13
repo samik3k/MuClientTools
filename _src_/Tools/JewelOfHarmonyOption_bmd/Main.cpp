@@ -3,6 +3,8 @@
 #include "Core.h"
 #include "JewelOfHarmonyBmd.h"
 
+using namespace std;
+
 int main(int argc, char** argv)
 {
 	JewelOfHarmonyOptionBmd opener;

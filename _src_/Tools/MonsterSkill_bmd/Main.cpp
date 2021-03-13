@@ -3,6 +3,8 @@
 #include "Core.h"
 #include "MonsterSkillBmd.h"
 
+using namespace std;
+
 int main(int argc, char** argv)
 {
 	MonsterSkillBmd opener;

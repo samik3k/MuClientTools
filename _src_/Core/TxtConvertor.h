@@ -15,20 +15,20 @@ public:
 
 protected:
 	virtual int GetKey(T* ptr) { static int i = 0;  return i++; };
-	virtual void MakeLabel(ofstream& os);
-	virtual void MakeLabelEx(ofstream& os) {};
-	virtual void OffsetOut(ofstream& os, T* ptr);
+	virtual void MakeLabel(std::ofstream& os);
+	virtual void MakeLabelEx(std::ofstream& os) {};
+	virtual void OffsetOut(std::ofstream& os, T* ptr);
 	virtual void InsertToMap(int key, T* ptr, int* err = nullptr);
 	//----------------------
 
 	virtual BOOL Decrypt();
 	virtual BOOL Encrypt();
-	virtual void TxtOut(ofstream& os);
-	virtual void TxtIn(ifstream& is);
+	virtual void TxtOut(std::ofstream& os);
+	virtual void TxtIn(std::ifstream& is);
 	virtual BOOL ComposeTxt(const char *szDestTxt);
 	virtual BOOL ParseTxt(const char *szSrcTxt);
 
-	map<int, T*> _map;
+	std::map<int, T*> _map;
 	WORD _wkey;
 	bool hasCounter;
 	bool hasCRC;
@@ -99,20 +99,20 @@ BOOL TxtConvertor<T>::Encrypt()
 }
 
 template<typename T>
-inline void TxtConvertor<T>::MakeLabel(ofstream & os)
+inline void TxtConvertor<T>::MakeLabel(std::ofstream & os)
 {
 	assert(os);
 
-	static const string LABEL = T::GetLabel();
-	os << LABEL << endl;
+	static const std::string LABEL = T::GetLabel();
+	os << LABEL << std::endl;
 }
 
 template<typename T>
-inline void TxtConvertor<T>::OffsetOut(ofstream & os, T* ptr)
+inline void TxtConvertor<T>::OffsetOut(std::ofstream & os, T* ptr)
 {
 	assert(os && ptr);
 
-	static const vector<OffsetInfo> OFFSET = T::GetOffset();
+	static const std::vector<OffsetInfo> OFFSET = T::GetOffset();
 
 	for (size_t i = 0; i < OFFSET.size(); i++)
 	{
@@ -167,11 +167,11 @@ inline void TxtConvertor<T>::InsertToMap(int key, T * ptr, int* err)
 			*err--;
 		}
 	}
-	_map.insert(make_pair(key, ptr));
+	_map.insert(std::make_pair(key, ptr));
 }
 
 template<typename T>
-void TxtConvertor<T>::TxtOut(ofstream & os)
+void TxtConvertor<T>::TxtOut(std::ofstream & os)
 {
 	assert(os);
 
@@ -182,18 +182,18 @@ void TxtConvertor<T>::TxtOut(ofstream & os)
 	{
 		T* ptr = it->second;
 		OffsetOut(os, ptr);
-		os << endl;
+		os << std::endl;
 	}
 }
 
 template<typename T>
-void TxtConvertor<T>::TxtIn(ifstream & is)
+void TxtConvertor<T>::TxtIn(std::ifstream & is)
 {
 	assert(is);
 
-	static const vector<OffsetInfo> OFFSET = T::GetOffset();
+	static const std::vector<OffsetInfo> OFFSET = T::GetOffset();
 
-	string line;
+	std::string line;
 	size_t size = sizeof(T);
 	size_t head = hasCounter * 4;
 	size_t n = 0;
@@ -215,7 +215,7 @@ void TxtConvertor<T>::TxtIn(ifstream & is)
 		{
 			if (b > a)
 			{
-				string s = line.substr(a, b - a);
+				std::string s = line.substr(a, b - a);
 				size_t pos = OFFSET[i].Offset + (size_t)ptr;
 
 				if (OFFSET[i].Type == LAZY_TYPE_FLAG::_CSTR_)
@@ -234,7 +234,7 @@ void TxtConvertor<T>::TxtIn(ifstream & is)
 			i++;
 			a = b + 1;
 			b = line.find('\t', a);
-		} while (b != string::npos && i < OFFSET.size());
+		} while (b != std::string::npos && i < OFFSET.size());
 		
 		n++;
 	}
@@ -252,10 +252,10 @@ BOOL TxtConvertor<T>::ComposeTxt(const char * szDestTxt)
 	fs::path pFile = Utls::BackupPath(szDestTxt);
 	Utls::CreateParentDir(pFile);
 
-	ofstream os(pFile);
+	std::ofstream os(pFile);
 	if (!os.is_open())
 	{
-		cout << "Error: Failed to write the txt file: " << pFile << '\n';
+		std::cout << "Error: Failed to write the txt file: " << pFile << '\n';
 		return FALSE;
 	}
 
@@ -271,14 +271,17 @@ BOOL TxtConvertor<T>::ParseTxt(const char * szSrcTxt)
 {
 	if(!szSrcTxt) return FALSE;
 
-	ifstream is(szSrcTxt);
+	std::ifstream is(szSrcTxt);
 	if (!is.is_open())
 	{
-		cout << "Error: Failed to read the txt file: " << szSrcTxt << '\n';
+		std::cout << "Error: Failed to read the txt file: " << szSrcTxt << '\n';
 		return FALSE;
 	}
+
 	_map.clear();
+
 	TxtIn(is);
+
 	is.close();
 
 	return TRUE;

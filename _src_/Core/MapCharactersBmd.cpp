@@ -28,7 +28,7 @@ BOOL MapCharactersBmd::Decrypt()
 			}
 			else
 			{
-				cout << "Error: MapCharactersBmd::Decrypt(). Check size failed." << endl;
+				std::cout << "Error: MapCharactersBmd::Decrypt(). Check size failed." << std::endl;
 				return FALSE;
 			}
 			pos += 4;
@@ -67,7 +67,7 @@ BOOL MapCharactersBmd::Encrypt()
 			}
 			else
 			{
-				cout << "Error: MapCharactersBmd::Encrypt(). Check size failed." << endl;
+				std::cout << "Error: MapCharactersBmd::Encrypt(). Check size failed." << std::endl;
 				return FALSE;
 			}
 			pos += 4;
@@ -76,13 +76,13 @@ BOOL MapCharactersBmd::Encrypt()
 	return TRUE;
 }
 
-void MapCharactersBmd::TxtOut(ofstream & os)
+void MapCharactersBmd::TxtOut(std::ofstream & os)
 {
 	assert(os);
 
-	os << "//Map" << endl;
-	os << "//Monster/NPC ID List:" << endl;
-	os << "//=======================================" << endl;
+	os << "//Map" << std::endl;
+	os << "//Monster/NPC ID List:" << std::endl;
+	os << "//=======================================" << std::endl;
 	
 	for (auto it = _map.begin(); it != _map.end(); it++)
 	{
@@ -91,8 +91,8 @@ void MapCharactersBmd::TxtOut(ofstream & os)
 
 		if (count > 0)
 		{
-			os << "//Map : " << ptr->Map << " , Count : " << ptr->Count << endl;
-			os << ptr->Map << endl;
+			os << "//Map : " << ptr->Map << " , Count : " << ptr->Count << std::endl;
+			os << ptr->Map << std::endl;
 
 			int* pID = ((MAP_CHARACTERS_EX*)ptr)->MonsterID;
 
@@ -102,16 +102,16 @@ void MapCharactersBmd::TxtOut(ofstream & os)
 				if (i < count - 1)
 					os << '\t';
 			}
-			os << endl;
+			os << std::endl;
 		}
 	}
 }
 
-void MapCharactersBmd::TxtIn(ifstream & is)
+void MapCharactersBmd::TxtIn(std::ifstream & is)
 {
 	assert(is);
 
-	string line;
+	std::string line;
 	size_t size = sizeof(MAP_CHARACTERS);
 	size_t pos = 0;
 
@@ -131,13 +131,13 @@ void MapCharactersBmd::TxtIn(ifstream & is)
 			line += '\t';
 			size_t a = 0;
 			size_t b = line.find('\t', a);
-			vector<int> ids;
+			std::vector<int> ids;
 
 			do
 			{
 				if (b > a)
 				{
-					string s = line.substr(a, b - a);
+					std::string s = line.substr(a, b - a);
 					int id;
 					if (!s.empty())
 					{
@@ -147,7 +147,7 @@ void MapCharactersBmd::TxtIn(ifstream & is)
 				}
 				a = b + 1;
 				b = line.find('\t', a);
-			} while (b != string::npos);
+			} while (b != std::string::npos);
 
 			ptr->Count = ids.size();	//must assign Count before resize(). After resizing, data location may change.
 

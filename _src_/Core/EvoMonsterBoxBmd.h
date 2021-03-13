@@ -14,7 +14,7 @@ public:
 private:
 	BOOL Decrypt();
 	BOOL Encrypt();
-	void MakeLabelEx(ofstream& os);
+	void MakeLabelEx(std::ofstream& os);
 };
 
 #endif

@@ -3,6 +3,8 @@
 #include "Core.h"
 #include "FormulaDataBmd.h"
 
+using namespace std;
+
 int main(int argc, char** argv)
 {
 	FormulaDataBmd opener;

@@ -8,10 +8,10 @@ BOOL BaseIO::FileOpen(const char * szSrcFile)
 {
 	if(!szSrcFile) return FALSE;
 
-	ifstream is(szSrcFile, ios::in | ios::binary);
+	std::ifstream is(szSrcFile, std::ios::in | std::ios::binary);
 	if (!is.is_open())
 	{
-		cout << "Error: Failed to open file: " << szSrcFile << '\n';
+		std::cout << "Error: Failed to open file: " << szSrcFile << '\n';
 		return FALSE;
 	}
 	is.seekg(0, is.end);
@@ -32,10 +32,10 @@ BOOL BaseIO::FileWrite(const char * szDestFile)
 	fs::path pFile = Utls::BackupPath(szDestFile);
 	Utls::CreateParentDir(pFile);
 
-	ofstream os(pFile, ios::out | ios::binary);
+	std::ofstream os(pFile, std::ios::out | std::ios::binary);
 	if (!os.is_open())
 	{
-		cout << "Error: Failed to write file: " << pFile << '\n';
+		std::cout << "Error: Failed to write file: " << pFile << '\n';
 		return FALSE;
 	}
 	os.write((char*)_buf.data(), _buf.size());

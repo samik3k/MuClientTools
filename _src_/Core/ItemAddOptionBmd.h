@@ -12,8 +12,8 @@ public:
 private:
 	BOOL Decrypt();
 	BOOL Encrypt();
-	void TxtOut(ofstream& os);
-	void TxtIn(ifstream& is);
+	void TxtOut(std::ofstream& os);
+	void TxtIn(std::ifstream& is);
 };
 
 #endif

@@ -11,7 +11,7 @@ protected:
 	virtual BOOL FileOpen(const char *szSrcFile);
 	virtual BOOL FileWrite(const char *szDestFile);
 
-	vector<BYTE> _buf;
+	std::vector<BYTE> _buf;
 };
 
 #endif

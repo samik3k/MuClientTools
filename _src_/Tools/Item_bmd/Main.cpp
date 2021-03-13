@@ -3,6 +3,8 @@
 #include "Core.h"
 #include "ItemBmd.h"
 
+using namespace std;
+
 int main(int argc, char** argv)
 {
 	ItemBmd opener; 

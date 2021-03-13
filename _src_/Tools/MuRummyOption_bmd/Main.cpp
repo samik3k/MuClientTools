@@ -3,6 +3,8 @@
 #include "Core.h"
 #include "MuRummyBmd.h"
 
+using namespace std;
+
 int main(int argc, char** argv)
 {
 	MuRummyOptionBmd opener;
