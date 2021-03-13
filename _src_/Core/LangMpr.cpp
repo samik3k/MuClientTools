@@ -1,8 +1,7 @@
 #include "LangMpr.h"
 
-#include "7z/include/bit7z.hpp"
+#include "bit7z/include/bit7z.hpp"
 using namespace  bit7z;
-
 //------------------------------------------------------------------------
 //--LangMpr
 //------------------------------------------------------------------------

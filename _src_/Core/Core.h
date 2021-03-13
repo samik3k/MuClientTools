@@ -10,6 +10,9 @@
 #pragma warning(disable: 4554)
 #pragma warning(disable: 4996)
 
+#pragma comment(lib, "cryptlib.lib")
+#pragma comment(lib, "bit7z.lib")
+
 #include <assert.h>
 #include <iostream>
 #include <fstream>
@@ -36,9 +39,6 @@ namespace fs = std::filesystem;
 #include "SingletonInstance.h"
 #include "MuCommon.h"
 #include "ClientStructures.h"
-
-class MuCrypto;
-class BaseIO;
 
 #include "MuCrypto.h"
 #include "BaseIO.h"
