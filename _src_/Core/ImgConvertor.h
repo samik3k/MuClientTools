@@ -20,7 +20,7 @@ constexpr const char EXT_TGA[] = ".tga";
 constexpr const char EXT_BMP[] = ".bmp";
 constexpr const char EXT_DDS[] = ".dds";
 
-template <const char* EXT, size_t PAD>
+template <const char* EXT, size_t PAD = 0>
 class ImgConvertor : public BaseIO
 {
 public:
@@ -30,6 +30,7 @@ public:
 	constexpr const char* ExtReplace();
 	virtual BOOL Unpack(const char *szSrc, const char *szDest);
 	virtual BOOL Pack(const char *szSrc, const char *szDest);
+
 private:
 	virtual BOOL Decrypt();
 	virtual BOOL Encrypt();

@@ -89,10 +89,11 @@ EffectInfo/EffectInfoxxx.txt
 43.	MuunRenderInfo.bmd  
 44.	MuunMeshInfo.bmd  
 
-### Image, 3D Model, and Interface Files: 0% (0 / 5)  
-	1.	OZJ	(-> .jpg)  
-	2.	OZT	(-> .tga)  
-	3.	OZD	(-> .dds)  
-	4.	BMD	(-> .smd)  
-	5.	OZG	(-> .gfx)  
+### Image, 3D Model, and Interface Files: 67% (4 / 6)  
+:heavy_check_mark:	1.	OZJ	(-> .jpg)  
+:heavy_check_mark:	2.	OZT	(-> .tga)  
+:heavy_check_mark:	3.	OZB (-> .bmp)  
+:heavy_check_mark:	4.	OZD	(-> .dds)  
+5.	BMD	(-> .smd)  
+6.	OZG	(-> .gfx)  
 

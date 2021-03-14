@@ -30,10 +30,10 @@ public:
 
 	bool Init(BYTE *key, DWORD length)
 	{
-		this->enc_.SetKey(key, this->enc_.DEFAULT_KEYLENGTH);
-		this->dec_.SetKey(key, this->dec_.DEFAULT_KEYLENGTH);
-		this->m_maxRunCount = MAX_RUN;
-		this->m_blockSize = this->enc_.BLOCKSIZE;
+		enc_.SetKey(key, enc_.DEFAULT_KEYLENGTH);
+		dec_.SetKey(key, dec_.DEFAULT_KEYLENGTH);
+		m_maxRunCount = MAX_RUN;
+		m_blockSize = enc_.BLOCKSIZE;
 		return true;
 
 	}
@@ -42,9 +42,9 @@ public:
 	{
 		if (inBuf && outBuf && len)
 		{
-			for (int i = 0; i < len; i += this->dec_.BLOCKSIZE)
+			for (int i = 0; i < len; i += dec_.BLOCKSIZE)
 			{
-				this->enc_.ProcessBlock(&inBuf[i], &outBuf[i]);
+				enc_.ProcessBlock(&inBuf[i], &outBuf[i]);
 			}
 			return len;
 		}
@@ -56,9 +56,9 @@ public:
 	{
 		if (inBuf && outBuf && len)
 		{
-			for (int i = 0; i < len; i += this->dec_.BLOCKSIZE)
+			for (int i = 0; i < len; i += dec_.BLOCKSIZE)
 			{
-				this->dec_.ProcessBlock(&inBuf[i], &outBuf[i]);
+				dec_.ProcessBlock(&inBuf[i], &outBuf[i]);
 			}
 			return len;
 		}
@@ -77,17 +77,20 @@ public:
 	virtual ~MuCrypto() {};
 
 protected:
-	BOOL InitModulusCrypto(DWORD algorithm, BYTE * key, DWORD keyLength);
-	int ModulusEncrypt(BYTE *inBuf, size_t len, BYTE *outBuf);
-	int ModulusDecrypt(BYTE *inBuf, size_t len, BYTE *outBuf);
-
-	virtual DWORD CalculateCRC(BYTE *buf, int len, WORD wkey);
-	virtual DWORD Xor3Byte(BYTE *buf, int len);
+	DWORD CalculateCRC(BYTE *buf, int len, WORD wkey);
+	DWORD Xor3Byte(BYTE *buf, int len);
 	BYTE _xor3key[3];
+
+	BOOL InitModulusCrypto(DWORD algorithm, BYTE * key, DWORD keyLength);
+	int BlockEncrypt(BYTE *inBuf, size_t len, BYTE *outBuf);
+	int BlockDecrypt(BYTE *inBuf, size_t len, BYTE *outBuf);
+	int GetBlockSize() { return m_cipher ? m_cipher->m_blockSize : 0; }
+
+	BOOL ModulusEncrypt(std::vector<BYTE>& buf);
+	BOOL ModulusDecrypt(std::vector<BYTE>& buf);
 
 private:
 	AbstractCipher * m_cipher;
-	DWORD m_algorithm;
 };
 
 #endif

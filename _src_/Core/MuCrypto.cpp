@@ -9,6 +9,35 @@
 #include "cryptopp/idea.h"
 #include "cryptopp/gost.h"
 
+DWORD MuCrypto::CalculateCRC(BYTE * buf, int len, WORD wkey)
+{
+	assert(buf);
+
+	DWORD CRC = wkey << 9;
+	for (int i = 0; i <= len - 4; i += 4)
+	{
+		DWORD temp = *(DWORD*)&buf[i];
+		//memcpy(&temp, &buf[i], 4);
+		if ((wkey + (i >> 2)) % 2 == 1)
+			CRC += temp;
+		else
+			CRC ^= temp;
+		if (i % 16 == 0)
+			CRC ^= (CRC + wkey) >> ((i >> 2) % 8 + 1);
+	}
+	return CRC;
+}
+
+DWORD MuCrypto::Xor3Byte(BYTE * buf, int len)
+{
+	DWORD result = 0;
+	for (int i = 0; i < len; ++i)
+	{
+		buf[i] ^= _xor3key[i % 3];
+	}
+	return result;
+}
+
 BOOL MuCrypto::InitModulusCrypto(DWORD algorithm, BYTE * key, DWORD keyLength)
 {
 	typedef ConcreteCipher < CryptoPP::TEA, 1024 * 8 >			Cipher0;
@@ -54,7 +83,7 @@ BOOL MuCrypto::InitModulusCrypto(DWORD algorithm, BYTE * key, DWORD keyLength)
 	return this->m_cipher->Init(key, keyLength);
 }
 
-int MuCrypto::ModulusEncrypt(BYTE *inBuf, size_t len, BYTE *outBuf)
+int MuCrypto::BlockEncrypt(BYTE *inBuf, size_t len, BYTE *outBuf)
 {
 	if (this->m_cipher)
 		return this->m_cipher->Encrypt(inBuf, len, outBuf);
@@ -62,7 +91,7 @@ int MuCrypto::ModulusEncrypt(BYTE *inBuf, size_t len, BYTE *outBuf)
 	return -1;
 }
 
-int MuCrypto::ModulusDecrypt(BYTE *inBuf, size_t len, BYTE *outBuf)
+int MuCrypto::BlockDecrypt(BYTE *inBuf, size_t len, BYTE *outBuf)
 {
 	if (this->m_cipher)
 		return this->m_cipher->Decrypt(inBuf, len, outBuf);
@@ -70,33 +99,90 @@ int MuCrypto::ModulusDecrypt(BYTE *inBuf, size_t len, BYTE *outBuf)
 	return -1;
 }
 
-DWORD MuCrypto::CalculateCRC(BYTE * buf, int len, WORD wkey)
+BOOL MuCrypto::ModulusEncrypt(std::vector<BYTE>& buf)
 {
-	assert(buf);
+	if (!buf.size()) return FALSE;
 
-	DWORD CRC = wkey << 9;
-	for (int i = 0; i <= len - 4; i += 4)
+	BYTE key_1[33] = _MU_MODULUS_KEY_;
+	BYTE key_2[33] = _MU_MODULUS_KEY_;	//able to pick any random key_2
+	DWORD algorithm_1 = std::rand() % 8;
+	DWORD algorithm_2 = std::rand() % 8;
+
+	size_t data_size = buf.size();
+	size_t size = data_size + 34;
+
+	buf.insert(buf.begin(), std::begin(key_2), std::begin(key_2) + 32);
+	buf.insert(buf.begin(), algorithm_1);
+	buf.insert(buf.begin(), algorithm_2);
+
+	InitModulusCrypto(algorithm_2, key_2, 32);
+	size_t block_size = data_size - (data_size % GetBlockSize());
+
+	BYTE * block = &buf[34];
+	BlockEncrypt(block, block_size, block);
+
+	InitModulusCrypto(algorithm_1, key_1, 32);
+	block_size = 1024 - (1024 % GetBlockSize());
+
+	if (data_size > block_size)
 	{
-		DWORD temp = *(DWORD*)&buf[i];
-		//memcpy(&temp, &buf[i], 4);
-		if ((wkey + (i >> 2)) % 2 == 1)
-			CRC += temp;
-		else
-			CRC ^= temp;
-		if (i % 16 == 0)
-			CRC ^= (CRC + wkey) >> ((i >> 2) % 8 + 1);
+		block = &buf[2];
+		BlockEncrypt(block, block_size, block);
+		block = &buf[size - block_size];
+		BlockEncrypt(block, block_size, block);
 	}
-	return CRC;
+
+	if (data_size > (4 * block_size))
+	{
+		block = &buf[2 + (data_size >> 1)];
+		BlockEncrypt(block, block_size, block);
+	}
+
+	return TRUE;
 }
 
-DWORD MuCrypto::Xor3Byte(BYTE * buf, int len)
+BOOL MuCrypto::ModulusDecrypt(std::vector<BYTE>& buf)
 {
-	DWORD result = 0;
-	for (int i = 0; i < len; ++i)
+	if (buf.size() < 34) return FALSE;
+
+	BYTE key_1[33] = _MU_MODULUS_KEY_;
+	BYTE key_2[33] = { 0 };
+	DWORD algorithm_1 = buf[1];
+	DWORD algorithm_2 = buf[0];
+
+	size_t size = buf.size();
+	size_t data_size = size - 34;
+
+	InitModulusCrypto(algorithm_1, key_1, 32);
+	size_t block_size = 1024 - (1024 % GetBlockSize());
+
+	BYTE * block;
+
+	if (data_size > (4 * block_size))
 	{
-		buf[i] ^= _xor3key[i % 3];
+		block = &buf[2 + (data_size >> 1)];
+		BlockDecrypt(block, block_size, block);
 	}
-	return result;
+
+	if (data_size > block_size)
+	{
+		block = &buf[size - block_size];
+		BlockDecrypt(block, block_size, block);
+		block = &buf[2];
+		BlockDecrypt(block, block_size, block);
+	}
+
+	memcpy(key_2, &buf[2], 32);
+
+	InitModulusCrypto(algorithm_2, key_2, 32);
+	block_size = data_size - (data_size % GetBlockSize());
+
+	block = &buf[34];
+	BlockDecrypt(block, block_size, block);
+
+	buf.erase(buf.begin(), buf.begin() + 34);
+
+	return TRUE;
 }
 
 

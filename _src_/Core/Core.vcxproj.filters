@@ -130,6 +130,9 @@
     <ClInclude Include="OZB.h">
       <Filter>Source Files\Client\Graphic</Filter>
     </ClInclude>
+    <ClInclude Include="OZD.h">
+      <Filter>Source Files\Client\Graphic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseIO.cpp">

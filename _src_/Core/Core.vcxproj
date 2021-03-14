@@ -176,6 +176,7 @@
     <ClInclude Include="MuunExchangeBmd.h" />
     <ClInclude Include="NPCQuestBmd.h" />
     <ClInclude Include="OZB.h" />
+    <ClInclude Include="OZD.h" />
     <ClInclude Include="OZJ.h" />
     <ClInclude Include="OZT.h" />
     <ClInclude Include="PentagramMixNeedSourceBmd.h" />
