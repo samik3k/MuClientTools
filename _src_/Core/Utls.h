@@ -7,8 +7,8 @@
 namespace Utls
 {
 	void CreateParentDir(fs::path path);
-	fs::path RemoveSlashEnd(fs::path&& path);
-	fs::path BackupPath(fs::path&& path);
+	fs::path RemoveSlashEnd(fs::path path);
+	fs::path BackupPath(fs::path path);
 	bool IsEmptyCStr(const char* str);
 	void RemoveAllStringSpaces(std::string& s);
 

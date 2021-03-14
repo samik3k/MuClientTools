@@ -61,7 +61,6 @@ private:
 template<const char* EXT, size_t PAD>
 constexpr const char * ImgConvertor<EXT, PAD>::ExtReplace()
 {
-
 	switch (Ext2Int(EXT))
 	{
 	case INT_OZJ:

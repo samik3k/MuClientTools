@@ -15,20 +15,20 @@ namespace Utls {
 		//}
 	}
 	
-	fs::path RemoveSlashEnd(fs::path&& path)
+	fs::path RemoveSlashEnd(fs::path path)
 	{
 		if (path.empty())
 			return path;
 
-		auto& s = path.string();
-		auto& c = s[s.length() - 1];
+		auto s = path.string();
+		auto c = s[s.length() - 1];
 		if (c == '/' || c == '\\')
-			c = '\0';
+			return s.substr(0, s.length() - 1);
 
-		return fs::path(s);
+		return path;
 	}
 
-	fs::path BackupPath(fs::path&& pFile)
+	fs::path BackupPath(fs::path pFile)
 	{
 		fs::path pBak;
 		if (fs::exists(pFile))

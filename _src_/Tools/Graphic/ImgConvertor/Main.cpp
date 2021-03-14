@@ -6,10 +6,52 @@
 #include "OZT.h"
 #include "OZB.h"
 #include "OZD.h"
-
+//#include <Windows.h>
 using namespace std;
 
-BOOL UnpackFile(const char* szInputPath, const char* szOutputPath = nullptr)
+BOOL ReplaceOutputExt(fs::path& output)
+{
+	fs::path ext = output.extension();
+	fs::path new_ext;
+	if (ext.string().length() != 4) 
+		return FALSE;
+
+	DWORD N = Ext2Int(ext.string().c_str());
+	switch (N)
+	{
+	case INT_OZJ:
+		new_ext = EXT_JPG;
+		break;
+	case INT_OZT:
+		new_ext = EXT_TGA;
+		break;
+	case INT_OZB:
+		new_ext = EXT_BMP;
+		break;
+	case INT_OZD:
+		new_ext = EXT_DDS;
+		break;
+	case INT_JPG:
+		new_ext = EXT_OZJ;
+		break;
+	case INT_TGA:
+		new_ext = EXT_OZT;
+		break;
+	case INT_BMP:
+		new_ext = EXT_OZB;
+		break;
+	case INT_DDS:
+		new_ext = EXT_OZD;
+		break;
+	default:
+		return FALSE;
+	}
+
+	output.replace_extension(new_ext);
+	return TRUE;
+}
+
+BOOL UnpackFile(const char* szInputPath, const char* szOutputPath)
 {
 	DWORD N = Ext2Int(fs::path(szInputPath).extension().string().c_str());
 	switch (N)
@@ -27,7 +69,7 @@ BOOL UnpackFile(const char* szInputPath, const char* szOutputPath = nullptr)
 	}
 }
 
-BOOL PackFile(const char* szInputPath, const char* szOutputPath = nullptr)
+BOOL PackFile(const char* szInputPath, const char* szOutputPath)
 {
 	DWORD N = Ext2Int(fs::path(szInputPath).extension().string().c_str());
 	switch (N)
@@ -45,9 +87,33 @@ BOOL PackFile(const char* szInputPath, const char* szOutputPath = nullptr)
 	}
 }
 
+void FolderProcess(fs::path inputPath, fs::path outputPath)
+{
+	for (auto& iter : fs::directory_iterator(inputPath))
+	{
+		fs::path p = iter.path();
+		fs::path p_out = outputPath;
+		p_out += "\\";
+		p_out += fs::path(p).filename();
+
+		if (fs::is_directory(p))
+		{
+			FolderProcess(p, p_out);
+		}
+		else if (fs::is_regular_file(p))
+		{
+			if (ReplaceOutputExt(p_out))
+			{
+				if (!UnpackFile(p.string().c_str(), p_out.string().c_str()))
+					PackFile(p.string().c_str(), p_out.string().c_str());
+			}
+		}
+	}
+}
+
 int main(int argc, char** argv)
 {
-	const char* szInputPath = "SkillTree4th_I1.dds";
+	const char* szInputPath = nullptr;
 	const char* szOutputPath = nullptr;
 
 	if (argc >= 2)
@@ -77,8 +143,9 @@ int main(int argc, char** argv)
 	}
 	else if (fs::is_directory(szInputPath))
 	{
-		// Recursively converting files in a folder
-		// Will do it later
+		fs::path inputPath = Utls::RemoveSlashEnd(szInputPath);
+		fs::path outputPath(szOutputPath ? szOutputPath : (inputPath.string() + "_out"));
+		FolderProcess(inputPath, outputPath);
 	}
 	else
 	{
