@@ -1,7 +1,7 @@
 #ifndef OZB_H
 #define OZB_H
 
-typedef ImgConvertor<EXT_OZB, 4> OzbConvertor;
+typedef GraphicConvertor<EXT_OZB, 4> OzbConvertor;
 class OZB : public OzbConvertor
 {
 public:

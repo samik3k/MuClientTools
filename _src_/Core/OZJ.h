@@ -1,7 +1,7 @@
 #ifndef OZJ_H
 #define OZJ_H
 
-typedef ImgConvertor<EXT_OZJ, 24> OzjConvertor;
+typedef GraphicConvertor<EXT_OZJ, 24> OzjConvertor;
 class OZJ : public OzjConvertor
 {
 public:

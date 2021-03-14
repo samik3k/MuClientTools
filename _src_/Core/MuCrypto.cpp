@@ -28,14 +28,26 @@ DWORD MuCrypto::CalculateCRC(BYTE * buf, int len, WORD wkey)
 	return CRC;
 }
 
-DWORD MuCrypto::Xor3Byte(BYTE * buf, int len)
+void MuCrypto::Xor3Byte(BYTE * buf, int len)
 {
-	DWORD result = 0;
 	for (int i = 0; i < len; ++i)
 	{
 		buf[i] ^= _xor3key[i % 3];
 	}
-	return result;
+}
+
+void MuCrypto::Xor16Byte(BYTE * buf, int len)
+{
+	constexpr static BYTE key[] { _MU_XOR16_KEY_ };
+	BYTE seed = 0x5E;
+
+	for (int i = 0; i < len; i++)
+	{
+		BYTE temp = buf[i];
+		buf[i] ^= key[i % 16];
+		buf[i] -= seed;
+		seed = temp + 0x3D;
+	}
 }
 
 BOOL MuCrypto::InitModulusCrypto(DWORD algorithm, BYTE * key, DWORD keyLength)

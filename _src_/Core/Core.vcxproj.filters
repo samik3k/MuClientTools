@@ -121,9 +121,6 @@
     <ClInclude Include="OZJ.h">
       <Filter>Source Files\Client\Graphic</Filter>
     </ClInclude>
-    <ClInclude Include="ImgConvertor.h">
-      <Filter>Source Files\Client</Filter>
-    </ClInclude>
     <ClInclude Include="OZT.h">
       <Filter>Source Files\Client\Graphic</Filter>
     </ClInclude>
@@ -132,6 +129,12 @@
     </ClInclude>
     <ClInclude Include="OZD.h">
       <Filter>Source Files\Client\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="OZG.h">
+      <Filter>Source Files\Client\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicConvertor.h">
+      <Filter>Source Files\Client</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -83,7 +83,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StatOption_bmd", "Tools\Dat
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StatOptionText_bmd", "Tools\Data\StatOptionText_bmd\StatOptionText_bmd.vcxproj", "{D4B0F910-DD08-402A-9BF2-4464D3F64CC8}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImgConvertor", "Tools\Graphic\ImgConvertor\ImgConvertor.vcxproj", "{82B64CE9-B757-43E6-A543-5284651FA8FC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AllInOne", "Tools\Graphic\AllInOne\AllInOne.vcxproj", "{82B64CE9-B757-43E6-A543-5284651FA8FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

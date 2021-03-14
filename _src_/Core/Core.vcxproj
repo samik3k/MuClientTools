@@ -155,7 +155,7 @@
     <ClInclude Include="EvoMonsterBoxBmd.h" />
     <ClInclude Include="ExcellentOptionBmd.h" />
     <ClInclude Include="FormulaDataBmd.h" />
-    <ClInclude Include="ImgConvertor.h" />
+    <ClInclude Include="GraphicConvertor.h" />
     <ClInclude Include="InfoTooltipBmd.h" />
     <ClInclude Include="InfoTooltipTextBmd.h" />
     <ClInclude Include="ItemAddOptionBmd.h" />
@@ -176,6 +176,7 @@
     <ClInclude Include="NPCQuestBmd.h" />
     <ClInclude Include="OZB.h" />
     <ClInclude Include="OZD.h" />
+    <ClInclude Include="OZG.h" />
     <ClInclude Include="OZJ.h" />
     <ClInclude Include="OZT.h" />
     <ClInclude Include="PentagramMixNeedSourceBmd.h" />
