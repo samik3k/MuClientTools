@@ -1,7 +1,7 @@
 #ifndef OZD_H
 #define OZD_H
 
-typedef ImgConvertor<EXT_OZD> OzdConvertor;
+typedef ImgConvertor<EXT_OZD, 34> OzdConvertor;
 class OZD : public OzdConvertor
 {
 public:

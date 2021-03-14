@@ -83,6 +83,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StatOption_bmd", "Tools\Dat
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StatOptionText_bmd", "Tools\Data\StatOptionText_bmd\StatOptionText_bmd.vcxproj", "{D4B0F910-DD08-402A-9BF2-4464D3F64CC8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImgConvertor", "Tools\Graphic\ImgConvertor\ImgConvertor.vcxproj", "{82B64CE9-B757-43E6-A543-5284651FA8FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Release|x64 = Release|x64
@@ -197,6 +199,9 @@ Global
 		{D4B0F910-DD08-402A-9BF2-4464D3F64CC8}.Release|x64.ActiveCfg = Release|Win32
 		{D4B0F910-DD08-402A-9BF2-4464D3F64CC8}.Release|x86.ActiveCfg = Release|Win32
 		{D4B0F910-DD08-402A-9BF2-4464D3F64CC8}.Release|x86.Build.0 = Release|Win32
+		{82B64CE9-B757-43E6-A543-5284651FA8FC}.Release|x64.ActiveCfg = Release|Win32
+		{82B64CE9-B757-43E6-A543-5284651FA8FC}.Release|x86.ActiveCfg = Release|Win32
+		{82B64CE9-B757-43E6-A543-5284651FA8FC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -240,6 +245,7 @@ Global
 		{CBE15C79-9EFD-4D0C-917A-21F4F513339B} = {8E526C0E-CB8B-463D-B48E-B58869F684B2}
 		{3083D764-1255-4AA0-A22A-1533493F94FB} = {8E526C0E-CB8B-463D-B48E-B58869F684B2}
 		{D4B0F910-DD08-402A-9BF2-4464D3F64CC8} = {8E526C0E-CB8B-463D-B48E-B58869F684B2}
+		{82B64CE9-B757-43E6-A543-5284651FA8FC} = {6030C4BC-4F69-4318-B13F-81E8CBA2BA05}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {78828549-D639-412A-A60F-6AC294C049AF}

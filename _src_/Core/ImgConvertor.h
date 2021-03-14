@@ -1,11 +1,17 @@
 #ifndef IMG_CONVERTOR_H
 #define IMG_CONVERTOR_H
 
+constexpr char ToLower(char c)
+{
+	if (c >= 'A' && c <= 'Z') return 'a' + (c - 'A');
+	return c;
+}
+
 constexpr DWORD Ext2Int(const char* e)
 {
 	DWORD n = 0;
 	for (int i = 0; i < 4; i++)
-		n |= e[i] << ((3 - i) * 8);
+		n |= ToLower(e[i]) << ((3 - i) * 8);
 	return n;
 }
 
@@ -20,7 +26,17 @@ constexpr const char EXT_TGA[] = ".tga";
 constexpr const char EXT_BMP[] = ".bmp";
 constexpr const char EXT_DDS[] = ".dds";
 
-template <const char* EXT, size_t PAD = 0>
+constexpr DWORD INT_OZJ = Ext2Int(EXT_OZJ);
+constexpr DWORD INT_OZT = Ext2Int(EXT_OZT);
+constexpr DWORD INT_OZB = Ext2Int(EXT_OZB);
+constexpr DWORD INT_OZD = Ext2Int(EXT_OZD);
+
+constexpr DWORD INT_JPG = Ext2Int(EXT_JPG);
+constexpr DWORD INT_TGA = Ext2Int(EXT_TGA);
+constexpr DWORD INT_BMP = Ext2Int(EXT_BMP);
+constexpr DWORD INT_DDS = Ext2Int(EXT_DDS);
+
+template <const char* EXT, size_t PAD>
 class ImgConvertor : public BaseIO
 {
 public:
@@ -45,10 +61,6 @@ private:
 template<const char* EXT, size_t PAD>
 constexpr const char * ImgConvertor<EXT, PAD>::ExtReplace()
 {
-	constexpr DWORD INT_OZJ = Ext2Int(EXT_OZJ);
-	constexpr DWORD INT_OZT = Ext2Int(EXT_OZT);
-	constexpr DWORD INT_OZB = Ext2Int(EXT_OZB);
-	constexpr DWORD INT_OZD = Ext2Int(EXT_OZD);
 
 	switch (Ext2Int(EXT))
 	{
@@ -76,9 +88,10 @@ inline BOOL ImgConvertor<EXT, PAD>::Unpack(const char * szSrc, const char * szDe
 template<const char* EXT, size_t PAD>
 inline BOOL ImgConvertor<EXT, PAD>::Pack(const char * szSrc, const char * szDest)
 {
+	const char* original_ext = EXT;
 	return FileOpen(szSrc)
 		&& Encrypt()
-		&& FileWrite(szDest ? szDest : fs::path(szSrc).replace_extension(EXT).string().c_str());
+		&& FileWrite(szDest ? szDest : fs::path(szSrc).replace_extension(original_ext).string().c_str());
 }
 
 template<const char* EXT, size_t PAD>

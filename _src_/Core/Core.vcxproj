@@ -82,9 +82,8 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>
-      </AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\Lib\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>cryptlib.lib; bit7z.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\3rdParty\</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='PCH|Win32'">

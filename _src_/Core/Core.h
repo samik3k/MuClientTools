@@ -10,9 +10,6 @@
 #pragma warning(disable: 4554)
 #pragma warning(disable: 4996)
 
-#pragma comment(lib, "cryptlib.lib")
-#pragma comment(lib, "bit7z.lib")
-
 #include <assert.h>
 #include <iostream>
 #include <fstream>
@@ -33,7 +30,6 @@ typedef unsigned char byte;
 
 namespace fs = std::filesystem;
 
-
 #include "Utls.h"
 #include "LazyStruct.h"
 #include "SingletonInstance.h"
@@ -44,4 +40,5 @@ namespace fs = std::filesystem;
 #include "BaseIO.h"
 #include "TxtConvertor.h"
 #include "ImgConvertor.h"
+
 #endif // !CORE_PCH_H

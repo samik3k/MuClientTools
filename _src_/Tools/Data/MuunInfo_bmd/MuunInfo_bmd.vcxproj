@@ -50,6 +50,8 @@
       <OptimizeReferences>false</OptimizeReferences>
       <AdditionalDependencies>..\..\..\Lib\Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
