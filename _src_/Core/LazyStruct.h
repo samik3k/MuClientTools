@@ -37,21 +37,21 @@ namespace LazyStruct
 #define LAZY(Members)											\
 {																\
 	Members														\
-	static std::string GetLabel()									\
+	static std::string GetLabel()								\
 	{															\
-		static const std::string LABEL								\
+		static const std::string LABEL							\
 			= LazyStruct::ParseMembersToLabel(#Members);		\
 		return LABEL;											\
 	};															\
-	static std::string GetFormat()									\
+	static std::string GetFormat()								\
 	{															\
-		static const std::string FORMAT								\
+		static const std::string FORMAT							\
 			= LazyStruct::ParseMembersToFormat(#Members);		\
 		return FORMAT;											\
 	};															\
-	static std::vector<OffsetInfo> GetOffset()						\
+	static std::vector<OffsetInfo> GetOffset()					\
 	{															\
-		static const std::vector<OffsetInfo> OFFSET					\
+		static const std::vector<OffsetInfo> OFFSET				\
 			= LazyStruct::ParseMembersToOffset(#Members, pack);	\
 		return OFFSET;											\
 	}															\
@@ -61,21 +61,21 @@ namespace LazyStruct
 #define LAZY1(Members)											\
 {																\
 	Members														\
-	static std::string GetLabel()									\
+	static std::string GetLabel()								\
 	{															\
-		static const std::string LABEL								\
+		static const std::string LABEL							\
 			= LazyStruct::ParseMembersToLabel(#Members);		\
 		return LABEL;											\
 	};															\
-	static std::string GetFormat()									\
+	static std::string GetFormat()								\
 	{															\
-		static const std::string FORMAT								\
+		static const std::string FORMAT							\
 			= LazyStruct::ParseMembersToFormat(#Members);		\
 		return FORMAT;											\
 	};															\
-	static std::vector<OffsetInfo> GetOffset()						\
+	static std::vector<OffsetInfo> GetOffset()					\
 	{															\
-		static const std::vector<OffsetInfo> OFFSET					\
+		static const std::vector<OffsetInfo> OFFSET				\
 			= LazyStruct::ParseMembersToOffset(#Members, pack);	\
 		return OFFSET;											\
 	}															\

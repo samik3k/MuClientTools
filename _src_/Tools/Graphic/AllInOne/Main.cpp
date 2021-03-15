@@ -4,6 +4,7 @@
 #include "OZJ.h"
 #include "OZT.h"
 #include "OZB.h"
+#include "OZP.h"
 #include "OZD.h"
 #include "OZG.h"
 
@@ -28,6 +29,9 @@ BOOL ReplaceOutputExt(fs::path& output)
 	case INT_OZB:
 		new_ext = EXT_BMP;
 		break;
+	case INT_OZP:
+		new_ext = EXT_PNG;
+		break;
 	case INT_OZD:
 		new_ext = EXT_DDS;
 		break;
@@ -43,6 +47,9 @@ BOOL ReplaceOutputExt(fs::path& output)
 		break;
 	case INT_BMP:
 		new_ext = EXT_OZB;
+		break;
+	case INT_PNG:
+		new_ext = EXT_OZP;
 		break;
 	case INT_DDS:
 		new_ext = EXT_OZD;
@@ -70,6 +77,8 @@ BOOL UnpackFile(const char* szInputPath, const char* szOutputPath)
 		return sInstance(OZT)->Unpack(szInputPath, szOutputPath);
 	case INT_OZB:
 		return sInstance(OZB)->Unpack(szInputPath, szOutputPath);
+	case INT_OZP:
+		return sInstance(OZP)->Unpack(szInputPath, szOutputPath);
 	case INT_OZD:
 		return sInstance(OZD)->Unpack(szInputPath, szOutputPath);
 	case INT_OZG:
@@ -90,6 +99,8 @@ BOOL PackFile(const char* szInputPath, const char* szOutputPath)
 		return sInstance(OZT)->Pack(szInputPath, szOutputPath);
 	case INT_BMP:
 		return sInstance(OZB)->Pack(szInputPath, szOutputPath);
+	case INT_PNG:
+		return sInstance(OZP)->Pack(szInputPath, szOutputPath);
 	case INT_DDS:
 		return sInstance(OZD)->Pack(szInputPath, szOutputPath);
 	case INT_GFX:
@@ -135,7 +146,7 @@ int main(int argc, char** argv)
 
 	if (!szInputPath)
 	{
-		cout << "\t Drag & Drop the Lang file/folder \n";
+		cout << "\t Drag & Drop the file/folder \n";
 		cout << "\t  or use console command to execute with the file path. \n";
 		return EXIT_FAILURE;
 	}

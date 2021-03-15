@@ -22,7 +22,6 @@ struct MIX_ITEM
 	int Type;
 };
 
-//struct MIX_INFO
 struct MIX_INFO
 {
 	int ID;
@@ -114,7 +113,7 @@ STRUCT(QUEST_PROGRESS) LAZY1	//size = 41
 
 //struct QUEST_WORDS
 #pragma pack(1)
-STRUCT(QUEST_WORDS) LAZY	//size = 6
+STRUCT(QUEST_WORDS) LAZY1	//size = 6
 (
 	DWORD ID;
 	WORD Len;

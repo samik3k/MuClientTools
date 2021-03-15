@@ -2,8 +2,7 @@
 #define _MU_CRYPTO_H
 
 #define _MU_XOR3_KEY_  0xFC, 0xCF, 0xAB
-#define _MU_XOR16_KEY_  0xD1, 0x73, 0x52, 0xF6, 0xD2, 0x9A, 0xCB, 0x27, 0x3E, 0xAF, 0x59, 0x31, 0x37, 0xB3, 0xE7, 0xA2
-
+#define _MU_MAP_FILE_KEY_  0xD1, 0x73, 0x52, 0xF6, 0xD2, 0x9A, 0xCB, 0x27, 0x3E, 0xAF, 0x59, 0x31, 0x37, 0xB3, 0xE7, 0xA2
 #define _MU_MODULUS_KEY_ "webzen#@!01webzen#@!01webzen#@!0"
 
 class AbstractCipher
@@ -75,14 +74,15 @@ public:
 class MuCrypto
 {
 public:
-	MuCrypto(): _xor3key{ _MU_XOR3_KEY_ } {};
+	MuCrypto(){};
 	virtual ~MuCrypto() {};
 
 protected:
 	DWORD CalculateCRC(BYTE *buf, int len, WORD wkey);
 	void Xor3Byte(BYTE *buf, int len);
-	void Xor16Byte(BYTE* buf, int len);
-	const BYTE _xor3key[3];
+
+	void MapFileEncrypt(BYTE* buf, int len);
+	void MapFileDecrypt(BYTE* buf, int len);
 
 	BOOL InitModulusCrypto(DWORD algorithm, BYTE * key, DWORD keyLength);
 	int BlockEncrypt(BYTE *inBuf, size_t len, BYTE *outBuf);

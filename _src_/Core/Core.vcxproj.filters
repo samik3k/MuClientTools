@@ -136,6 +136,9 @@
     <ClInclude Include="GraphicConvertor.h">
       <Filter>Source Files\Client</Filter>
     </ClInclude>
+    <ClInclude Include="OZP.h">
+      <Filter>Source Files\Client\Graphic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseIO.cpp">

@@ -178,6 +178,7 @@
     <ClInclude Include="OZD.h" />
     <ClInclude Include="OZG.h" />
     <ClInclude Include="OZJ.h" />
+    <ClInclude Include="OZP.h" />
     <ClInclude Include="OZT.h" />
     <ClInclude Include="PentagramMixNeedSourceBmd.h" />
     <ClInclude Include="PlayGuideBmd.h" />

@@ -30,15 +30,30 @@ DWORD MuCrypto::CalculateCRC(BYTE * buf, int len, WORD wkey)
 
 void MuCrypto::Xor3Byte(BYTE * buf, int len)
 {
+	constexpr static BYTE _xor3key[] = { _MU_XOR3_KEY_ };
+
 	for (int i = 0; i < len; ++i)
 	{
 		buf[i] ^= _xor3key[i % 3];
 	}
 }
 
-void MuCrypto::Xor16Byte(BYTE * buf, int len)
+void MuCrypto::MapFileEncrypt(BYTE * buf, int len)
 {
-	constexpr static BYTE key[] { _MU_XOR16_KEY_ };
+	constexpr static BYTE key[]{ _MU_MAP_FILE_KEY_ };
+	BYTE seed = 0x5E;
+
+	for (int i = 0; i < len; i++)
+	{
+		buf[i] += seed;
+		buf[i] ^= key[i % 16];
+		seed = buf[i] + 0x3D;
+	}
+}
+
+void MuCrypto::MapFileDecrypt(BYTE * buf, int len)
+{
+	constexpr static BYTE key[] { _MU_MAP_FILE_KEY_ };
 	BYTE seed = 0x5E;
 
 	for (int i = 0; i < len; i++)

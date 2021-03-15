@@ -93,10 +93,10 @@ EffectInfo/EffectInfoxxx.txt
 :heavy_check_mark:	1.	OZJ	(-> .jpg)  
 :heavy_check_mark:	2.	OZT	(-> .tga)  
 :heavy_check_mark:	3.	OZB (-> .bmp)  
-:heavy_check_mark:	4.	OZD	(-> .dds)  
-:heavy_check_mark:	5.	OZG	(-> .gfx)  
-6.	BMD  
+:heavy_check_mark:	4.	OZP (-> .png)  
+:heavy_check_mark:	5.	OZD	(-> .dds)  
+:heavy_check_mark:	6.	OZG	(-> .gfx)  
 7.	MAP  
-8.	ATT
+8.	ATT  
 9.	OBJ
-
+10.	BMD  
