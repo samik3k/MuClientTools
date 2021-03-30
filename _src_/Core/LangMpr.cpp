@@ -1,6 +1,7 @@
 #include "LangMpr.h"
-using namespace  bit7z;
 
+#include "bit7z/include/bit7z.hpp"
+using namespace  bit7z;
 //------------------------------------------------------------------------
 //--LangMpr
 //------------------------------------------------------------------------
@@ -23,10 +24,10 @@ BOOL LangMpr::FileOpen(const char * szSrcFile)
 {
 	assert(szSrcFile);
 
-	ifstream is(szSrcFile, ios::in | ios::binary);
+	std::ifstream is(szSrcFile, std::ios::in | std::ios::binary);
 	if (!is.is_open())
 	{
-		cout << "Failed to open file: " << szSrcFile << '\n';
+		std::cout << "Failed to open file: " << szSrcFile << '\n';
 		return false;
 	}
 	is.seekg(0, is.end);
@@ -35,7 +36,7 @@ BOOL LangMpr::FileOpen(const char * szSrcFile)
 
 	if (size < 4)
 	{
-		cout << "Incorrect filesize: " << size << '\n';
+		std::cout << "Incorrect filesize: " << size << '\n';
 		return false;
 	}
 	size -= 4;		//CRC is the last 4 BYTEs
@@ -47,7 +48,7 @@ BOOL LangMpr::FileOpen(const char * szSrcFile)
 	is.close();
 	if (CRC != CalculateCRC(_buf.data(), _buf.size(), _wkey))
 	{
-		cout << "Warning: InputFile CRC check failed. \n";
+		std::cout << "Warning: InputFile CRC check failed. \n";
 #ifdef STRICT_CRC_CHECK
 		return false;
 #endif
@@ -65,10 +66,10 @@ BOOL LangMpr::FileWrite(const char * szDestFile)
 	Utls::CreateParentDir(pFile);
 
 	DWORD CRC = CalculateCRC(_buf.data(), _buf.size(), _wkey);
-	ofstream os(pFile, ios::out | ios::binary);
+	std::ofstream os(pFile, std::ios::out | std::ios::binary);
 	if (!os.is_open())
 	{
-		cout << "Error: Failed to write file: " << pFile << '\n';
+		std::cout << "Error: Failed to write file: " << pFile << '\n';
 		return false;
 	}
 	os.write((char*)_buf.data(), _buf.size());
@@ -82,6 +83,8 @@ BOOL LangMpr::FileWrite(const char * szDestFile)
 BOOL LangMpr::Decrypt()
 {
 	assert(_buf.size());
+
+	constexpr static BYTE _xor3key[] = { _MU_XOR3_KEY_ };
 
 	for (size_t i = 0; i < _buf.size(); ++i)
 	{
@@ -113,14 +116,14 @@ BOOL LangMpr::UnZip(const char *szDestDir)
 		extractor.extract(_buf, pDir);
 	}
 	catch (const BitException& ex) {
-		cout << "Error: " << ex.what() << '\n';
-		cout << "\tCheck _LANG_WKEY_ / _LANG_XOR3KEY_ / _LANG_ZIP_PASSWORD_ \n";
+		std::cout << "Error: " << ex.what() << '\n';
+		std::cout << "\tCheck _LANG_WKEY_ / _LANG_XOR3KEY_ / _LANG_ZIP_PASSWORD_ \n";
 
 #ifdef WRITE_ZIP_FILE
 		ofstream os("error.zip", ios::out | ios::binary);
 		os.write((char*)_buf.data(), _buf.size());
 		os.close();
-		cout << "File 'error.zip' saved. \n";
+		std::cout << "File 'error.zip' saved. \n";
 #endif
 		return false;
 	}
@@ -129,7 +132,7 @@ BOOL LangMpr::UnZip(const char *szDestDir)
 	ofstream os("unpack.zip", ios::out | ios::binary);
 	os.write((char*)_buf.data(), _buf.size());
 	os.close();
-	cout << "File 'unpack.zip' saved. \n";
+	std::cout << "File 'unpack.zip' saved. \n";
 #endif
 
 	return true;
@@ -149,7 +152,7 @@ BOOL LangMpr::Zip(const char *szSrcDir)
 		compressor.compressDirectoryToBuffer(pDir, _buf);
 	}
 	catch (const BitException& ex) {
-		cout << "Error: " << ex.what() << '\n';
+		std::cout << "Error: " << ex.what() << '\n';
 		return false;
 	}
 
@@ -157,7 +160,7 @@ BOOL LangMpr::Zip(const char *szSrcDir)
 	ofstream os("pack.zip", ios::out | ios::binary);
 	os.write((char*)_buf.data(), _buf.size());
 	os.close();
-	cout << "File 'pack.zip' saved. \n";
+	std::cout << "File 'pack.zip' saved. \n";
 #endif
 
 	return true;

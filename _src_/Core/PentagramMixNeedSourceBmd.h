@@ -12,15 +12,15 @@ public:
 	virtual ~PentagramMixNeedSourceBmd() {};
 
 private:
-	void MakeLabelEx(ofstream& os) 
+	void MakeLabelEx(std::ofstream& os)
 	{
 		assert(os);
-		os << "// Cat0: Material Combination" << endl;
-		os << "// Cat1: Errtel" << endl;
-		os << "// Cat2 : Errtel Level Upgrade" << endl;
-		os << "// Cat3 : Errtel Rank Upgrade" << endl;
-		os << "// Cat6: Wing Add Option" << endl;
-		os << "// Cat7: Wing Option Level Upgrade" << endl;
+		os << "// Cat0: Material Combination" << std::endl;
+		os << "// Cat1: Errtel" << std::endl;
+		os << "// Cat2 : Errtel Level Upgrade" << std::endl;
+		os << "// Cat3 : Errtel Rank Upgrade" << std::endl;
+		os << "// Cat6: Wing Add Option" << std::endl;
+		os << "// Cat7: Wing Option Level Upgrade" << std::endl;
 	};
 	int GetKey(PENTAGRAM_MIX_SOURCE* ptr) { return (ptr->Category << 8) | ptr->Index; };
 };

@@ -18,7 +18,7 @@ C/C++ reversing skill is a plus to see the changes in their game client.
 
 ### PROJECT'S CHECKLIST:
 
-### Data and Config Files: 73% (32 / 44)  
+### Data and Config Files: 77% (34 / 44)  
 :heavy_check_mark:	1.	Lang.mpr  
   
 ```cpp
@@ -74,10 +74,10 @@ EffectInfo/EffectInfoxxx.txt
 :heavy_check_mark:	30.	QuestWords.bmd  
 :heavy_check_mark:	31.	SkillTooltipText.bmd  
 :heavy_check_mark:	32.	ItemAddOption.bmd  
-  
-33.	JewelOfHarmonyOption.bmd  
+:heavy_check_mark:	33.	JewelOfHarmonyOption.bmd  
 ~~34.	JewelOfHarmonySmelt.bmd~~  
-34.	Mix.bmd  
+:heavy_check_mark:	34.	Mix.bmd  
+  
 35.	itemtooltip.bmd  
 36.	itemtooltiptext.bmd  
 37.	petdata.bmd  
@@ -89,10 +89,14 @@ EffectInfo/EffectInfoxxx.txt
 43.	MuunRenderInfo.bmd  
 44.	MuunMeshInfo.bmd  
 
-### Image, 3D Model, and Interface Files: 0% (0 / 5)  
-	1.	OZJ	(-> .jpg)  
-	2.	OZT	(-> .tga)  
-	3.	OZD	(-> .dds)  
-	4.	BMD	(-> .smd)  
-	5.	OZG	(-> .gfx)  
-
+### Image, 3D Model, Interface and Map Files: 56% (5 / 9)  
+:heavy_check_mark:	1.	OZJ	(-> .jpg)  
+:heavy_check_mark:	2.	OZT	(-> .tga)  
+:heavy_check_mark:	3.	OZB (-> .bmp)  
+:heavy_check_mark:	4.	OZP (-> .png)  
+:heavy_check_mark:	5.	OZD	(-> .dds)  
+:heavy_check_mark:	6.	OZG	(-> .gfx)  
+7.	MAP  
+8.	ATT  
+9.	OBJ
+10.	BMD  

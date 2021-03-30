@@ -20,7 +20,7 @@ BOOL ServerListBmd::Decrypt()
 		Xor3Byte(&_buf[pos], len);
 
 		int key = GetKey(ptr);
-		_map.insert(make_pair(key, ptr));
+		_map.insert(std::make_pair(key, ptr));
 
 		pos += len;
 	}
@@ -49,11 +49,11 @@ BOOL ServerListBmd::Encrypt()
 	return TRUE;
 }
 
-void ServerListBmd::TxtOut(ofstream & os)
+void ServerListBmd::TxtOut(std::ofstream & os)
 {
 	assert(os);
 
-	os << "//ID\tName\tType\tIndex\tPvp\tMsg" << endl;
+	os << "//ID\tName\tType\tIndex\tPvp\tMsg" << std::endl;
 
 	for (auto it = _map.begin(); it != _map.end(); it++)
 	{
@@ -64,15 +64,15 @@ void ServerListBmd::TxtOut(ofstream & os)
 		os << (DWORD)ptr->PosType << '\t';
 		os << (DWORD)ptr->Index << '\t';
 		os << (DWORD)ptr->Type << '\t';
-		os << ((SERVER_LIST_EX*)ptr)->Msg << endl;
+		os << ((SERVER_LIST_EX*)ptr)->Msg << std::endl;
 	}
 }
 
-void ServerListBmd::TxtIn(ifstream & is)
+void ServerListBmd::TxtIn(std::ifstream & is)
 {
 	assert(is);
 
-	string line;
+	std::string line;
 	size_t size = sizeof(SERVER_LIST);
 	size_t pos = 0;
 

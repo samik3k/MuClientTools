@@ -29,7 +29,7 @@ BOOL FormulaDataBmd::Decrypt()
 				key = err;
 				err--;
 			}
-			_map.insert(make_pair(key, pData));
+			_map.insert(std::make_pair(key, pData));
 			pos += size;
 		}
 	}
@@ -64,13 +64,13 @@ BOOL FormulaDataBmd::Encrypt()
 	return TRUE;
 }
 
-void FormulaDataBmd::TxtOut(ofstream & os)
+void FormulaDataBmd::TxtOut(std::ofstream & os)
 {
 	assert(os);
 
 	//	"//Group\tID\tFormula_Text";
-	static const string LABEL = "//Group\t" + FORMULA_DATA::GetLabel();
-	os << LABEL << endl;
+	static const std::string LABEL = "//Group\t" + FORMULA_DATA::GetLabel();
+	os << LABEL << std::endl;
 
 	for (auto it = _map.begin(); it != _map.end(); it++)
 	{
@@ -80,20 +80,20 @@ void FormulaDataBmd::TxtOut(ofstream & os)
 		os << ptr->ID << '\t';
 		os << (Utls::IsEmptyCStr(ptr->Text) ? "[NULL]" : ptr->Text) << '\t';
 
-		os << endl;
+		os << std::endl;
 	}
 }
 
-void FormulaDataBmd::TxtIn(ifstream & is)
+void FormulaDataBmd::TxtIn(std::ifstream & is)
 {
 	assert(is);
 
-	static const string FORMAT = "%d\t" + FORMULA_DATA::GetFormat();
+	static const std::string FORMAT = "%d\t" + FORMULA_DATA::GetFormat();
 
-	string line;
+	std::string line;
 	size_t size = sizeof(FORMULA_DATA);
 	size_t n = 0;
-	map<int, vector<FORMULA_DATA>> temp;
+	std::map<int, std::vector<FORMULA_DATA>> temp;
 
 	while (getline(is, line))
 	{

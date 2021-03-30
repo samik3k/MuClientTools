@@ -52,11 +52,11 @@ BOOL ItemSetTypeBmd::Encrypt()
 	return TRUE;
 }
 
-void ItemSetTypeBmd::TxtOut(ofstream & os)
+void ItemSetTypeBmd::TxtOut(std::ofstream & os)
 {
 	assert(os);
 
-	os << "//ItemCat\tItemIndex\tTier1\tTier2\tTier3\tTier4\tUnk1\tUnk2" << endl;
+	os << "//ItemCat\tItemIndex\tTier1\tTier2\tTier3\tTier4\tUnk1\tUnk2" << std::endl;
 
 	for (auto it = _map.begin(); it != _map.end(); it++)
 	{
@@ -74,16 +74,16 @@ void ItemSetTypeBmd::TxtOut(ofstream & os)
 			os << (int)ptr->Tier4 << '\t';
 			os << (int)ptr->Unk1 << '\t';
 			os << (int)ptr->Unk2 << '\t';
-			os << endl;
+			os << std::endl;
 		}
 	}
 }
 
-void ItemSetTypeBmd::TxtIn(ifstream & is)
+void ItemSetTypeBmd::TxtIn(std::ifstream & is)
 {
 	assert(is);
 
-	string line;
+	std::string line;
 	size_t size = sizeof(ITEM_SET_TYPE);
 	size_t count = ITEM_CATEGORY_MAX * ITEM_INDEX_MAX;
 
@@ -162,29 +162,29 @@ BOOL ItemSetOptionBmd::Encrypt()
 	return TRUE;
 }
 
-void ItemSetOptionBmd::TxtOut(ofstream & os)
+void ItemSetOptionBmd::TxtOut(std::ofstream & os)
 {
 	assert(os);
 
-	static const string LABEL = "//ID\t" + ITEM_SET_OPTION::GetLabel();
-	os << LABEL << endl;
+	static const std::string LABEL = "//ID\t" + ITEM_SET_OPTION::GetLabel();
+	os << LABEL << std::endl;
 
 	for (auto it = _map.begin(); it != _map.end(); it++)
 	{
 		ITEM_SET_OPTION* ptr = it->second;
 		os << it->first << '\t';
 		OffsetOut(os, ptr);
-		os << endl;
+		os << std::endl;
 	}
 }
 
-void ItemSetOptionBmd::TxtIn(ifstream & is)
+void ItemSetOptionBmd::TxtIn(std::ifstream & is)
 {
 	assert(is);
 
-	static const vector<OffsetInfo> OFFSET = ITEM_SET_OPTION::GetOffset();
+	static const std::vector<OffsetInfo> OFFSET = ITEM_SET_OPTION::GetOffset();
 
-	string line;
+	std::string line;
 	size_t size = sizeof(ITEM_SET_OPTION);
 	size_t count = 255;
 
@@ -213,7 +213,7 @@ void ItemSetOptionBmd::TxtIn(ifstream & is)
 		{
 			if (b > a)
 			{
-				string s = line.substr(a, b - a);
+				std::string s = line.substr(a, b - a);
 				size_t pos = OFFSET[i].Offset + (size_t)ptr;
 				sscanf(s.c_str(), OFFSET[i].Format.c_str(), (void*)pos);
 			}
@@ -221,6 +221,6 @@ void ItemSetOptionBmd::TxtIn(ifstream & is)
 			i++;
 			a = b + 1;
 			b = line.find('\t', a);
-		} while (b != string::npos && i < OFFSET.size());
+		} while (b != std::string::npos && i < OFFSET.size());
 	}
 }

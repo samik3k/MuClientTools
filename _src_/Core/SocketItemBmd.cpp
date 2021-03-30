@@ -20,7 +20,7 @@ BOOL SocketItemBmd::Decrypt()
 			SOCKET_ITEM_INFO* ptr = (SOCKET_ITEM_INFO*)&_buf[pos];
 
 			int key = (i << 8) | j;
-			_map.insert(make_pair(key, ptr));
+			_map.insert(std::make_pair(key, ptr));
 
 			pos += size;
 		}
@@ -41,13 +41,13 @@ BOOL SocketItemBmd::Encrypt()
 	return TRUE;
 }
 
-void SocketItemBmd::TxtIn(ifstream & is)
+void SocketItemBmd::TxtIn(std::ifstream & is)
 {
 	assert(is);
 
-	static const vector<OffsetInfo> OFFSET = SOCKET_ITEM_INFO::GetOffset();
+	static const std::vector<OffsetInfo> OFFSET = SOCKET_ITEM_INFO::GetOffset();
 
-	string line;
+	std::string line;
 	size_t size = sizeof(SOCKET_ITEM_INFO);
 	size_t kind = 3;
 	size_t count = 50;
@@ -71,7 +71,7 @@ void SocketItemBmd::TxtIn(ifstream & is)
 		{
 			if (b > a)
 			{
-				string s = line.substr(a, b - a);
+				std::string s = line.substr(a, b - a);
 				size_t pos = OFFSET[i].Offset + (size_t)ptr;
 				sscanf(s.c_str(), OFFSET[i].Format.c_str(), (void*)pos);
 			}
@@ -79,7 +79,7 @@ void SocketItemBmd::TxtIn(ifstream & is)
 			i++;
 			a = b + 1;
 			b = line.find('\t', a);
-		} while (b != string::npos && i < OFFSET.size());
+		} while (b != std::string::npos && i < OFFSET.size());
 
 		n++;
 	}

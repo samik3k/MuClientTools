@@ -16,7 +16,7 @@ BOOL MuunExchangeBmd::Decrypt()
 		Xor3Byte(&_buf[pos], size);
 		MUUN_EXCHANGE* ptr = (MUUN_EXCHANGE*)&_buf[pos];
 		int key = (0 << 8) | ptr->Column_4;
-		_map.insert(make_pair(key, ptr));
+		_map.insert(std::make_pair(key, ptr));
 		pos += size;
 	}
 
@@ -27,7 +27,7 @@ BOOL MuunExchangeBmd::Decrypt()
 		Xor3Byte(&_buf[pos], size);
 		MUUN_EXCHANGE* ptr = (MUUN_EXCHANGE*)&_buf[pos];
 		int key = (1 << 8) | ptr->Column_1;
-		_map.insert(make_pair(key, ptr));
+		_map.insert(std::make_pair(key, ptr));
 		pos += size;
 	}
 
@@ -49,12 +49,12 @@ BOOL MuunExchangeBmd::Encrypt()
 	return TRUE;
 }
 
-void MuunExchangeBmd::TxtOut(ofstream & os)
+void MuunExchangeBmd::TxtOut(std::ofstream & os)
 {
 	assert(os);
 
-	os << "//Group0: Required Item Exchange" << endl;
-	os << "//Group\tItemID\tCount\tInventoryType\tExchangeType" << endl;
+	os << "//Group0: Required Item Exchange" << std::endl;
+	os << "//Group\tItemID\tCount\tInventoryType\tExchangeType" << std::endl;
 
 	for (auto it = _map.begin(); it != _map.end(); it++)
 	{
@@ -66,12 +66,12 @@ void MuunExchangeBmd::TxtOut(ofstream & os)
 			os << ptr->Column_2 << '\t';
 			os << ptr->Column_3 << '\t';
 			os << ptr->Column_4 << '\t';
-			os << endl;
+			os << std::endl;
 		}
 	}
 
-	os << "//Group1: Exchange Type" << endl;
-	os << "//Group\tExchangeType\tEvoStoneID\tMuunEvoID\tInventoryType" << endl;
+	os << "//Group1: Exchange Type" << std::endl;
+	os << "//Group\tExchangeType\tEvoStoneID\tMuunEvoID\tInventoryType" << std::endl;
 
 	for (auto it = _map.begin(); it != _map.end(); it++)
 	{
@@ -83,20 +83,20 @@ void MuunExchangeBmd::TxtOut(ofstream & os)
 			os << ptr->Column_2 << '\t';
 			os << ptr->Column_3 << '\t';
 			os << ptr->Column_4 << '\t';
-			os << endl;
+			os << std::endl;
 		}
 	}
 }
 
-void MuunExchangeBmd::TxtIn(ifstream & is)
+void MuunExchangeBmd::TxtIn(std::ifstream & is)
 {
 	assert(is);
 
-	string line;
+	std::string line;
 	int size = sizeof(MUUN_EXCHANGE);
 	int n = 0;
 
-	map<int, vector<MUUN_EXCHANGE>> temp;
+	std::map<int, std::vector<MUUN_EXCHANGE>> temp;
 
 	while (getline(is, line))
 	{

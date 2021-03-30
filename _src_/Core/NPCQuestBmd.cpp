@@ -20,7 +20,7 @@ BOOL QuestWordsBmd::Decrypt()
 		Xor3Byte(&_buf[pos], len);
 
 		int key = GetKey(ptr);
-		_map.insert(make_pair(key, ptr));
+		_map.insert(std::make_pair(key, ptr));
 
 		pos += len;
 	}
@@ -49,26 +49,26 @@ BOOL QuestWordsBmd::Encrypt()
 	return TRUE;
 }
 
-void QuestWordsBmd::TxtOut(ofstream & os)
+void QuestWordsBmd::TxtOut(std::ofstream & os)
 {
 	assert(os);
 
-	os << "//ID\tText" << endl;
+	os << "//ID\tText" << std::endl;
 
 	for (auto it = _map.begin(); it != _map.end(); it++)
 	{
 		QUEST_WORDS* ptr = it->second;
 
 		os << ptr->ID << '\t';
-		os << ((QUEST_WORDS_EX*)ptr)->Text << endl;
+		os << ((QUEST_WORDS_EX*)ptr)->Text << std::endl;
 	}
 }
 
-void QuestWordsBmd::TxtIn(ifstream & is)
+void QuestWordsBmd::TxtIn(std::ifstream & is)
 {
 	assert(is);
 
-	string line;
+	std::string line;
 	size_t size = sizeof(QUEST_WORDS);
 	size_t pos = 0;
 
@@ -81,7 +81,7 @@ void QuestWordsBmd::TxtIn(ifstream & is)
 		QUEST_WORDS* ptr = (QUEST_WORDS*)&_buf[pos];
 		char msg[1000];
 		sscanf(line.c_str(),
-			"%hd\t%[^\t]%*c"
+			"%d\t%[^\t]%*c"
 			, &ptr->ID, msg
 		);
 

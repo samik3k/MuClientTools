@@ -9,18 +9,11 @@ public:
 	ItemAddOptionBmd() : ItemAddOptionBmdConvert() { hasCounter = false; hasCRC = false; };
 	virtual ~ItemAddOptionBmd() {};
 
-	//BOOL Unpack(const char *szSrcBmd, const char *szDestTxt)
-	//{	
-	//	return FileOpen(szSrcBmd)
-	//		&& Decrypt()
-	//		&& FileWrite(fs::path(szSrcBmd).replace_extension(".debug").string().c_str());
-	//};
-
 private:
 	BOOL Decrypt();
 	BOOL Encrypt();
-	void TxtOut(ofstream& os);
-	void TxtIn(ifstream& is);
+	void TxtOut(std::ofstream& os);
+	void TxtIn(std::ifstream& is);
 };
 
 #endif

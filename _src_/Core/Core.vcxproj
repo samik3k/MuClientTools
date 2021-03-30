@@ -73,8 +73,7 @@
       </TreatSpecificWarningsAsErrors>
       <CompileAs>CompileAsCpp</CompileAs>
       <ForcedIncludeFiles>Core.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\3rdParty\</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -83,7 +82,8 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>.\7z\bit7z.lib</AdditionalDependencies>
+      <AdditionalDependencies>cryptlib.lib; bit7z.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\3rdParty\</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='PCH|Win32'">
@@ -132,9 +132,11 @@
     <ClCompile Include="FormulaDataBmd.cpp" />
     <ClCompile Include="ItemAddOptionBmd.cpp" />
     <ClCompile Include="ItemSetBmd.cpp" />
+    <ClCompile Include="JewelOfHarmonyBmd.cpp" />
     <ClCompile Include="LangMpr.cpp" />
     <ClCompile Include="LazyStruct.cpp" />
     <ClCompile Include="MapCharactersBmd.cpp" />
+    <ClCompile Include="MixBmd.cpp" />
     <ClCompile Include="MuCrypto.cpp" />
     <ClCompile Include="MuunExchangeBmd.cpp" />
     <ClCompile Include="NPCQuestBmd.cpp" />
@@ -153,15 +155,18 @@
     <ClInclude Include="EvoMonsterBoxBmd.h" />
     <ClInclude Include="ExcellentOptionBmd.h" />
     <ClInclude Include="FormulaDataBmd.h" />
+    <ClInclude Include="GraphicConvertor.h" />
     <ClInclude Include="InfoTooltipBmd.h" />
     <ClInclude Include="InfoTooltipTextBmd.h" />
     <ClInclude Include="ItemAddOptionBmd.h" />
     <ClInclude Include="ItemBmd.h" />
     <ClInclude Include="ItemSetBmd.h" />
+    <ClInclude Include="JewelOfHarmonyBmd.h" />
     <ClInclude Include="LangMpr.h" />
     <ClInclude Include="LazyStruct.h" />
     <ClInclude Include="MapCharactersBmd.h" />
     <ClInclude Include="MasterSkillTreeBmd.h" />
+    <ClInclude Include="MixBmd.h" />
     <ClInclude Include="MonsterSkillBmd.h" />
     <ClInclude Include="MuCommon.h" />
     <ClInclude Include="MuCrypto.h" />
@@ -169,6 +174,12 @@
     <ClInclude Include="MuunBmd.h" />
     <ClInclude Include="MuunExchangeBmd.h" />
     <ClInclude Include="NPCQuestBmd.h" />
+    <ClInclude Include="OZB.h" />
+    <ClInclude Include="OZD.h" />
+    <ClInclude Include="OZG.h" />
+    <ClInclude Include="OZJ.h" />
+    <ClInclude Include="OZP.h" />
+    <ClInclude Include="OZT.h" />
     <ClInclude Include="PentagramMixNeedSourceBmd.h" />
     <ClInclude Include="PlayGuideBmd.h" />
     <ClInclude Include="QuestBmd.h" />

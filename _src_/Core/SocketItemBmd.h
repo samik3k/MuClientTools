@@ -12,7 +12,7 @@ public:
 private:
 	BOOL Decrypt();
 	BOOL Encrypt();
-	void TxtIn(ifstream& is);
+	void TxtIn(std::ifstream& is);
 };
 
 #endif
